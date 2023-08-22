@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useTheme, useMediaQuery, Divider, List, ListItem, ListItemButton, ListItemText, AppBar, Drawer, Container, Grid, Hidden } from "@mui/material";
+import { useTheme, useMediaQuery, Divider, List, ListItem, ListItemButton, ListItemText, AppBar, Drawer, Container, Grid, Hidden, FormControl, Input, InputAdornment, FormHelperText } from "@mui/material";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
@@ -13,6 +13,11 @@ import Button from "@mui/material/Button";
 import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { styled, alpha } from "@mui/material/styles";
+import CallRoundedIcon from "@mui/icons-material/CallRounded";
+import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
+import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
+import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact"];
 const AppBarRootStyle = styled(AppBar)(({ theme }) => ({
@@ -80,7 +85,7 @@ export default function MiniDrawer(props) {
 
      setDrawerOpen(open);
    };
-   const drawerList = ["News", "News", "News", "News", "Search", "Cart"];
+   const drawerList = ["Home", "Collection", "On Sale", "Gifts", "New Arrival"];
    const appbarNames = ["News", "Search", "Cart"];
    const drawerBottomList = ["+919658741222", "Cart"];
    const drawerContent = (
@@ -140,33 +145,47 @@ export default function MiniDrawer(props) {
                 </Grid>
               </Hidden>
               <Hidden smDown>
-                <Grid item xs={8} sm={4}>
+                <Grid
+                  item
+                  xs={8}
+                  sm={4}
+                  sx={{ display: "flex", justifyContent: "center" }}
+                >
+                  <CallRoundedIcon sx={{ width: "20px", hieght: "20px" }} />
                   <Typography
                     variant="h6"
                     component="div"
-                    sx={{ textAlign: "center" }}
+                    sx={{
+                      textAlign: "center",
+                    }}
                   >
-                    Mobile Number
+                    845-633-6739
                   </Typography>
                 </Grid>
               </Hidden>
               <Grid item xs={8} sm={4}>
                 <Typography
-                  variant="h6"
-                  component="div"
-                  sx={{ textAlign: "center" }}
+                  variant="h4"
+                  // component="div"
+                  sx={{ textAlign: "center", color: "#FF5894" }}
                 >
-                  Call
+                  FRESH FUMES
                 </Typography>
               </Grid>
               <Hidden smDown>
-                <Grid item xs={8} sm={4}>
+                <Grid
+                  item
+                  xs={8}
+                  sm={4}
+                  sx={{ display: "flex", justifyContent: "center" }}
+                >
+                  <EmailRoundedIcon sx={{ width: "20px", hieght: "20px" }} />
                   <Typography
                     variant="h6"
                     component="div"
                     sx={{ textAlign: "center" }}
                   >
-                    Locate
+                    freshfumes18@gmail.com
                   </Typography>
                 </Grid>
               </Hidden>
@@ -174,7 +193,14 @@ export default function MiniDrawer(props) {
             </Grid>
           </Toolbar>
           <Hidden smDown>
-            <Toolbar>
+            <Toolbar
+              sx={{
+                "&.MuiToolbar-root": {
+                  paddingLeft: "0px",
+                  paddingRight: "0px",
+                },
+              }}
+            >
               <Hidden xsDown={!isDrawerOpen}>
                 <Grid container justifyContent="center">
                   {drawerList?.map((item, index) => {
@@ -194,19 +220,60 @@ export default function MiniDrawer(props) {
               </Hidden>
               <Grid container justifyContent="center">
                 <Hidden xsDown={!isDrawerOpen}>
-                  {appbarNames?.map((item, index) => {
-                    return (
-                      <Grid item sm={2} key={index}>
-                        <Typography
-                          variant="h6"
-                          component="div"
-                          sx={{ textAlign: "center" }}
-                        >
-                          {item}
-                        </Typography>
-                      </Grid>
-                    );
-                  })}
+                  <Grid
+                    item
+                    xs={8}
+                    sm={4}
+                    sx={{ display: "flex", justifyContent: "center" }}
+                  >
+
+                  <FormControl
+                    variant="standard"
+                    sx={{ m: 1, mt: 3, width: "25ch" }}
+                  >
+                    <Input
+                      id="standard-adornment-weight"
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <SearchRoundedIcon />
+                        </InputAdornment>
+                      }
+                      aria-describedby="standard-weight-helper-text"
+                      inputProps={{
+                        "aria-label": "weight",
+                      }}
+                      placeholder="Search"
+                    />
+                    {/* <FormHelperText id="standard-weight-helper-text">
+                      Search
+                    </FormHelperText> */}
+                  </FormControl>
+                  </Grid>
+                  <Grid
+                    item
+                    xs={2}
+                    sm={2}
+                    sx={{ display: "flex", justifyContent: "center" }}
+                  >
+                    <PersonRoundedIcon sx={{ width: "20px", hieght: "20px" }} />
+                  </Grid>
+                  <Grid
+                    item
+                    xs={4}
+                    sm={2}
+                    sx={{ display: "flex", justifyContent: "center" }}
+                  >
+                    <Typography
+                      variant="h6"
+                      component="div"
+                      sx={{ textAlign: "center" }}
+                    >
+                      Cart
+                    </Typography>
+                    <ShoppingCartRoundedIcon
+                      sx={{ width: "20px", hieght: "20px" }}
+                    />
+                  </Grid>
                 </Hidden>
               </Grid>
             </Toolbar>
@@ -281,10 +348,10 @@ export default function MiniDrawer(props) {
         component="main"
         sx={{ flexGrow: 1, marginTop: "3.5rem", marginBottom: "2rem" }}
       >
-       <Container maxWidth="xl">
-        <DrawerHeader />
-        {children}
-        {/* <Chat /> */}
+        <Container maxWidth="xl">
+          <DrawerHeader />
+          {children}
+          {/* <Chat /> */}
         </Container>
       </Box>
     </div>
