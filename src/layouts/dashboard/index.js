@@ -257,10 +257,10 @@ export default function MiniDrawer(props) {
                     textAlign: "center",
                     color: "#FF5894",
                     width: "100%",
-                    marginTop:'auto',
-                    marginBottom:'auto',
+                    marginTop: "auto",
+                    marginBottom: "auto",
                     [theme.breakpoints.up("sm")]: {
-                      textAlign: "center", 
+                      textAlign: "center",
                     },
                   }}
                 >
@@ -288,21 +288,22 @@ export default function MiniDrawer(props) {
               </Hidden>
             </Grid>
           </Toolbar>
-          <Hidden smDown>
-            <Toolbar
-              sx={{
-                "&.MuiToolbar-root": {
-                  paddingLeft: "0px",
-                  paddingRight: "0px",
-                },
-              }}
+          {/* <Hidden smDown> */}
+          <Toolbar
+            sx={{
+              "&.MuiToolbar-root": {
+                paddingLeft: "0px",
+                paddingRight: "0px",
+              },
+            }}
+          >
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 4, sm: 8, md: 12 }}
             >
-              <Hidden xsDown={!isDrawerOpen}>
-                <Grid
-                  container
-                  spacing={{ xs: 2, md: 3 }}
-                  columns={{ xs: 4, sm: 8, md: 12 }}
-                >
+              <Hidden smDown>
+                <Hidden xsDown={!isDrawerOpen}>
                   <Grid
                     item
                     xs={2}
@@ -330,11 +331,26 @@ export default function MiniDrawer(props) {
                     })}
                   </Grid>
                   {/* <Grid container justifyContent="center"> */}
+                </Hidden>
+              </Hidden>
+              <Grid
+                item
+                xs={4}
+                sm={4}
+                md={6}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "auto",
+                  marginBottom: "auto",
+                }}
+              >
+                <Hidden xsDown={!isDrawerOpen}>
                   <Grid
                     item
                     xs={2}
-                    sm={4}
-                    md={6}
+                    sm={2}
+                    md={3}
                     sx={{
                       display: "flex",
                       justifyContent: "center",
@@ -342,94 +358,81 @@ export default function MiniDrawer(props) {
                       marginBottom: "auto",
                     }}
                   >
-                    <Hidden xsDown={!isDrawerOpen}>
-                      <Grid
-                        item
-                        xs={8}
-                        sm={4}
-                        sx={{
-                          display: "flex",
-                          justifyContent: "center",
-                          marginTop: "auto",
-                          marginBottom: "auto",
+                    <FormControl
+                      variant="standard"
+                      sx={{
+                        m: 1,
+                        mt: 3,
+                        width: "25ch",
+                        marginTop: "auto",
+                        marginBottom: "auto",
+                      }}
+                    >
+                      <Input
+                        id="standard-adornment-weight"
+                        endAdornment={
+                          <InputAdornment position="end">
+                            <SearchRoundedIcon />
+                          </InputAdornment>
+                        }
+                        aria-describedby="standard-weight-helper-text"
+                        inputProps={{
+                          "aria-label": "weight",
                         }}
-                      >
-                        <FormControl
-                          variant="standard"
-                          sx={{
-                            m: 1,
-                            mt: 3,
-                            width: "25ch",
-                            marginTop: "auto",
-                            marginBottom: "auto",
-                          }}
-                        >
-                          <Input
-                            id="standard-adornment-weight"
-                            endAdornment={
-                              <InputAdornment position="end">
-                                <SearchRoundedIcon />
-                              </InputAdornment>
-                            }
-                            aria-describedby="standard-weight-helper-text"
-                            inputProps={{
-                              "aria-label": "weight",
-                            }}
-                            placeholder="Search"
-                          />
-                          {/* <FormHelperText id="standard-weight-helper-text">
+                        placeholder="Search"
+                      />
+                      {/* <FormHelperText id="standard-weight-helper-text">
                       Search
                     </FormHelperText> */}
-                        </FormControl>
-                      </Grid>
-                      <Grid
-                        item
-                        xs={1}
-                        sm={1}
-                        sx={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <PersonRoundedIcon
-                          sx={{ width: "20px", hieght: "20px" }}
-                        />
-                      </Grid>
-                      <Grid
-                        item
-                        xs={1}
-                        sm={1}
-                        sx={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <FavoriteBorderRoundedIcon
-                          sx={{ width: "20px", hieght: "20px" }}
-                        />
-                      </Grid>
-                      <Grid
-                        item
-                        xs={1}
-                        sm={2}
-                        sx={{
-                          display: "flex",
-                          justifyContent: "center",
-                          marginTop: "auto",
-                          marginBottom: "auto",
-                        }}
-                      >
-                        <Typography
-                          variant="h6"
-                          component="div"
-                          sx={{ textAlign: "center" }}
-                        >
-                          Cart
-                        </Typography>
-                        <ShoppingCartRoundedIcon
-                          sx={{ width: "20px", hieght: "20px" }}
-                        />
-                      </Grid>
-                    </Hidden>
+                    </FormControl>
                   </Grid>
-                </Grid>
-              </Hidden>
-            </Toolbar>
-          </Hidden>
+                  <Grid
+                    item
+                    xs={0.5}
+                    sm={0.5}
+                    md={1}
+                    sx={{ display: "flex", justifyContent: "center" }}
+                  >
+                    <PersonRoundedIcon sx={{ width: "20px", hieght: "20px" }} />
+                  </Grid>
+                  <Grid
+                    item
+                    xs={0.5}
+                    sm={0.5}
+                    md={1}
+                    sx={{ display: "flex", justifyContent: "center" }}
+                  >
+                    <FavoriteBorderRoundedIcon
+                      sx={{ width: "20px", hieght: "20px" }}
+                    />
+                  </Grid>
+                  <Grid
+                    item
+                    xs={1}
+                    sm={1}
+                    md={1}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      marginTop: "auto",
+                      marginBottom: "auto",
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      component="div"
+                      sx={{ textAlign: "center" }}
+                    >
+                      Cart
+                    </Typography>
+                    <ShoppingCartRoundedIcon
+                      sx={{ width: "20px", hieght: "20px" }}
+                    />
+                  </Grid>
+                </Hidden>
+              </Grid>
+            </Grid>
+          </Toolbar>
         </AppBarRootStyle>
         {/* </AppBar> */}
         <Drawer
