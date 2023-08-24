@@ -4,6 +4,7 @@ import OfferCarousel from "./OfferCarousel";
 import { Container } from "@mui/material";
 import Category from "./Category";
 import Brand from "./Brand";
+import NewArrivalCard from "./NewArrivalCard";
 function Home() {
 
   return (
@@ -11,6 +12,7 @@ function Home() {
     
     <OfferCarousel />
     <Category />
+    <NewArrivalCard />
     <Brand />
     </>
   );

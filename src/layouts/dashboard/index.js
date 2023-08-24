@@ -467,59 +467,318 @@ export default function MiniDrawer(props) {
         sx={{ flexGrow: 1, marginTop: "3.5rem", marginBottom: "2rem" }}
       >
         {/* <Container maxWidth="xl"> */}
-          <DrawerHeader />
-          {children}
-          {/* <Chat /> */}
+        <DrawerHeader />
+        {children}
+        {/* <Chat /> */}
         {/* </Container> */}
       </Box>
-	 <CssBaseline />
-      <Box sx={{ marginTop: 'auto' }}>
-        <Box sx={{ padding: { xs: '70px 30px', md: '80px 60px' }, background: 'transparent', width: '100%' }}>
-          <Container maxWidth="md">
-            <Grid container spacing={2}>
-          <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h6" sx={{ color: 'white', marginBottom: '40px', fontWeight: 'bold' }}>About Us</Typography>
-            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Aim</Link>
-            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Vision</Link>
-            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Testimonials</Link>
+      <CssBaseline />
+      <Box sx={{ background: "#222", paddingTop: "40px" }}>
+        <Container maxWidth="lg">
+          <Grid container spacing={4}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={3}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "white",
+                  marginBottom: "40px",
+                  fontWeight: "bold",
+                }}
+              >
+                About Us
+              </Typography>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                Aim
+              </Link>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                Vision
+              </Link>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                Testimonials
+              </Link>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={3}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "white",
+                  marginBottom: "40px",
+                  fontWeight: "bold",
+                }}
+              >
+                Services
+              </Typography>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                Writing
+              </Link>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                Internships
+              </Link>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                Coding
+              </Link>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                Teaching
+              </Link>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={3}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "white",
+                  marginBottom: "40px",
+                  fontWeight: "bold",
+                }}
+              >
+                Contact Us
+              </Typography>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                Uttar Pradesh
+              </Link>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                Ahmedabad
+              </Link>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                Indore
+              </Link>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                Mumbai
+              </Link>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={3}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "white",
+                  marginBottom: "40px",
+                  fontWeight: "bold",
+                }}
+              >
+                Social Media
+              </Typography>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                <Facebook />
+                <span style={{ marginLeft: "10px" }}>Facebook</span>
+              </Link>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                <Instagram />
+                <span style={{ marginLeft: "10px" }}>Instagram</span>
+              </Link>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                <Twitter />
+                <span style={{ marginLeft: "10px" }}>Twitter</span>
+              </Link>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                <YouTube />
+                <span style={{ marginLeft: "10px" }}>YouTube</span>
+              </Link>
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h6" sx={{ color: 'white', marginBottom: '40px', fontWeight: 'bold' }}>Services</Typography>
-            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Writing</Link>
-            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Internships</Link>
-            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Coding</Link>
-            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Teaching</Link>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h6" sx={{ color: 'white', marginBottom: '40px', fontWeight: 'bold' }}>Contact Us</Typography>
-            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Uttar Pradesh</Link>
-            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Ahmedabad</Link>
-            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Indore</Link>
-            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Mumbai</Link>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h6" sx={{ color: 'white', marginBottom: '40px', fontWeight: 'bold' }}>Social Media</Typography>
-            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', display: 'flex', alignItems: 'center', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>
-              <Facebook />
-              <span style={{ marginLeft: '10px' }}>Facebook</span>
-            </Link>
-            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', display: 'flex', alignItems: 'center', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>
-              <Instagram />
-              <span style={{ marginLeft: '10px' }}>Instagram</span>
-            </Link>
-            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', display: 'flex', alignItems: 'center', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>
-              <Twitter />
-              <span style={{ marginLeft: '10px' }}>Twitter</span>
-            </Link>
-            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', display: 'flex', alignItems: 'center', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>
-              <YouTube />
-              <span style={{ marginLeft: '10px' }}>YouTube</span>
-            </Link>
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
-    </Box>
+        </Container>
+        <Box
+          sx={{
+            background: "#111",
+            borderTop: "1px solid #444",
+            paddingTop: "20px",
+          }}
+        >
+          <Container maxWidth="lg">
+            <Typography
+              variant="body2"
+              align="center"
+              sx={{ color: "#aaa", marginBottom: "10px" }}
+            >
+              &copy; 2023 Your Company. All rights reserved.
+            </Typography>
+            <Typography variant="body2" align="center" sx={{ color: "#aaa" }}>
+              Created with ❤️ by Your Name
+            </Typography>
+          </Container>
+        </Box>
+      </Box>
     </div>
   );
 }
