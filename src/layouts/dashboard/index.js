@@ -503,11 +503,11 @@ export default function MiniDrawer(props) {
         component="main"
         sx={{ flexGrow: 1, marginTop: "3.5rem", marginBottom: "2rem" }}
       >
-        <Container maxWidth="xl">
+        {/* <Container maxWidth="xl"> */}
           <DrawerHeader />
           {children}
           {/* <Chat /> */}
-        </Container>
+        {/* </Container> */}
       </Box>
     </div>
   );

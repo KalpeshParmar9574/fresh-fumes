@@ -1,10 +1,17 @@
 import DashboardLayout from "../../layouts/dashboard";
 import * as React from "react";
+import OfferCarousel from "./OfferCarousel";
+import { Container } from "@mui/material";
+import Category from "./Category";
+import Brand from "./Brand";
 function Home() {
 
   return (
     <>
-    HELLLLOO
+    
+    {/* <OfferCarousel /> */}
+    <Category />
+    <Brand />
     </>
   );
 }
