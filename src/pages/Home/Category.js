@@ -26,7 +26,7 @@ function Category() {
           key={index}
           sx={{ paddingLeft: "0px", margin: "0px" }}
         >
-          <img src={category} alt="" />
+          <img src={category} alt="" style={{ width: "100%" }} />
         </Grid>
       ))}
     </Grid>

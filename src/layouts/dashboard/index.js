@@ -37,6 +37,8 @@ import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import { Link } from '@mui/material';
+import { Facebook, Instagram, Twitter, YouTube } from '@mui/icons-material';
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact"];
 const AppBarRootStyle = styled(AppBar)(({ theme }) => ({
@@ -470,6 +472,54 @@ export default function MiniDrawer(props) {
           {/* <Chat /> */}
         {/* </Container> */}
       </Box>
+	 <CssBaseline />
+      <Box sx={{ marginTop: 'auto' }}>
+        <Box sx={{ padding: { xs: '70px 30px', md: '80px 60px' }, background: 'transparent', width: '100%' }}>
+          <Container maxWidth="md">
+            <Grid container spacing={2}>
+          <Grid item xs={12} sm={6} md={3}>
+            <Typography variant="h6" sx={{ color: 'white', marginBottom: '40px', fontWeight: 'bold' }}>About Us</Typography>
+            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Aim</Link>
+            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Vision</Link>
+            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Testimonials</Link>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <Typography variant="h6" sx={{ color: 'white', marginBottom: '40px', fontWeight: 'bold' }}>Services</Typography>
+            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Writing</Link>
+            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Internships</Link>
+            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Coding</Link>
+            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Teaching</Link>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <Typography variant="h6" sx={{ color: 'white', marginBottom: '40px', fontWeight: 'bold' }}>Contact Us</Typography>
+            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Uttar Pradesh</Link>
+            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Ahmedabad</Link>
+            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Indore</Link>
+            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>Mumbai</Link>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <Typography variant="h6" sx={{ color: 'white', marginBottom: '40px', fontWeight: 'bold' }}>Social Media</Typography>
+            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', display: 'flex', alignItems: 'center', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>
+              <Facebook />
+              <span style={{ marginLeft: '10px' }}>Facebook</span>
+            </Link>
+            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', display: 'flex', alignItems: 'center', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>
+              <Instagram />
+              <span style={{ marginLeft: '10px' }}>Instagram</span>
+            </Link>
+            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', display: 'flex', alignItems: 'center', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>
+              <Twitter />
+              <span style={{ marginLeft: '10px' }}>Twitter</span>
+            </Link>
+            <Link href="#" color="inherit" variant="body1" sx={{ marginBottom: '20px', textDecoration: 'none', display: 'flex', alignItems: 'center', '&:hover': { color: 'green', transition: '200ms ease-in' } }}>
+              <YouTube />
+              <span style={{ marginLeft: '10px' }}>YouTube</span>
+            </Link>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+    </Box>
     </div>
   );
 }
