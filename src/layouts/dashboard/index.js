@@ -172,7 +172,6 @@ export default function MiniDrawer(props) {
       <CssBaseline />
       <Box sx={{ flexGrow: 1 }}>
         <AppBarRootStyle position="fixed" component="nav">
-          {/* <AppBar position="static"> */}
           <Toolbar>
             <Grid
               container
@@ -181,18 +180,6 @@ export default function MiniDrawer(props) {
               alignItems="center"
               justifyContent="center"
             >
-              {/* <Hidden smUp>
-                <Grid item xs={0.5} sm={8} md={12}>
-                  <IconButton
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    onClick={toggleDrawer(true)}
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                </Grid>
-              </Hidden> */}
               <Hidden smDown>
                 <Grid
                   item
@@ -213,26 +200,6 @@ export default function MiniDrawer(props) {
                   </Typography>
                 </Grid>
               </Hidden>
-              {/* <Grid item xs={4} sm={2.65} md={4} sx={{display:'flex',justifyContent:'center'}}>
-                <Hidden smUp>
-                  <IconButton
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    onClick={toggleDrawer(true)}
-                    sx={{display:'flex',justifyContent:'start'}}
-                  >
-                    <MenuIcon />
-                  </IconButton>
-              </Hidden>
-                <Typography
-                  variant="h4"
-                  // component="div"
-                  sx={{ textAlign: "center", color: "#FF5894" }}
-                >
-                  FRESH FUMES
-                </Typography>
-              </Grid> */}
               <Grid
                 item
                 xs={4}
@@ -288,7 +255,6 @@ export default function MiniDrawer(props) {
               </Hidden>
             </Grid>
           </Toolbar>
-          {/* <Hidden smDown> */}
           <Toolbar
             sx={{
               "&.MuiToolbar-root": {
@@ -330,7 +296,6 @@ export default function MiniDrawer(props) {
                       );
                     })}
                   </Grid>
-                  {/* <Grid container justifyContent="center"> */}
                 </Hidden>
               </Hidden>
               <Grid
@@ -381,9 +346,6 @@ export default function MiniDrawer(props) {
                         }}
                         placeholder="Search"
                       />
-                      {/* <FormHelperText id="standard-weight-helper-text">
-                      Search
-                    </FormHelperText> */}
                     </FormControl>
                   </Grid>
                   <Grid
@@ -434,7 +396,6 @@ export default function MiniDrawer(props) {
             </Grid>
           </Toolbar>
         </AppBarRootStyle>
-        {/* </AppBar> */}
         <Drawer
           anchor="left"
           open={isDrawerOpen}

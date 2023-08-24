@@ -9,7 +9,7 @@ function Home() {
   return (
     <>
     
-    {/* <OfferCarousel /> */}
+    <OfferCarousel />
     <Category />
     <Brand />
     </>

@@ -9,7 +9,7 @@ function Brand() {
     ];
     return (
       <>
-        <Typography variant="h2" color="inherit" noWrap sx={{textAlign:'center',marginTop:'30px',marginBottom:'30px'}}>
+        <Typography variant="h2" color="inherit" sx={{textAlign:'center',marginTop:'30px',marginBottom:'30px'}}>
           SELECT YOUR FAVOURITE BRAND
         </Typography>
         <Card>
