@@ -6,6 +6,7 @@ import Category from "./Category";
 import Brand from "./Brand";
 import NewArrival from "./NewArrival";
 import BestSeller from "./BestSeller";
+import Sliders from "./Sliders";
 
 function Home() {
 
@@ -16,6 +17,7 @@ function Home() {
       <NewArrival />
       <BestSeller />
       <Brand />
+      <Sliders /> 
     </>
   );
 }

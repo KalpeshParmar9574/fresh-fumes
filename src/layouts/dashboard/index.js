@@ -464,7 +464,7 @@ export default function MiniDrawer(props) {
         </ScrollTop> */}
       <Box
         component="main"
-        sx={{ flexGrow: 1, marginTop: "3.5rem", marginBottom: "2rem" }}
+        sx={{ flexGrow: 1, marginTop: "3.5rem"}}
       >
         {/* <Container maxWidth="xl"> */}
         <DrawerHeader />
