@@ -39,6 +39,7 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import { Link } from '@mui/material';
 import { Facebook, Instagram, Twitter, YouTube } from '@mui/icons-material';
+import ScrollToTop from "react-scroll-to-top";
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact"];
 const AppBarRootStyle = styled(AppBar)(({ theme }) => ({
@@ -462,10 +463,7 @@ export default function MiniDrawer(props) {
             <KeyboardArrowUpIcon />
           </Fab>
         </ScrollTop> */}
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, marginTop: "3.5rem"}}
-      >
+      <Box component="main" sx={{ flexGrow: 1, marginTop: "3.5rem" }}>
         {/* <Container maxWidth="xl"> */}
         <DrawerHeader />
         {children}
@@ -771,14 +769,16 @@ export default function MiniDrawer(props) {
               align="center"
               sx={{ color: "#aaa", marginBottom: "10px" }}
             >
-              &copy; 2023 Your Company. All rights reserved.
+              &copy; 2023 <a href="/">Fresh Fumes</a>. All rights reserved.
             </Typography>
-            <Typography variant="body2" align="center" sx={{ color: "#aaa" }}>
+            {/* <Typography variant="body2" align="center" sx={{ color: "#aaa" }}>
               Created with ❤️ by Your Name
-            </Typography>
+            </Typography> */}
           </Container>
         </Box>
       </Box>
+      <div style={{ marginTop: "150vh" }} />
+      <ScrollToTop smooth />
     </div>
   );
 }
