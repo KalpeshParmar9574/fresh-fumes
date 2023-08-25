@@ -1,19 +1,21 @@
 import DashboardLayout from "../../layouts/dashboard";
 import * as React from "react";
 import OfferCarousel from "./OfferCarousel";
-import { Container } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import Category from "./Category";
 import Brand from "./Brand";
-import NewArrivalCard from "./NewArrivalCard";
+import NewArrival from "./NewArrival";
+import BestSeller from "./BestSeller";
+
 function Home() {
 
   return (
     <>
-    
-    <OfferCarousel />
-    <Category />
-    <NewArrivalCard />
-    <Brand />
+      <OfferCarousel />
+      <Category />
+      <NewArrival />
+      <BestSeller />
+      <Brand />
     </>
   );
 }
