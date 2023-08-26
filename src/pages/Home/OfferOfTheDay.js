@@ -1,4 +1,5 @@
 import { Button, Grid, Typography } from "@mui/material";
+import moment from "moment/moment";
 import { useEffect, useState } from "react";
 
 function OfferOfTheDay() {
@@ -13,15 +14,28 @@ function OfferOfTheDay() {
         columns={{ xs: 4, sm: 8, md: 12 }}
         alignItems="center"
         justifyContent="center"
-        sx={{
+        style={{
           maxHeight: "550px",
           backgroundColor: "rgb(255, 238, 244)",
+          marginLeft: "auto",
+          marginRight: "auto",
           marginTop: "30px",
           marginBottom: "30px",
         }}
       >
-        <Grid item xs={4} sm={4} md={6} lg={2}>
-          <img src="/assets/images/offeroftheday/offer.png" alt="" />
+        <Grid
+          item
+          xs={4}
+          sm={4}
+          md={6}
+          lg={2}
+          sx={{ marginLeft: "auto", marginRight: "auto" }}
+        >
+          <img
+            src="/assets/images/offeroftheday/offer.png"
+            alt=""
+            style={{ marginLeft: "auto", marginRight: "auto" }}
+          />
         </Grid>
         <Grid item xs={4} sm={4} md={6} lg={2}>
           <div>
@@ -29,7 +43,7 @@ function OfferOfTheDay() {
               variant="h2"
               color="inherit"
               sx={{
-                textAlign: "center",
+                textAlign: "left",
                 marginTop: "30px",
                 marginBottom: "30px",
               }}
@@ -41,16 +55,10 @@ function OfferOfTheDay() {
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
               alignItems="center"
-              justifyContent="center"
-              // sx={{
-              //   maxHeight: "550px",
-              //   backgroundColor: "rgb(255, 238, 244)",
-              //   marginTop: "30px",
-              //   marginBottom: "30px",
-              // }}
+              justifyContent="start"
             >
               <Grid item xs={4} sm={4} md={6} lg={2}>
-                <div style={{ display: "flex" }}>
+                <div style={{ display: "flex", justifyContent: "start" }}>
                   <Typography
                     variant="h2"
                     color="inherit"
@@ -58,9 +66,13 @@ function OfferOfTheDay() {
                       textAlign: "center",
                       marginTop: "30px",
                       marginBottom: "30px",
+                      backgroundColor: "white",
+                      padding: "10px",
+                      marginRight: "10px",
+                      borderRadius: "15%",
                     }}
                   >
-                    {offerDate.getDay()}
+                    {moment(offerDate).format("DD")}
                   </Typography>
                   <Typography
                     variant="h2"
@@ -69,9 +81,10 @@ function OfferOfTheDay() {
                       textAlign: "center",
                       marginTop: "30px",
                       marginBottom: "30px",
+                      padding: "10px",
                     }}
                   >
-                    {offerDate.getHours()}
+                    :
                   </Typography>
                   <Typography
                     variant="h2"
@@ -80,9 +93,13 @@ function OfferOfTheDay() {
                       textAlign: "center",
                       marginTop: "30px",
                       marginBottom: "30px",
+                      backgroundColor: "white",
+                      padding: "10px",
+                      marginRight: "10px",
+                      borderRadius: "15%",
                     }}
                   >
-                    {offerDate.getMinutes()}
+                    {moment(offerDate).format("hh")}
                   </Typography>
                   <Typography
                     variant="h2"
@@ -91,9 +108,51 @@ function OfferOfTheDay() {
                       textAlign: "center",
                       marginTop: "30px",
                       marginBottom: "30px",
+                      padding: "10px",
                     }}
                   >
-                    {offerDate.getSeconds()}
+                    :
+                  </Typography>
+                  <Typography
+                    variant="h2"
+                    color="inherit"
+                    sx={{
+                      textAlign: "center",
+                      marginTop: "30px",
+                      marginBottom: "30px",
+                      backgroundColor: "white",
+                      padding: "10px",
+                      marginRight: "10px",
+                      borderRadius: "15%",
+                    }}
+                  >
+                    {moment(offerDate).format("mm")}
+                  </Typography>
+                  <Typography
+                    variant="h2"
+                    color="inherit"
+                    sx={{
+                      textAlign: "center",
+                      marginTop: "30px",
+                      marginBottom: "30px",
+                      padding: "10px",
+                    }}
+                  >
+                    :
+                  </Typography>
+                  <Typography
+                    variant="h2"
+                    color="inherit"
+                    sx={{
+                      textAlign: "center",
+                      marginTop: "30px",
+                      marginBottom: "30px",
+                      backgroundColor: "white",
+                      padding: "10px",
+                      borderRadius: "15%",
+                    }}
+                  >
+                    {moment(offerDate).format("ss")}
                   </Typography>
                 </div>
               </Grid>
@@ -103,10 +162,13 @@ function OfferOfTheDay() {
                 color: "white",
                 display: "flex",
                 alignItems: "center",
+                backgroundColor: "black",
+                marginTop: "30px",
+                marginBottom: "30px",
               }}
             >
               <span style={{ marginRight: "10px" }}>Buy Now</span>
-              <img src="/assets/images/icons/AddCartIcon.png" alt="" />
+              <img src="/assets/images/icons/AddCartIconWhite.png" alt="" />
             </Button>
           </div>
         </Grid>
