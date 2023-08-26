@@ -39,6 +39,7 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import { Link } from '@mui/material';
 import { Facebook, Instagram, Twitter, YouTube } from '@mui/icons-material';
+import HouseRoundedIcon from "@mui/icons-material/HouseRounded";
 import ScrollToTop from "react-scroll-to-top";
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact"];
@@ -63,6 +64,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export default function MiniDrawer(props) {
   const { children, window } = props;
+  const mail = "freshfumes18@gmail.com"
+  const call = "845-633-6739";
   const navigate = useNavigate();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -119,7 +122,7 @@ export default function MiniDrawer(props) {
           textAlign: "center",
         }}
       >
-        845-633-6739
+        {call}
       </Typography>
     </div>,
     <div style={{display:'flex',justifyContent:'center'}}>
@@ -131,7 +134,7 @@ export default function MiniDrawer(props) {
           textAlign: "center",
         }}
       >
-        freshfumes18@gmail.com
+        {mail}
       </Typography>
     </div>,
   ];
@@ -502,10 +505,15 @@ export default function MiniDrawer(props) {
                   color: "white",
                   marginBottom: "20px",
                   textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
                   "&:hover": { color: "green", transition: "200ms ease-in" },
                 }}
               >
-                Aim
+                {<HouseRoundedIcon />}
+                <span style={{ marginLeft: "10px" }}>
+                  6270 route 209 Kerhonkson ny 12446
+                </span>
               </Link>
               <Link
                 href="#"
@@ -514,10 +522,13 @@ export default function MiniDrawer(props) {
                   color: "white",
                   marginBottom: "20px",
                   textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
                   "&:hover": { color: "green", transition: "200ms ease-in" },
                 }}
               >
-                Vision
+                <CallRoundedIcon />
+                <span style={{ marginLeft: "10px" }}>{call}</span>
               </Link>
               <Link
                 href="#"
@@ -526,10 +537,14 @@ export default function MiniDrawer(props) {
                   color: "white",
                   marginBottom: "20px",
                   textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
                   "&:hover": { color: "green", transition: "200ms ease-in" },
                 }}
               >
-                Testimonials
+                <EmailRoundedIcon />                  
+                <span style={{ marginLeft: "10px" }}>{mail}
+                </span>
               </Link>
             </Grid>
             <Grid
@@ -551,7 +566,7 @@ export default function MiniDrawer(props) {
                   fontWeight: "bold",
                 }}
               >
-                Services
+                About Us
               </Typography>
               <Link
                 href="#"
@@ -561,67 +576,55 @@ export default function MiniDrawer(props) {
                   marginBottom: "20px",
                   textDecoration: "none",
                   "&:hover": { color: "green", transition: "200ms ease-in" },
-                }}
-              >
-                Writing
-              </Link>
-              <Link
-                href="#"
-                variant="body1"
-                sx={{
-                  color: "white",
-                  marginBottom: "20px",
-                  textDecoration: "none",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
-                }}
-              >
-                Internships
-              </Link>
-              <Link
-                href="#"
-                variant="body1"
-                sx={{
-                  color: "white",
-                  marginBottom: "20px",
-                  textDecoration: "none",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
-                }}
-              >
-                Coding
-              </Link>
-              <Link
-                href="#"
-                variant="body1"
-                sx={{
-                  color: "white",
-                  marginBottom: "20px",
-                  textDecoration: "none",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
-                }}
-              >
-                Teaching
-              </Link>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={3}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-              }}
-            >
-              <Typography
-                variant="h6"
-                sx={{
-                  color: "white",
-                  marginBottom: "40px",
-                  fontWeight: "bold",
                 }}
               >
                 Contact Us
+              </Link>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                FAQ
+              </Link>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                Privacy Policy
+              </Link>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={3}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "white",
+                  marginBottom: "40px",
+                  fontWeight: "bold",
+                }}
+              >
+                Support
               </Typography>
               <Link
                 href="#"
@@ -633,7 +636,7 @@ export default function MiniDrawer(props) {
                   "&:hover": { color: "green", transition: "200ms ease-in" },
                 }}
               >
-                Uttar Pradesh
+                Refund - Return Policy
               </Link>
               <Link
                 href="#"
@@ -645,7 +648,7 @@ export default function MiniDrawer(props) {
                   "&:hover": { color: "green", transition: "200ms ease-in" },
                 }}
               >
-                Ahmedabad
+                Track Order
               </Link>
               <Link
                 href="#"
@@ -657,7 +660,7 @@ export default function MiniDrawer(props) {
                   "&:hover": { color: "green", transition: "200ms ease-in" },
                 }}
               >
-                Indore
+                Shipping
               </Link>
               <Link
                 href="#"
@@ -669,7 +672,19 @@ export default function MiniDrawer(props) {
                   "&:hover": { color: "green", transition: "200ms ease-in" },
                 }}
               >
-                Mumbai
+                Terms and Condition
+              </Link>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                24 / 7 Customer Support
               </Link>
             </Grid>
             <Grid
@@ -769,7 +784,19 @@ export default function MiniDrawer(props) {
               align="center"
               sx={{ color: "#aaa", marginBottom: "10px" }}
             >
-              &copy; 2023 <a href="/">Fresh Fumes</a>. All rights reserved.
+              &copy; All Copyright Reserved by{" "}
+              <Link
+                href="#"
+                variant="body2"
+                sx={{
+                  color: "#aaa",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                }}
+              >
+                FRESH FUMES
+              </Link>
             </Typography>
             {/* <Typography variant="body2" align="center" sx={{ color: "#aaa" }}>
               Created with ❤️ by Your Name

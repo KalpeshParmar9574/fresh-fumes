@@ -7,6 +7,7 @@ import Brand from "./Brand";
 import NewArrival from "./NewArrival";
 import BestSeller from "./BestSeller";
 import Sliders from "./Sliders";
+import OfferOfTheDay from "./OfferOfTheDay";
 
 function Home() {
 
@@ -16,6 +17,7 @@ function Home() {
       <Category />
       <NewArrival />
       <BestSeller />
+      <OfferOfTheDay />
       <Brand />
       <Sliders /> 
     </>

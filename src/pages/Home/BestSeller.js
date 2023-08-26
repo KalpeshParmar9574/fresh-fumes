@@ -13,7 +13,7 @@ function BestSeller() {
       subname: "By Jasmin",
       price: "20.00",
       offerprice: "20.00",
-      img: "/assets/images/products/product1.png",
+      img: "",
       ratingcolor: "#FF5894",
       rating: "4.5",
     },
