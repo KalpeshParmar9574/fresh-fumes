@@ -48,7 +48,7 @@ const AppBarRootStyle = styled(AppBar)(({ theme }) => ({
     " 0 0 2px 0 rgba(145 158 171 0.24), 0 16px 32px -4px rgba(145 158 171 0.24)",
   backdropFilter: "blur(6px)",
   WebkitBackdropFilter: "blur(6px)", // Fix on Mobile
-  backgroundColor: "transparent",
+  backgroundColor: "rgba(255, 255, 255, 0.7)",
   // backgroundColor: alpha(theme.palette.common.white, 1.00),
   // zIndex: '1',
 }));
@@ -110,7 +110,14 @@ export default function MiniDrawer(props) {
 
     setDrawerOpen(open);
   };
-  const drawerList = ["Home", "Collection", "On Sale", "Gifts", "New Arrival"];
+  // const drawerList = ["Home", "Collection", "On Sale", "Gifts", "New Arrival"];
+    const drawerList = [
+    { title: "Home", path: "/home" },
+    { title: "Collection", path: "" },
+    { title: "On Sale", path: "" },
+    { title: "Gifts", path: "" },
+    { title: "New Arrival", path: "" },
+  ];
   const appbarNames = ["News", "Search", "Cart"];
   const drawerBottomList = [
     <div style={{display:'flex',justifyContent:'center'}}>
@@ -146,8 +153,9 @@ export default function MiniDrawer(props) {
             <>
               <ListItem button key={index}>
                 <ListItemText
-                  primary={item}
+                  primary={item?.title}
                   style={{ textAlign: "center", cursor: "pointer" }}
+                  onClick={()=>navigate(item?.path)}
                 />
               </ListItem>
               <Divider />
@@ -290,13 +298,19 @@ export default function MiniDrawer(props) {
                   >
                     {drawerList?.map((item, index) => {
                       return (
-                        <Grid item md={2} sm={2} key={index}>
+                        <Grid
+                          item
+                          md={2}
+                          sm={2}
+                          key={index}
+                          onClick={() => navigate(item?.path)}
+                        >
                           <Typography
                             variant="h6"
                             component="div"
-                            sx={{ textAlign: "center" }}
+                            sx={{ textAlign: "center", cursor: "pointer" }}
                           >
-                            {item}
+                            {item?.title}
                           </Typography>
                         </Grid>
                       );
@@ -805,7 +819,7 @@ export default function MiniDrawer(props) {
         </Box>
       </Box>
       <div style={{ marginTop: "150vh" }} />
-      <ScrollToTop smooth />
+      <ScrollToTop smooth/>
     </div>
   );
 }

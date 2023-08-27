@@ -23,7 +23,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function NewArrivalCard(props) {
+function WishListCard(props) {
   const { name, subname, price, offerprice, img, ratingcolor,rating } = props;
 const [isHovered, setIsHovered] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -92,12 +92,11 @@ const [isHovered, setIsHovered] = useState(false);
       //   onMouseLeave={() => setIsHovered(false)}
       // >
       // <CardHeader />
-      <div
+      <Card
         style={{
           position: "relative",
           maxWidth: 270,
           marginBottom: "20px",
-          width:""
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -185,9 +184,8 @@ const [isHovered, setIsHovered] = useState(false);
             {` ${rating}`}
           </IconButton>
         </CardActions>
-      </div>
-      // </Card>
+      </Card>
     );
 }
 
-export default NewArrivalCard;
+export default WishListCard;

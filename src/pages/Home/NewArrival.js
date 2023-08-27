@@ -4,9 +4,16 @@ import "swiper/css/pagination";
 
 import "./NewArrivalCard.css";
 
-import { Pagination } from "swiper/modules";
+import {
+  Autoplay,
+  Navigation,
+  Pagination,
+  Mousewheel,
+  Keyboard,
+} from "swiper/modules";
+
 import { Container, Typography } from "@mui/material";
-import NewArrivalCard from "./NewArrivalCard";
+import NewArrivalCard from "./NewArrivalCard"
 
 function NewArrival() {
     const cardArr = [
@@ -48,7 +55,7 @@ function NewArrival() {
       },
     ];
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
       <Typography
         variant="h4"
         color="inherit"
@@ -58,6 +65,12 @@ function NewArrival() {
       </Typography>
       <Swiper
         slidesPerView={1}
+        grabCursor={true}
+        loop={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         spaceBetween={10}
         pagination={{
           clickable: true,
@@ -76,7 +89,7 @@ function NewArrival() {
             spaceBetween: 50,
           },
         }}
-        modules={[Pagination]}
+        modules={[Autoplay,Pagination]}
         className="mySwiper"
       >
         {cardArr?.map((card, index) => (

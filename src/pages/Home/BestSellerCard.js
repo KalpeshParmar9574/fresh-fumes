@@ -94,13 +94,22 @@ function BestSellerCard(props) {
     //     </IconButton>
     //   </CardActions>
     // </Card>
-    <Card
-      sx={{ position: "relative", maxWidth: 270, marginBottom: "20px" }}
-      style={{ backgroundColor: "white" }}
+    // <Card
+    //   sx={{ position: "relative", maxWidth: 270, marginBottom: "20px" }}
+    //   style={{ backgroundColor: "white" }}
+    //   onMouseEnter={() => setIsHovered(true)}
+    //   onMouseLeave={() => setIsHovered(false)}
+    // >
+    <div
+      style={{
+        position: "relative",
+        maxWidth: 270,
+        marginBottom: "20px",
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* <CardHeader /> */}
+       {/* <CardHeader /> */}
       <CardMedia
         component="img"
         image={img || "/assets/images/products/product1.png"}
@@ -184,7 +193,8 @@ function BestSellerCard(props) {
           {` ${rating}`}
         </IconButton>
       </CardActions>
-    </Card>
+      {/* </Card> */}
+    </div>
   );
 }
 

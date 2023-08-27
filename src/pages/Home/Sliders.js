@@ -1,5 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
+import {
+  Autoplay,
+  Navigation,
+  Pagination,
+  Mousewheel,
+  Keyboard,
+} from "swiper/modules";
 import "./swiper.css";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -9,12 +15,18 @@ export default function Sliders() {
     <Swiper
       cssMode={true}
       navigation={true}
-      pagination={false}
+      pagination={true}
       mousewheel={true}
       keyboard={true}
-      modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+      grabCursor={true}
+      loop={true}
+      autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+      }}
+      modules={[Autoplay,Navigation, Pagination, Mousewheel, Keyboard]}
       className="mySwiper"
-      style={{ marginTop: "30px"}}
+      style={{ marginTop: "30px" }}
     >
       <SwiperSlide>
         <img src="assets/images/sliders/slider1.png" alt="" />

@@ -1,7 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
+import {
+  Autoplay,
+  Pagination,
+} from "swiper/modules";
+
 import { Container, Typography } from "@mui/material";
 import BestSellerCard from "./BestSellerCard";
 import "./BestSellerCard.css";
@@ -46,7 +50,7 @@ function BestSeller() {
     },
   ];
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
       <Typography
         variant="h4"
         color="inherit"
@@ -57,6 +61,12 @@ function BestSeller() {
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
+        grabCursor={true}
+        loop={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         pagination={{
           clickable: true,
         }}
@@ -74,7 +84,7 @@ function BestSeller() {
             spaceBetween: 50,
           },
         }}
-        modules={[Pagination]}
+        modules={[Autoplay,Pagination]}
         className="mySwiper"
       >
         {cardArr?.map((card, index) => (

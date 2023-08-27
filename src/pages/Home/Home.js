@@ -4,10 +4,10 @@ import OfferCarousel from "./OfferCarousel";
 import { Container, Grid } from "@mui/material";
 import Category from "./Category";
 import Brand from "./Brand";
-import NewArrival from "./NewArrival";
 import BestSeller from "./BestSeller";
 import Sliders from "./Sliders";
 import OfferOfTheDay from "./OfferOfTheDay";
+import NewArrival from "./NewArrival";
 
 function Home() {
 
