@@ -24,7 +24,18 @@ const ExpandMore = styled((props) => {
 }));
 
 function WishListCard(props) {
-  const { name, subname, price, offerprice, img, ratingcolor,rating } = props;
+  const {
+    name,
+    subname,
+    productName,
+    price,
+    offerprice,
+    img,
+    ratingcolor,
+    rating,
+    totalReviews,
+    latestArrival,
+  } = props;
 const [isHovered, setIsHovered] = useState(false);
   const [expanded, setExpanded] = useState(false);
     return (
@@ -97,24 +108,55 @@ const [isHovered, setIsHovered] = useState(false);
           position: "relative",
           maxWidth: 270,
           marginBottom: "20px",
+          marginLeft: "auto",
+          marginRight: "auto",
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
+        {
+latestArrival && (
+
+  <div
+          style={{
+            position: "absolute",
+            top: "-25px",
+            left: "-6px",
+            width: "150px",
+            height: "51px",
+            marginTop: "auto",
+            marginBottom: "auto",
+            padding: "26px 15px 7px 15px",
+            backgroundColor: "rgba(255, 88, 148, 0.5)",
+            color: "black",
+            zIndex: "1",
+            borderRadius: "inherit",
+            textAlign: "center",
+          }}
+        >
+          Latest Arrival
+        </div>
+            )
+                    }
         <CardMedia
           component="img"
           image={img || "/assets/images/products/product1.png"}
           alt=""
           sx={{
             width: "200px",
-            height: "200px",
-            marginLeft: "15px",
-            marginRight: "15px",
+            height: "240px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginTop: "10px",
           }}
         />
-        <CardContent>
-          <div style={{ display: "flex" }}>
-            <Typography variant="h6" color="text.secondary">
+        <CardContent sx={{ paddingBottom: "8px" }}>
+          <div>
+            <Typography
+              variant="h6"
+              color="text.secondary"
+              sx={{ marginBottom: "10px" }}
+            >
               {name ? name : ""}
             </Typography>
             <Typography
@@ -122,15 +164,31 @@ const [isHovered, setIsHovered] = useState(false);
               color="text.secondary"
               sx={{
                 marginTop: "auto",
-                marginBottom: "auto",
-                marginLeft: "5px",
+                marginBottom: "10px",
               }}
             >
               {subname ? subname : ""}
             </Typography>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                marginTop: "auto",
+                marginBottom: "10px",
+              }}
+            >
+              {productName ? productName : ""}
+            </Typography>
           </div>
-          <div style={{ display: "flex" }}>
-            <Typography variant="h6" color="text.secondary">
+          <div style={{ display: "flex", marginBottom: "10px" }}>
+            <Typography
+              variant="h6"
+              color="text.secondary"
+              sx={{
+                marginTop: "auto",
+                marginBottom: "auto",
+              }}
+            >
               {offerprice ? `$${offerprice}` : ""}
             </Typography>
             <Typography
@@ -139,7 +197,7 @@ const [isHovered, setIsHovered] = useState(false);
               sx={{
                 marginTop: "auto",
                 marginBottom: "auto",
-                marginLeft: "5px",
+                marginLeft: "auto",
                 textDecoration: "line-through",
               }}
             >
@@ -177,13 +235,50 @@ const [isHovered, setIsHovered] = useState(false);
               </IconButton>
             </div>
           )}
+          <div style={{ display: "flex" }}>
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{
+                marginTop: "4px",
+                // marginBottom: "auto",
+              }}
+            >
+              <StarRoundedIcon
+                sx={{
+                  color: "#FF5894",
+                  width: "20px",
+                  height: "20px",
+                  marginTop: "auto",
+                  marginBottom: "auto",
+                }}
+              />
+            </Typography>
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{
+                marginTop: "auto",
+                marginBottom: "auto",
+              }}
+            >
+              {` ${rating}`}
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                marginTop: "auto",
+                marginBottom: "auto",
+                marginLeft: "10px",
+              }}
+            >
+              {totalReviews ? `(${totalReviews} reviews)` : `(0 reviews)`}
+            </Typography>
+          </div>
         </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <StarRoundedIcon sx={{ color: "#FF5894" }} />
-            {` ${rating}`}
-          </IconButton>
-        </CardActions>
+        {/* <CardActions disableSpacing>
+        </CardActions> */}
       </Card>
     );
 }

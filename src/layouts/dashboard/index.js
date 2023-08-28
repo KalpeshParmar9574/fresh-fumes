@@ -332,84 +332,100 @@ export default function MiniDrawer(props) {
               >
                 <Hidden xsDown={!isDrawerOpen}>
                   <Grid
-                    item
-                    xs={2}
-                    sm={2}
-                    md={3}
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      marginTop: "auto",
-                      marginBottom: "auto",
-                    }}
+                    container
+                    spacing={{ xs: 2, md: 3 }}
+                    columns={{ xs: 4, sm: 8, md: 12 }}
                   >
-                    <FormControl
-                      variant="standard"
+                    <Grid
+                      item
+                      xs={2.5}
+                      sm={5}
+                      md={9}
                       sx={{
-                        m: 1,
-                        mt: 3,
-                        width: "25ch",
+                        display: "flex",
+                        justifyContent: "center",
                         marginTop: "auto",
                         marginBottom: "auto",
                       }}
                     >
-                      <Input
-                        id="standard-adornment-weight"
-                        endAdornment={
-                          <InputAdornment position="end">
-                            <SearchRoundedIcon />
-                          </InputAdornment>
-                        }
-                        aria-describedby="standard-weight-helper-text"
-                        inputProps={{
-                          "aria-label": "weight",
+                      <FormControl
+                        variant="standard"
+                        sx={{
+                          m: 1,
+                          mt: 3,
+                          width: "100%",
+                          marginTop: "auto",
+                          marginBottom: "auto",
                         }}
-                        placeholder="Search"
-                      />
-                    </FormControl>
-                  </Grid>
-                  <Grid
-                    item
-                    xs={0.5}
-                    sm={0.5}
-                    md={1}
-                    sx={{ display: "flex", justifyContent: "center" }}
-                  >
-                    <PersonRoundedIcon sx={{ width: "20px", hieght: "20px" }} />
-                  </Grid>
-                  <Grid
-                    item
-                    xs={0.5}
-                    sm={0.5}
-                    md={1}
-                    sx={{ display: "flex", justifyContent: "center" }}
-                  >
-                    <FavoriteBorderRoundedIcon
-                      sx={{ width: "20px", hieght: "20px" }}
-                    />
-                  </Grid>
-                  <Grid
-                    item
-                    xs={1}
-                    sm={1}
-                    md={1}
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      marginTop: "auto",
-                      marginBottom: "auto",
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
-                      component="div"
-                      sx={{ textAlign: "center" }}
+                      >
+                        <Input
+                          id="standard-adornment-weight"
+                          endAdornment={
+                            <InputAdornment position="end">
+                              <SearchRoundedIcon />
+                            </InputAdornment>
+                          }
+                          aria-describedby="standard-weight-helper-text"
+                          inputProps={{
+                            "aria-label": "weight",
+                          }}
+                          placeholder="Search"
+                        />
+                      </FormControl>
+                    </Grid>
+                    <Grid
+                      item
+                      xs={0.5}
+                      sm={1}
+                      md={1}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginTop: "auto",
+                        marginBottom: "auto",
+                      }}
                     >
-                      Cart
-                    </Typography>
-                    <ShoppingCartRoundedIcon
-                      sx={{ width: "20px", hieght: "20px" }}
-                    />
+                      <PersonRoundedIcon
+                        sx={{ width: "20px", hieght: "20px" }}
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      xs={0.5}
+                      sm={1}
+                      md={1}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginTop: "auto",
+                        marginBottom: "auto",
+                      }}
+                    >
+                      <FavoriteBorderRoundedIcon
+                        sx={{
+                          width: "20px",
+                          hieght: "20px",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => navigate("/wishlist")}
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      xs={0.5}
+                      sm={1}
+                      md={1}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginTop: "auto",
+                        marginBottom: "auto",
+                      }}
+                    >
+                      <ShoppingCartRoundedIcon
+                        sx={{ width: "20px", hieght: "20px" }}
+                      />
+                    </Grid>
                   </Grid>
                 </Hidden>
               </Grid>
@@ -556,9 +572,8 @@ export default function MiniDrawer(props) {
                   "&:hover": { color: "green", transition: "200ms ease-in" },
                 }}
               >
-                <EmailRoundedIcon />                  
-                <span style={{ marginLeft: "10px" }}>{mail}
-                </span>
+                <EmailRoundedIcon />
+                <span style={{ marginLeft: "10px" }}>{mail}</span>
               </Link>
             </Grid>
             <Grid
@@ -819,7 +834,7 @@ export default function MiniDrawer(props) {
         </Box>
       </Box>
       <div style={{ marginTop: "150vh" }} />
-      <ScrollToTop smooth/>
+      <ScrollToTop smooth />
     </div>
   );
 }
