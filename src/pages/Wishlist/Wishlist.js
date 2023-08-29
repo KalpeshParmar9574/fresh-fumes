@@ -8,8 +8,8 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import WishListCard from "./WishListCard";
 import { useNavigate } from "react-router-dom";
+import CustomCard from "../../components/CustomCard";
 
 function handleClick(event) {
   event.preventDefault();
@@ -178,7 +178,7 @@ function Wishlist() {
             key={index}
             sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
           >
-            <WishListCard
+            <CustomCard
               name={card?.name || ""}
               subname={card?.subname || ""}
               productName={card?.productName || ""}

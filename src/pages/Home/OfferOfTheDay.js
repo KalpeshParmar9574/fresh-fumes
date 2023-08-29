@@ -1,179 +1,128 @@
+import React, { useEffect, useState } from "react";
 import { Button, Grid, Typography } from "@mui/material";
 import moment from "moment/moment";
-import { useEffect, useState } from "react";
 
 function OfferOfTheDay() {
-    const [offerDate,setOfferDate] = useState(new Date())
-    useEffect(() => {
-      setInterval(() => setOfferDate(new Date()), 1000);
-    }, [new Date()]);
-    return (
+  const [offerDate, setOfferDate] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => setOfferDate(new Date()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <Grid
+      container
+      spacing={2}
+      justifyContent="center"
+      alignItems="center"
+      style={{
+        backgroundColor: "rgb(255, 238, 244)",
+        padding: "30px",
+      }}
+    >
       <Grid
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
-        alignItems="center"
-        justifyContent="center"
-        style={{
-          maxHeight: "550px",
-          backgroundColor: "rgb(255, 238, 244)",
-          marginLeft: "auto",
-          marginRight: "auto",
-          marginTop: "30px",
-          marginBottom: "30px",
-        }}
+        item
+        xs={12}
+        sm={4}
+        md={6}
+        lg={6}
+        style={{ display: "flex", alignItems: "center" }}
       >
-        <Grid
-          item
-          xs={4}
-          sm={4}
-          md={6}
-          lg={2}
-          sx={{ marginLeft: "auto", marginRight: "auto" }}
-        >
-          <img
-            src="/assets/images/offeroftheday/offer.png"
-            alt=""
-            style={{ marginLeft: "auto", marginRight: "auto" }}
-          />
-        </Grid>
-        <Grid item xs={4} sm={4} md={6} lg={2}>
-          <div>
+        <img
+          src="/assets/images/offeroftheday/offer.png"
+          alt=""
+          style={{ width: "100%", maxWidth: "300px", margin: "auto" }}
+        />
+      </Grid>
+      <Grid item xs={12} sm={4} md={6} lg={6}>
+        <div style={{ textAlign: "center" }}>
+          <Typography
+            variant="h2"
+            color="inherit"
+            gutterBottom
+            sx={{ marginBottom: "10px" }}
+          >
+            Offer Of The Day
+          </Typography>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
+              marginBottom: "10px",
+            }}
+          >
             <Typography
               variant="h2"
               color="inherit"
-              sx={{
-                textAlign: "left",
-                marginTop: "30px",
-                marginBottom: "30px",
+              style={{
+                backgroundColor: "white",
+                padding: "10px",
+                borderRadius: "15%",
               }}
             >
-              Offer Of The Days
+              {moment(offerDate).format("DD")}
             </Typography>
-            <Grid
-              container
-              spacing={{ xs: 2, md: 3 }}
-              columns={{ xs: 4, sm: 8, md: 12 }}
-              alignItems="center"
-              justifyContent="start"
-            >
-              <Grid item xs={4} sm={4} md={6} lg={2}>
-                <div style={{ display: "flex", justifyContent: "start" }}>
-                  <Typography
-                    variant="h2"
-                    color="inherit"
-                    sx={{
-                      textAlign: "center",
-                      marginTop: "30px",
-                      marginBottom: "30px",
-                      backgroundColor: "white",
-                      padding: "10px",
-                      marginRight: "10px",
-                      borderRadius: "15%",
-                    }}
-                  >
-                    {moment(offerDate).format("DD")}
-                  </Typography>
-                  <Typography
-                    variant="h2"
-                    color="inherit"
-                    sx={{
-                      textAlign: "center",
-                      marginTop: "30px",
-                      marginBottom: "30px",
-                      padding: "10px",
-                    }}
-                  >
-                    :
-                  </Typography>
-                  <Typography
-                    variant="h2"
-                    color="inherit"
-                    sx={{
-                      textAlign: "center",
-                      marginTop: "30px",
-                      marginBottom: "30px",
-                      backgroundColor: "white",
-                      padding: "10px",
-                      marginRight: "10px",
-                      borderRadius: "15%",
-                    }}
-                  >
-                    {moment(offerDate).format("hh")}
-                  </Typography>
-                  <Typography
-                    variant="h2"
-                    color="inherit"
-                    sx={{
-                      textAlign: "center",
-                      marginTop: "30px",
-                      marginBottom: "30px",
-                      padding: "10px",
-                    }}
-                  >
-                    :
-                  </Typography>
-                  <Typography
-                    variant="h2"
-                    color="inherit"
-                    sx={{
-                      textAlign: "center",
-                      marginTop: "30px",
-                      marginBottom: "30px",
-                      backgroundColor: "white",
-                      padding: "10px",
-                      marginRight: "10px",
-                      borderRadius: "15%",
-                    }}
-                  >
-                    {moment(offerDate).format("mm")}
-                  </Typography>
-                  <Typography
-                    variant="h2"
-                    color="inherit"
-                    sx={{
-                      textAlign: "center",
-                      marginTop: "30px",
-                      marginBottom: "30px",
-                      padding: "10px",
-                    }}
-                  >
-                    :
-                  </Typography>
-                  <Typography
-                    variant="h2"
-                    color="inherit"
-                    sx={{
-                      textAlign: "center",
-                      marginTop: "30px",
-                      marginBottom: "30px",
-                      backgroundColor: "white",
-                      padding: "10px",
-                      borderRadius: "15%",
-                    }}
-                  >
-                    {moment(offerDate).format("ss")}
-                  </Typography>
-                </div>
-              </Grid>
-            </Grid>
-            <Button
-              sx={{
-                color: "white",
-                display: "flex",
-                alignItems: "center",
-                backgroundColor: "black",
-                marginTop: "30px",
-                marginBottom: "30px",
+            <Typography variant="h2" color="inherit">
+              :
+            </Typography>
+            <Typography
+              variant="h2"
+              color="inherit"
+              style={{
+                backgroundColor: "white",
+                padding: "10px",
+                borderRadius: "15%",
               }}
             >
-              <span style={{ marginRight: "10px" }}>Buy Now</span>
-              <img src="/assets/images/icons/AddCartIconWhite.png" alt="" />
-            </Button>
+              {moment(offerDate).format("hh")}
+            </Typography>
+            <Typography variant="h2" color="inherit">
+              :
+            </Typography>
+            <Typography
+              variant="h2"
+              color="inherit"
+              style={{
+                backgroundColor: "white",
+                padding: "10px",
+                borderRadius: "15%",
+              }}
+            >
+              {moment(offerDate).format("mm")}
+            </Typography>
+            <Typography variant="h2" color="inherit">
+              :
+            </Typography>
+            <Typography
+              variant="h2"
+              color="inherit"
+              style={{
+                backgroundColor: "white",
+                padding: "10px",
+                borderRadius: "15%",
+              }}
+            >
+              {moment(offerDate).format("ss")}
+            </Typography>
           </div>
-        </Grid>
+          <Button
+            sx={{
+              color: "white",
+              backgroundColor: "black",
+              marginTop: "20px",
+              padding: "10px 20px",
+            }}
+          >
+            <span style={{ marginRight: "10px" }}>Buy Now</span>
+            <img src="/assets/images/icons/AddCartIconWhite.png" alt="" />
+          </Button>
+        </div>
       </Grid>
-    );
+    </Grid>
+  );
 }
 
 export default OfferOfTheDay;
