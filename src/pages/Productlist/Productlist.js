@@ -8,6 +8,8 @@ import {
   Grid,
   IconButton,
   Link,
+  Menu,
+  MenuItem,
   Paper,
   Typography,
 } from "@mui/material";
@@ -19,17 +21,29 @@ import "./swiper.css";
 import "swiper/css";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
+import BasicMenu from "./Menu";
 // import "swiper/css/navigation";
 // import "swiper/css/pagination";
-function handleClick(event) {
-  event.preventDefault();
-  console.info("You clicked a breadcrumb.");
-}
 
 function Productlist() {
   const navigate = useNavigate();
   const [sortBy,setSortBy] = React.useState(false);
   const [sortByMenu,setSortByMenu] = React.useState(false);
+   const [anchorEl, setAnchorEl] = React.useState(null);
+   const open = Boolean(anchorEl);
+   const handleClick = (event,bool) => {
+     setAnchorEl(event.currentTarget);
+     if(bool){
+      setSortBy(true);
+      setSortByMenu(true);
+    }else{
+       setSortBy(false);
+       setSortByMenu(false);
+     }
+   };
+   const handleClose = () => {
+     setAnchorEl(null);
+   };
   const cardArr = [
     {
       name: "Jasmin Noir",
@@ -242,6 +256,10 @@ function Productlist() {
                   borderRadius: "10px",
                   display: "flex",
                 }}
+                id="basic-button"
+                aria-controls={open ? "basic-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
               >
                 <Typography
                   variant="body1"
@@ -257,31 +275,44 @@ function Productlist() {
                 </Typography>
                 {!sortBy ? (
                   <IconButton
-                    onClick={() => {
-                      setSortBy(true);
-                      setSortByMenu(true);
-                    }}
                     sx={{ marginLeft: "auto", marginRight: "20px" }}
+                    onClick={(e) => handleClick(e, true)}
                   >
                     <AddRoundedIcon />
                   </IconButton>
                 ) : (
                   <IconButton
-                    onClick={() => {
-                      setSortBy(false);
-                      setSortByMenu(false);
-                    }}
                     sx={{ marginLeft: "auto", marginRight: "20px" }}
+                    // id="basic-button"
+                    // aria-controls={open ? "basic-menu" : undefined}
+                    // aria-haspopup="true"
+                    // aria-expanded={open ? "true" : undefined}
+                    onClick={(e) => handleClick(e, false)}
                   >
                     <RemoveRoundedIcon />
                   </IconButton>
                 )}
               </div>
             </Grid>
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                  "aria-labelledby": "basic-button",
+                }}
+                sx={{width: "330px"}}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>Logout</MenuItem>
+              </Menu>
           </Grid>
         </Card>
       </Container>
-      {sortByMenu ? (
+      <BasicMenu />
+      {/* {sortByMenu ? (
         <div
           style={{
             position: "absolute",
@@ -303,7 +334,7 @@ function Productlist() {
         </div>
       ) : (
         ""
-      )}
+      )} */}
       <Divider sx={{ marginBottom: "20px" }} />
       <Grid
         container
