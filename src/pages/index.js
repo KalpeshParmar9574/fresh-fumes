@@ -8,12 +8,14 @@ import EvaluatioHistory from "./EvaluationForm/EvaluationHistory";
 import Home from "./Home/Home";
 import Wishlist from "./Wishlist/Wishlist";
 import Productlist from "./Productlist/Productlist";
+import ProductDetail from "./ProductDetail/ProductDetail";
 import New from "./Home/New";
 const config = [
   // Login,
   Home,
   Wishlist,
   Productlist,
+  ProductDetail,
   DashboardApp,
   EvaluationForm,
   Evaluation,

@@ -23,6 +23,7 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import BasicMenu from "./Menu";
 import { v4 as uuidv4 } from "uuid";
+import { CardArr } from "../CardArr";
 
 // import "swiper/css/navigation";
 // import "swiper/css/pagination";
@@ -46,112 +47,112 @@ function Productlist() {
    const handleClose = () => {
      setAnchorEl(null);
    };
-  const cardArr = [
-    {
-      id: uuidv4(),
-      name: "Jasmin Noir",
-      subname: "By Jasmin",
-      productName: "eau de toilette",
-      price: "20.00",
-      offerprice: "20.00",
-      img: "/assets/images/products/product1.png",
-      ratingcolor: "#FF5894",
-      rating: "4.5",
-      totalReviews: "233",
-      latestArrival: true,
-    },
-    {
-      id: uuidv4(),
-      name: "Jasmin Noir",
-      subname: "By Jasmin",
-      productName: "eau de toilette",
-      price: "211.00",
-      offerprice: "322.00",
-      img: "/assets/images/products/product2.png",
-      ratingcolor: "#FF5894",
-      rating: "4.5",
-      totalReviews: "233",
-      latestArrival: false,
-    },
-    {
-      id: uuidv4(),
-      name: "Jasmin Noir",
-      subname: "By Jasmin",
-      productName: "eau de toilette",
-      price: "122 .00",
-      offerprice: "320.00",
-      img: "/assets/images/products/product3.png",
-      ratingcolor: "#FF5894",
-      rating: "4.5",
-      totalReviews: "233",
-      latestArrival: true,
-    },
-    {
-      id: uuidv4(),
-      name: "Jasmin Noir",
-      subname: "By Jasmin",
-      productName: "eau de toilette",
-      price: "120.00",
-      offerprice: "320.00",
-      img: "/assets/images/products/product4.png",
-      ratingcolor: "#FF5894",
-      rating: "4.5",
-      totalReviews: "233",
-      latestArrival: false,
-    },
-    {
-      id: uuidv4(),
-      name: "Jasmin Noir",
-      subname: "By Jasmin",
-      productName: "eau de toilette",
-      price: "120.00",
-      offerprice: "320.00",
-      img: "/assets/images/products/product4.png",
-      ratingcolor: "#FF5894",
-      rating: "4.5",
-      totalReviews: "23",
-      latestArrival: false,
-    },
-    {
-      id: uuidv4(),
-      name: "Jasmin Noir",
-      subname: "By Jasmin",
-      productName: "eau de toilette",
-      price: "120.00",
-      offerprice: "320.00",
-      img: "/assets/images/products/product4.png",
-      ratingcolor: "#FF5894",
-      rating: "4.5",
-      totalReviews: "2",
-      latestArrival: false,
-    },
-    {
-      id: uuidv4(),
-      name: "Jasmin Noir",
-      subname: "By Jasmin",
-      productName: "eau de toilette",
-      price: "120.00",
-      offerprice: "320.00",
-      img: "/assets/images/products/product4.png",
-      ratingcolor: "#FF5894",
-      rating: "4.5",
-      totalReviews: "",
-      latestArrival: false,
-    },
-    {
-      id: uuidv4(),
-      name: "Jasmin Noir",
-      subname: "By Jasmin",
-      productName: "eau de toilette",
-      price: "120.00",
-      offerprice: "320.00",
-      img: "/assets/images/products/product4.png",
-      ratingcolor: "#FF5894",
-      rating: "4.5",
-      totalReviews: "1",
-      latestArrival: true,
-    },
-  ];
+  // const cardArr = [
+  //   {
+  //     id: uuidv4(),
+  //     name: "Jasmin Noir",
+  //     subname: "By Jasmin",
+  //     productName: "eau de toilette",
+  //     price: "20.00",
+  //     offerprice: "20.00",
+  //     img: "/assets/images/products/product1.png",
+  //     ratingcolor: "#FF5894",
+  //     rating: "4.5",
+  //     totalReviews: "233",
+  //     latestArrival: true,
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: "Jasmin Noir",
+  //     subname: "By Jasmin",
+  //     productName: "eau de toilette",
+  //     price: "211.00",
+  //     offerprice: "322.00",
+  //     img: "/assets/images/products/product2.png",
+  //     ratingcolor: "#FF5894",
+  //     rating: "4.5",
+  //     totalReviews: "233",
+  //     latestArrival: false,
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: "Jasmin Noir",
+  //     subname: "By Jasmin",
+  //     productName: "eau de toilette",
+  //     price: "122 .00",
+  //     offerprice: "320.00",
+  //     img: "/assets/images/products/product3.png",
+  //     ratingcolor: "#FF5894",
+  //     rating: "4.5",
+  //     totalReviews: "233",
+  //     latestArrival: true,
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: "Jasmin Noir",
+  //     subname: "By Jasmin",
+  //     productName: "eau de toilette",
+  //     price: "120.00",
+  //     offerprice: "320.00",
+  //     img: "/assets/images/products/product4.png",
+  //     ratingcolor: "#FF5894",
+  //     rating: "4.5",
+  //     totalReviews: "233",
+  //     latestArrival: false,
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: "Jasmin Noir",
+  //     subname: "By Jasmin",
+  //     productName: "eau de toilette",
+  //     price: "120.00",
+  //     offerprice: "320.00",
+  //     img: "/assets/images/products/product4.png",
+  //     ratingcolor: "#FF5894",
+  //     rating: "4.5",
+  //     totalReviews: "23",
+  //     latestArrival: false,
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: "Jasmin Noir",
+  //     subname: "By Jasmin",
+  //     productName: "eau de toilette",
+  //     price: "120.00",
+  //     offerprice: "320.00",
+  //     img: "/assets/images/products/product4.png",
+  //     ratingcolor: "#FF5894",
+  //     rating: "4.5",
+  //     totalReviews: "2",
+  //     latestArrival: false,
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: "Jasmin Noir",
+  //     subname: "By Jasmin",
+  //     productName: "eau de toilette",
+  //     price: "120.00",
+  //     offerprice: "320.00",
+  //     img: "/assets/images/products/product4.png",
+  //     ratingcolor: "#FF5894",
+  //     rating: "4.5",
+  //     totalReviews: "",
+  //     latestArrival: false,
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: "Jasmin Noir",
+  //     subname: "By Jasmin",
+  //     productName: "eau de toilette",
+  //     price: "120.00",
+  //     offerprice: "320.00",
+  //     img: "/assets/images/products/product4.png",
+  //     ratingcolor: "#FF5894",
+  //     rating: "4.5",
+  //     totalReviews: "1",
+  //     latestArrival: true,
+  //   },
+  // ];
 
 
   return (
@@ -219,7 +220,7 @@ function Productlist() {
                   paddingBottom: "10px",
                 }}
               >
-                {`Show All ${cardArr?.length} Products`}
+                {`Show All ${CardArr?.length} Products`}
               </Typography>
             </Grid>
             <Grid
@@ -362,7 +363,7 @@ function Productlist() {
           padding: "0px",
         }}
       >
-        {cardArr?.map((card, index) => (
+        {CardArr?.map((card, index) => (
           <Grid
             item
             xs={4}
