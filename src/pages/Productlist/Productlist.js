@@ -22,6 +22,8 @@ import "swiper/css";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import BasicMenu from "./Menu";
+import { v4 as uuidv4 } from "uuid";
+
 // import "swiper/css/navigation";
 // import "swiper/css/pagination";
 
@@ -46,6 +48,7 @@ function Productlist() {
    };
   const cardArr = [
     {
+      id: uuidv4(),
       name: "Jasmin Noir",
       subname: "By Jasmin",
       productName: "eau de toilette",
@@ -58,6 +61,7 @@ function Productlist() {
       latestArrival: true,
     },
     {
+      id: uuidv4(),
       name: "Jasmin Noir",
       subname: "By Jasmin",
       productName: "eau de toilette",
@@ -70,6 +74,7 @@ function Productlist() {
       latestArrival: false,
     },
     {
+      id: uuidv4(),
       name: "Jasmin Noir",
       subname: "By Jasmin",
       productName: "eau de toilette",
@@ -82,6 +87,7 @@ function Productlist() {
       latestArrival: true,
     },
     {
+      id: uuidv4(),
       name: "Jasmin Noir",
       subname: "By Jasmin",
       productName: "eau de toilette",
@@ -94,6 +100,7 @@ function Productlist() {
       latestArrival: false,
     },
     {
+      id: uuidv4(),
       name: "Jasmin Noir",
       subname: "By Jasmin",
       productName: "eau de toilette",
@@ -106,6 +113,7 @@ function Productlist() {
       latestArrival: false,
     },
     {
+      id: uuidv4(),
       name: "Jasmin Noir",
       subname: "By Jasmin",
       productName: "eau de toilette",
@@ -118,6 +126,7 @@ function Productlist() {
       latestArrival: false,
     },
     {
+      id: uuidv4(),
       name: "Jasmin Noir",
       subname: "By Jasmin",
       productName: "eau de toilette",
@@ -130,6 +139,7 @@ function Productlist() {
       latestArrival: false,
     },
     {
+      id: uuidv4(),
       name: "Jasmin Noir",
       subname: "By Jasmin",
       productName: "eau de toilette",
@@ -142,6 +152,8 @@ function Productlist() {
       latestArrival: true,
     },
   ];
+
+
   return (
     <>
       {/* <Container maxWidth="sm"> */}
@@ -359,6 +371,7 @@ function Productlist() {
             lg={2}
             key={index}
             sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
+            onClick={()=>navigate(`/productdetail/${card?.id}`)}
           >
             <CustomCard
               name={card?.name || ""}
