@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export const CardArr = [
   {
-    id: uuidv4(),
+    id: 1,
     name: "Jasmin Noir",
     subname: "By Jasmin",
     productName: "eau de toilette",
@@ -15,7 +15,7 @@ export const CardArr = [
     latestArrival: true,
   },
   {
-    id: uuidv4(),
+    id:2,
     name: "Jasmin Noir",
     subname: "By Jasmin",
     productName: "eau de toilette",
@@ -28,7 +28,7 @@ export const CardArr = [
     latestArrival: false,
   },
   {
-    id: uuidv4(),
+    id: 3,
     name: "Jasmin Noir",
     subname: "By Jasmin",
     productName: "eau de toilette",
@@ -41,7 +41,7 @@ export const CardArr = [
     latestArrival: true,
   },
   {
-    id: uuidv4(),
+    id: 4,
     name: "Jasmin Noir",
     subname: "By Jasmin",
     productName: "eau de toilette",
@@ -54,7 +54,7 @@ export const CardArr = [
     latestArrival: false,
   },
   {
-    id: uuidv4(),
+    id: 5,
     name: "Jasmin Noir",
     subname: "By Jasmin",
     productName: "eau de toilette",
@@ -67,7 +67,7 @@ export const CardArr = [
     latestArrival: false,
   },
   {
-    id: uuidv4(),
+    id: 6,
     name: "Jasmin Noir",
     subname: "By Jasmin",
     productName: "eau de toilette",
@@ -80,7 +80,7 @@ export const CardArr = [
     latestArrival: false,
   },
   {
-    id: uuidv4(),
+    id: 7,
     name: "Jasmin Noir",
     subname: "By Jasmin",
     productName: "eau de toilette",
@@ -93,7 +93,7 @@ export const CardArr = [
     latestArrival: false,
   },
   {
-    id: uuidv4(),
+    id: 8,
     name: "Jasmin Noir",
     subname: "By Jasmin",
     productName: "eau de toilette",

@@ -1,0 +1,8 @@
+/* Add this CSS to your styles */
+@media screen and (max-width: 600px) {
+  /* Adjust font size and other styles for smaller screens */
+  .MuiTab-label {
+    font-size: 12px;
+    /* Add any other styling adjustments you need */
+  }
+}
