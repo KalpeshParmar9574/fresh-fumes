@@ -5,9 +5,13 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { CardArr } from '../CardArr';
 import CustomCard from '../../components/CustomCard';
-import { Box, Container, Grid, Tab, Tabs, Typography } from '@mui/material';
+import { Box, Checkbox, Container, FormControl, FormControlLabel, Grid, Stack, Tab, Tabs, Typography } from '@mui/material';
 import PropTypes from "prop-types";
 import "./ProductDetail.css";
+import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
+import StarRoundedIcon from "@mui/icons-material/StarRounded";
+import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
+ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 const imageArr = [
   "/assets/images/products/product1.png",
   "/assets/images/products/product2.png",
@@ -22,6 +26,7 @@ function ProductDetail() {
     const {id} = useParams();
     console.log('params: ', id);
     const [product,setProduct] = useState(null);
+    const [quantity, setQuantity] = useState(1);
     const [showImage, setShowImage] = useState(
       "/assets/images/products/product1.png"
       );
@@ -32,9 +37,26 @@ function ProductDetail() {
 
       const [value, setValue] = React.useState(0);
 
+  const handleAgreed = (event) => {
+    // console.log("Values", values);
+    console.log("event.target.value", event.target.checked);
+    // setFieldValue(`agreed`, event.target.checked);
+  };
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  
+  const plusQuantity = () => {
+    setQuantity(quantity + 1);
+  }
+
+  
+  const minusQuantity = () => {
+    if(quantity > 1){
+      setQuantity(quantity - 1);
+    }
+  };
+
 
   return (
     <div>
@@ -91,7 +113,185 @@ function ProductDetail() {
             sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
             // onClick={()=>navigate(`/productdetail/${card?.id}`)}
           >
-            <img src={showImage} alt="" />
+            <Stack>
+              <Typography
+                variant="h6"
+                color="text.dark"
+                sx={{
+                  marginTop: "10px",
+                  marginBottom: "10px",
+                  fontWeight: "400",
+                }}
+              >
+                Gucci
+              </Typography>
+              <Typography
+                variant="h6"
+                color="text.dark"
+                sx={{
+                  marginTop: "10px",
+                  marginBottom: "10px",
+                  fontWeight: "400",
+                }}
+              >
+                <ShareRoundedIcon />
+              </Typography>
+            </Stack>
+            <Stack>
+              <Typography
+                variant="h6"
+                color="text.dark"
+                sx={{
+                  marginTop: "10px",
+                  marginBottom: "10px",
+                  fontWeight: "400",
+                  height: "27px",
+                  weight: "88px",
+                  backgroundColor: "rgba(0, 0, 0, 0.7)",
+                }}
+              >
+                In Stock
+              </Typography>
+            </Stack>
+            <Stack>
+              <Typography
+                variant="h2"
+                color="text.dark"
+                sx={{
+                  marginTop: "10px",
+                  marginBottom: "10px",
+                  fontWeight: "400",
+                }}
+              >
+                Gucci Guilty Eau De Toilette(50 ml)
+              </Typography>
+            </Stack>
+            <Stack>
+              <Typography
+                variant="h6"
+                color="text.dark"
+                sx={{
+                  marginTop: "10px",
+                  marginBottom: "10px",
+                  fontWeight: "400",
+                }}
+              >
+                $ 298.99
+              </Typography>
+            </Stack>
+            <Stack>
+              <Typography
+                variant="h6"
+                color="text.dark"
+                sx={{
+                  marginTop: "10px",
+                  marginBottom: "10px",
+                  fontWeight: "400",
+                }}
+              >
+                inclusive of All Taxes
+              </Typography>
+            </Stack>
+            <Stack>
+              <Typography
+                variant="h6"
+                color="text.dark"
+                sx={{
+                  marginTop: "10px",
+                  marginBottom: "10px",
+                  fontWeight: "400",
+                }}
+              >
+                inclusive of All Taxes
+              </Typography>
+            </Stack>
+            <Stack>
+              <div style={{ display: "flex" }}>
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{
+                    marginTop: "4px",
+                    // marginBottom: "auto",
+                  }}
+                >
+                  <StarRoundedIcon
+                    sx={{
+                      color: "#FF5894",
+                      width: "20px",
+                      height: "20px",
+                      marginTop: "auto",
+                      marginBottom: "auto",
+                    }}
+                  />
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{
+                    marginTop: "auto",
+                    marginBottom: "auto",
+                  }}
+                >
+                  4.5
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{
+                    marginTop: "auto",
+                    marginBottom: "auto",
+                    marginLeft: "10px",
+                  }}
+                >
+                  {true ? `(233 reviews)` : `(0 reviews)`}
+                </Typography>
+              </div>
+            </Stack>
+            <Stack>
+              <Typography
+                variant="h6"
+                color="text.dark"
+                sx={{
+                  marginTop: "10px",
+                  marginBottom: "10px",
+                  fontWeight: "400",
+                }}
+              >
+                Sold by: FRESH FUMES LLP
+              </Typography>
+            </Stack>
+            <Stack>
+              <Typography
+                variant="h6"
+                color="text.dark"
+                sx={{
+                  marginTop: "10px",
+                  marginBottom: "10px",
+                  fontWeight: "400",
+                }}
+              >
+                Free shipping available
+              </Typography>
+            </Stack>
+            <Stack>
+              <FormControl>
+                <FormControlLabel
+                  control={<Checkbox name="agreed" onChange={handleAgreed} />}
+                  label="Pack for Gift"
+                />
+                {/*                       
+                      {(touched?.agreed && errors?.agreed) && (
+                        <FormHelperText>{errors?.agreed}</FormHelperText>
+                      )} */}
+              </FormControl>
+            </Stack>
+            <Stack>
+              Product Quantity 
+              <>
+              <RemoveRoundedIcon onClick={minusQuantity} /> {quantity}<AddRoundedIcon onClick={plusQuantity} />
+              </>
+            </Stack>
           </Grid>
         </Grid>
         <Box sx={{ width: "100%" }}>
