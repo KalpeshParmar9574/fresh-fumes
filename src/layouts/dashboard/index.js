@@ -207,7 +207,7 @@ export default function MiniDrawer(props) {
       <CssBaseline />
       <Box sx={{ flexGrow: 1 }}>
         <AppBarRootStyle position="fixed" component="nav">
-          <Toolbar>
+          <Toolbar sx={{paddingTop:"5px"}}>
             <Grid
               container
               spacing={{ xs: 2, md: 3 }}
@@ -248,12 +248,16 @@ export default function MiniDrawer(props) {
                     color="inherit"
                     aria-label="menu"
                     onClick={toggleDrawer(true)}
-                    sx={{ display: "flex", justifyContent: "start" }}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "start",
+                      marginRight: "auto",
+                    }}
                   >
                     <MenuIcon />
                   </IconButton>
                 </Hidden>
-                <Typography
+                {/* <Typography
                   variant="h4"
                   sx={{
                     textAlign: "center",
@@ -265,9 +269,26 @@ export default function MiniDrawer(props) {
                       textAlign: "center",
                     },
                   }}
-                >
-                  FRESH FUMES
-                </Typography>
+                > */}
+                <img
+                  src="/assets/images/logo/freshfumeslogo.png"
+                  alt=""
+                  // style={{ width: "150px", height: "90px" }}
+                  style={{
+                    width: "150px",
+                    height: "90px",
+                    textAlign: "center",
+                    color: "#FF5894",
+                    marginTop: "auto",
+                    marginBottom: "auto",
+                    [theme.breakpoints.up("sm")]: {
+                      textAlign: "center",
+                      display: "flex",
+                      justifyContent: "start",
+                    },
+                  }}
+                />
+                {/* </Typography> */}
               </Grid>
 
               <Hidden smDown>
@@ -517,7 +538,7 @@ export default function MiniDrawer(props) {
             <KeyboardArrowUpIcon />
           </Fab>
         </ScrollTop> */}
-      <Box component="main" sx={{ flexGrow: 1, marginTop: "3.5rem" }}>
+      <Box component="main" sx={{ flexGrow: 1, marginTop: "6.5rem" }}>
         {/* <Container maxWidth="xl"> */}
         <DrawerHeader />
         {children}
@@ -547,7 +568,11 @@ export default function MiniDrawer(props) {
                   fontWeight: "bold",
                 }}
               >
-                Logo
+                <img
+                  src="/assets/images/logo/freshfumeslogo.png"
+                  alt=""
+                  style={{ width: "150px", height: "90px" }}
+                />
               </Typography>
               <Link
                 href="#"
@@ -768,7 +793,6 @@ export default function MiniDrawer(props) {
                   display: "flex",
                   alignItems: "center",
                 }}
-                
               >
                 Lorem ipsum dolor sit amet consectetur. Elementum ut adipiscing
                 hendrerit dignissim. Duis viverra ultrices est est neque sed
