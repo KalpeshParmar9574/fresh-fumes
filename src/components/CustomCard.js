@@ -84,7 +84,7 @@ function CustomCard(props) {
       )}
       <CardMedia
         component="img"
-        image={img || "/assets/images/products/product1.png"}
+        image={isHovered ? (img ? img : "/assets/images/products/product2.png") : "/assets/images/products/product2.png"}
         alt=""
         sx={{
           width: "200px",
@@ -156,11 +156,13 @@ function CustomCard(props) {
               alignItems: "flex-end", // Align icons to the right
               position: "absolute",
               top: "0px",
-              bottom: "0px",
+              bottom: "166px",
               right: 0, // Position the div on the right side
-              width: "16%",
-              height: "47%",
-              backgroundColor: "rgba(255, 255, 255, 0.8)",
+              width: "21%",
+              height: "36%",
+              // backgroundColor: "rgba(255, 255, 255, 0.8)",
+              backgroundColor: "rgba(255, 255, 255, 1)",
+              boxShadow:" 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
               padding: "8px", // Add padding for spacing
               boxSizing: "border-box",
               marginTop: "auto",
@@ -168,7 +170,14 @@ function CustomCard(props) {
               borderRadius: "9px 0px 0px 9px",
             }}
           >
-            <IconButton onClick={() => alert(`Thank You for like`)} sx={{borderRadius:"10px",backgroundColor:"grey"}}>
+            <IconButton
+              onClick={() => alert(`Thank You for Add to Cart`)}
+              sx={{
+                borderRadius: "10px",
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+                marginBottom:"8px"
+              }}
+            >
               {/* <img
                 src="/assets/images/icons/AddCartIcon.png"
                 alt=""
@@ -176,10 +185,24 @@ function CustomCard(props) {
               /> */}
               <AddShoppingCartRoundedIcon />
             </IconButton>
-            <IconButton onClick={() => alert(`Thank You for Comment`)}>
+            <IconButton
+              onClick={() => alert(`Thank You for Like`)}
+              sx={{
+                borderRadius: "10px",
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+                marginBottom:"8px"
+              }}
+            >
               <FavoriteBorderRoundedIcon />
             </IconButton>
-            <IconButton onClick={() => alert(`Thank You for Send`)}>
+            <IconButton
+              onClick={() => alert(`Thank You for Share`)}
+              sx={{
+                borderRadius: "10px",
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+                // marginBottom:"8px"
+              }}
+            >
               <ShareOutlinedIcon />
             </IconButton>
           </div>
