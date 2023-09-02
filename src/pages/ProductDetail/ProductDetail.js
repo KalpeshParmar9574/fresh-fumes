@@ -113,7 +113,7 @@ function ProductDetail() {
             sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
             // onClick={()=>navigate(`/productdetail/${card?.id}`)}
           >
-            <Stack>
+            <div style={{display:"flex"}}>
               <Typography
                 variant="h6"
                 color="text.dark"
@@ -121,6 +121,7 @@ function ProductDetail() {
                   marginTop: "10px",
                   marginBottom: "10px",
                   fontWeight: "400",
+                  marginRight:"auto"
                 }}
               >
                 Gucci
@@ -136,7 +137,7 @@ function ProductDetail() {
               >
                 <ShareRoundedIcon />
               </Typography>
-            </Stack>
+            </div>
             <Stack>
               <Typography
                 variant="h6"
@@ -286,12 +287,12 @@ function ProductDetail() {
                       )} */}
               </FormControl>
             </Stack>
-            <Stack>
+            <div style={{display:"flex"}}>
               Product Quantity 
               <>
               <RemoveRoundedIcon onClick={minusQuantity} /> {quantity}<AddRoundedIcon onClick={plusQuantity} />
               </>
-            </Stack>
+            </div>
           </Grid>
         </Grid>
         <Box sx={{ width: "100%" }}>

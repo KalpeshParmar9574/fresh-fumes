@@ -29,6 +29,40 @@ import { CardArr } from "../CardArr";
 // import "swiper/css/pagination";
 
 function Productlist() {
+  
+
+const cardStyles = {
+  marginLeft: "auto",
+  marginRight: "auto",
+  padding: "0px",
+};
+
+const cardContainerStyles = {
+  display: "flex",
+  flexWrap: "wrap",
+  alignItems: "flex-start", // Align items to the top of the container
+  marginLeft: "auto",
+  marginRight: "auto",
+  marginBottom: "20px",
+  marginTop: "20px",
+  padding: "0px",
+};
+
+const cardMediaQueries = {
+  xs: {
+    width: "50%", // 2 cards per row for xs screens
+  },
+  sm: {
+    width: "50%", // 2 cards per row for sm screens
+  },
+  md: {
+    width: "33.33%", // 3 cards per row for md screens
+  },
+  lg: {
+    width: "33.33%", // 3 cards per row for lg screens
+  },
+};
+
   const navigate = useNavigate();
   const [sortBy,setSortBy] = React.useState(false);
   const [sortByMenu,setSortByMenu] = React.useState(false);
@@ -307,24 +341,24 @@ function Productlist() {
                 )}
               </div>
             </Grid>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  "aria-labelledby": "basic-button",
-                }}
-                sx={{width: "330px"}}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
-              </Menu>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+              sx={{ width: "330px" }}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </Menu>
           </Grid>
         </Card>
       </Container>
-      <BasicMenu />
+      {/* <BasicMenu /> */}
       {/* {sortByMenu ? (
         <div
           style={{
@@ -348,31 +382,14 @@ function Productlist() {
       ) : (
         ""
       )} */}
-      <Divider sx={{ marginBottom: "20px" }} />
-      <Grid
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
-        alignItems="center"
-        justifyContent="center"
-        sx={{
-          marginLeft: "auto",
-          marginRight: "auto",
-          marginBottom: "20px",
-          marginTop: "20px",
-          padding: "0px",
-        }}
-      >
+      {/* <Divider sx={{ marginBottom: "20px" }} /> */}
+      
+      <div className="custom-container">
         {CardArr?.map((card, index) => (
-          <Grid
-            item
-            xs={4}
-            sm={4}
-            md={2.40}
-            lg={2}
+          <div
+            className="custom-card"
             key={index}
-            sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
-            onClick={()=>navigate(`/productdetail/${card?.id}`)}
+            onClick={() => window.open(`/productdetail/${card?.id}`)}
           >
             <CustomCard
               name={card?.name || ""}
@@ -386,9 +403,9 @@ function Productlist() {
               totalReviews={card?.totalReviews || "0"}
               latestArrival={card?.latestArrival || false}
             />
-          </Grid>
+          </div>
         ))}
-      </Grid>
+      </div>
       {/* </Container> */}
     </>
   );
@@ -405,3 +422,47 @@ const componentConfig = {
 };
 
 export default componentConfig;
+
+
+//  <Grid
+//         container
+//         spacing={{ xs: 2, md: 3 }}
+//         columns={{ xs: 4, sm: 8, md: 12 }}
+//         alignItems="center"
+//         justifyContent="center"
+//         sx={{
+//           marginLeft: "auto",
+//           marginRight: "auto",
+//           marginBottom: "20px",
+//           marginTop: "20px",
+//           padding: "0px",
+//         }}
+//       >
+//         {CardArr?.map((card, index) => (
+//           <Grid
+//             item
+//             xs={4}
+//             sm={4}
+//             md={2.40}
+//             lg={2}
+//             key={index}
+//             sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
+//             onClick={()=>window.open(`/productdetail/${card?.id}`)}
+//             // component={RouterLink}
+// 						// 	to={`/productdetail/${card?.id}`}
+//           >
+//             <CustomCard
+//               name={card?.name || ""}
+//               subname={card?.subname || ""}
+//               productName={card?.productName || ""}
+//               price={card?.price || ""}
+//               offerprice={card?.offerprice || ""}
+//               img={card?.img || ""}
+//               rating={card?.rating || "0"}
+//               ratingcolor={card?.ratingcolor || "#FF5894"}
+//               totalReviews={card?.totalReviews || "0"}
+//               latestArrival={card?.latestArrival || false}
+//             />
+//           </Grid>
+//         ))}
+//       </Grid>
