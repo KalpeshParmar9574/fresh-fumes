@@ -1,0 +1,7 @@
+.pagination-blk .MuiTablePagination-spacer {
+  display: none;
+}
+.pagination-blk {
+  display: flex;
+  justify-content: flex-end;
+}
