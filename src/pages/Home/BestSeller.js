@@ -9,6 +9,7 @@ import {
 import { Container, Typography } from "@mui/material";
 import BestSellerCard from "./BestSellerCard";
 import "./BestSellerCard.css";
+import CustomCard from "../../components/CustomCard";
 
 function BestSeller() {
   const cardArr = [
@@ -58,51 +59,75 @@ function BestSeller() {
       >
         Best Seller
       </Typography>
-      <Swiper
-        slidesPerView={1}
-        spaceBetween={10}
-        grabCursor={true}
-        loop={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        breakpoints={{
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 4,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 4,
-            spaceBetween: 50,
-          },
-        }}
-        modules={[Autoplay,Pagination]}
-        className="mySwiper"
-      >
+      
+      <div className="custom-container">
         {cardArr?.map((card, index) => (
-          <SwiperSlide key={index}>
-            <BestSellerCard
+          <div
+            className="custom-card"
+            key={index}
+            onClick={() => window.open(`/productdetail/${card?.id}`)}
+          >
+            <CustomCard
               name={card?.name || ""}
               subname={card?.subname || ""}
+              productName={card?.productName || ""}
               price={card?.price || ""}
               offerprice={card?.offerprice || ""}
               img={card?.img || ""}
               rating={card?.rating || "0"}
               ratingcolor={card?.ratingcolor || "#FF5894"}
+              totalReviews={card?.totalReviews || "0"}
+              latestArrival={card?.latestArrival || false}
             />
-          </SwiperSlide>
+          </div>
         ))}
-      </Swiper>
+      </div>
     </Container>
   );
 }
 
 export default BestSeller;
+
+{/* <Swiper
+  slidesPerView={1}
+  spaceBetween={10}
+  grabCursor={true}
+  loop={true}
+  autoplay={{
+    delay: 2500,
+    disableOnInteraction: false,
+  }}
+  pagination={{
+    clickable: true,
+  }}
+  breakpoints={{
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    768: {
+      slidesPerView: 4,
+      spaceBetween: 40,
+    },
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 50,
+    },
+  }}
+  modules={[Autoplay, Pagination]}
+  className="mySwiper"
+>
+  {cardArr?.map((card, index) => (
+    <SwiperSlide key={index}>
+      <BestSellerCard
+        name={card?.name || ""}
+        subname={card?.subname || ""}
+        price={card?.price || ""}
+        offerprice={card?.offerprice || ""}
+        img={card?.img || ""}
+        rating={card?.rating || "0"}
+        ratingcolor={card?.ratingcolor || "#FF5894"}
+      />
+    </SwiperSlide>
+  ))}
+</Swiper>; */}
