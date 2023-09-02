@@ -18,6 +18,8 @@ import {
   InputAdornment,
   FormHelperText,
   Stack,
+  Slide,
+  useScrollTrigger,
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -62,10 +64,29 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
+function HideOnScroll(props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+  });
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
+
+
 export default function MiniDrawer(props) {
   const { children, window } = props;
   const mail = "freshfumes18@gmail.com"
   const call = "845-633-6739";
+  const hoverColor = (theme)=>theme.palette.primary.main;
+  // const hoverColor = "#FF5894";
   const navigate = useNavigate();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -504,7 +525,7 @@ export default function MiniDrawer(props) {
         {/* </Container> */}
       </Box>
       <CssBaseline />
-      <Box sx={{ background: "#222", paddingTop: "40px" }}>
+      <Box sx={{ background: "#000000", paddingTop: "40px" }}>
         <Container maxWidth="lg">
           <Grid container spacing={4}>
             <Grid
@@ -526,7 +547,7 @@ export default function MiniDrawer(props) {
                   fontWeight: "bold",
                 }}
               >
-                About Us
+                Logo
               </Typography>
               <Link
                 href="#"
@@ -537,7 +558,7 @@ export default function MiniDrawer(props) {
                   textDecoration: "none",
                   display: "flex",
                   alignItems: "center",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 {<HouseRoundedIcon />}
@@ -546,7 +567,7 @@ export default function MiniDrawer(props) {
                 </span>
               </Link>
               <Link
-                href="#"
+                href="tel:8456336739"
                 variant="body1"
                 sx={{
                   color: "white",
@@ -554,14 +575,14 @@ export default function MiniDrawer(props) {
                   textDecoration: "none",
                   display: "flex",
                   alignItems: "center",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 <CallRoundedIcon />
                 <span style={{ marginLeft: "10px" }}>{call}</span>
               </Link>
               <Link
-                href="#"
+                href="mailto:freshfumes18@gmail.com"
                 variant="body1"
                 sx={{
                   color: "white",
@@ -569,7 +590,7 @@ export default function MiniDrawer(props) {
                   textDecoration: "none",
                   display: "flex",
                   alignItems: "center",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 <EmailRoundedIcon />
@@ -604,7 +625,7 @@ export default function MiniDrawer(props) {
                   color: "white",
                   marginBottom: "20px",
                   textDecoration: "none",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 Contact Us
@@ -616,7 +637,7 @@ export default function MiniDrawer(props) {
                   color: "white",
                   marginBottom: "20px",
                   textDecoration: "none",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 FAQ
@@ -628,7 +649,7 @@ export default function MiniDrawer(props) {
                   color: "white",
                   marginBottom: "20px",
                   textDecoration: "none",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 Privacy Policy
@@ -662,7 +683,7 @@ export default function MiniDrawer(props) {
                   color: "white",
                   marginBottom: "20px",
                   textDecoration: "none",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 Refund - Return Policy
@@ -674,7 +695,7 @@ export default function MiniDrawer(props) {
                   color: "white",
                   marginBottom: "20px",
                   textDecoration: "none",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 Track Order
@@ -686,7 +707,7 @@ export default function MiniDrawer(props) {
                   color: "white",
                   marginBottom: "20px",
                   textDecoration: "none",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 Shipping
@@ -698,7 +719,7 @@ export default function MiniDrawer(props) {
                   color: "white",
                   marginBottom: "20px",
                   textDecoration: "none",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 Terms and Condition
@@ -710,7 +731,7 @@ export default function MiniDrawer(props) {
                   color: "white",
                   marginBottom: "20px",
                   textDecoration: "none",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 24 / 7 Customer Support
@@ -735,9 +756,25 @@ export default function MiniDrawer(props) {
                   fontWeight: "bold",
                 }}
               >
-                Social Media
+                FRESH FUMES
               </Typography>
               <Link
+                // href="#"
+                variant="body1"
+                sx={{
+                  color: "white",
+                  marginBottom: "20px",
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                Lorem ipsum dolor sit amet consectetur. Elementum ut adipiscing
+                hendrerit dignissim. Duis viverra ultrices est est neque sed
+                magna pellentesque. Urna maecenas pretium in dolor faucibus dui
+                vivamus egestas orci
+              </Link>
+              {/* <Link
                 href="#"
                 variant="body1"
                 sx={{
@@ -746,7 +783,7 @@ export default function MiniDrawer(props) {
                   textDecoration: "none",
                   display: "flex",
                   alignItems: "center",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 <Facebook />
@@ -761,7 +798,7 @@ export default function MiniDrawer(props) {
                   textDecoration: "none",
                   display: "flex",
                   alignItems: "center",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 <Instagram />
@@ -776,7 +813,7 @@ export default function MiniDrawer(props) {
                   textDecoration: "none",
                   display: "flex",
                   alignItems: "center",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 <Twitter />
@@ -791,12 +828,12 @@ export default function MiniDrawer(props) {
                   textDecoration: "none",
                   display: "flex",
                   alignItems: "center",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 <YouTube />
                 <span style={{ marginLeft: "10px" }}>YouTube</span>
-              </Link>
+              </Link> */}
             </Grid>
           </Grid>
         </Container>
@@ -821,7 +858,7 @@ export default function MiniDrawer(props) {
                   color: "#aaa",
                   marginBottom: "20px",
                   textDecoration: "none",
-                  "&:hover": { color: "green", transition: "200ms ease-in" },
+                  "&:hover": { color: hoverColor, transition: "200ms ease-in" },
                 }}
               >
                 FRESH FUMES

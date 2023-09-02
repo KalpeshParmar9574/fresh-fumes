@@ -19,6 +19,9 @@ function OfferOfTheDay() {
       style={{
         backgroundColor: "rgb(255, 238, 244)",
         padding: "30px",
+        marginTop: "30px",
+        marginBottom: "30px",
+
       }}
     >
       <Grid
@@ -32,7 +35,7 @@ function OfferOfTheDay() {
         <img
           src="/assets/images/offeroftheday/offer.png"
           alt=""
-          style={{ width: "100%", maxWidth: "300px", margin: "auto" }}
+          style={{ width: "100%", maxWidth: "630px", margin: "auto" }}
         />
       </Grid>
       <Grid item xs={12} sm={4} md={6} lg={6}>

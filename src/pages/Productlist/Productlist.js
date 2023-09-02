@@ -368,7 +368,7 @@ function Productlist() {
             item
             xs={4}
             sm={4}
-            md={3}
+            md={2.40}
             lg={2}
             key={index}
             sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}

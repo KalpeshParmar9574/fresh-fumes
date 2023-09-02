@@ -222,7 +222,7 @@
     width: 30px;
     margin: 11px auto 10px;
     border: 0;
-    border-top: 1px solid #fda92d;
+    border-top: 1px solid #FF5894;
   }
   
   .employee-block .employee-img {
@@ -268,7 +268,7 @@
   }
   
   .employee-block .contact-details a:hover {
-    color: #fda92d;
+    color: #FF5894;
   }
   
   /* ----- Employee CheckList Tab ----- */

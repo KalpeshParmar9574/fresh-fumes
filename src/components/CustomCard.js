@@ -19,6 +19,8 @@ import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
 import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
+import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from "react";
 const ExpandMore = styled((props) => {
@@ -91,12 +93,12 @@ function CustomCard(props) {
           marginTop: "10px",
         }}
       />
-      <CardContent sx={{ paddingBottom: "8px" }}>
+      <CardContent sx={{ paddingBottom: "8px", paddingTop: "0px" }}>
         <div>
           <Typography
             variant="h6"
             color="text.secondary"
-            sx={{ marginBottom: "10px" }}
+            // sx={{ marginBottom: "10px" }}
           >
             {name ? name : ""}
           </Typography>
@@ -166,13 +168,17 @@ function CustomCard(props) {
             }}
           >
             <IconButton onClick={() => alert(`Thank You for like`)}>
-              <ThumbUpAltRoundedIcon />
+              <img
+                src="/assets/images/icons/AddCartIcon.png"
+                alt=""
+                style={{ width: "25px", height: "25px" }}
+              />
             </IconButton>
             <IconButton onClick={() => alert(`Thank You for Comment`)}>
-              <CommentRoundedIcon />
+              <FavoriteBorderRoundedIcon />
             </IconButton>
             <IconButton onClick={() => alert(`Thank You for Send`)}>
-              <SendRoundedIcon />
+              <ShareOutlinedIcon />
             </IconButton>
           </div>
         )}

@@ -89,7 +89,7 @@ table tr td {
 .custom-textarea:focus,
 .custom-textarea:active,
 .custom-textarea:focus-visible {
-  border: 2px solid #fda92d !important;
+  border: 2px solid #FF5894 !important;
   outline: 0;
 }
 
@@ -391,7 +391,7 @@ textarea::placeholder {
   position: absolute;
   top: -10px;
   right: -10px;
-  color: #fda92d;
+  color: #FF5894;
   background: #fff;
   border-radius: 50%;
 }
