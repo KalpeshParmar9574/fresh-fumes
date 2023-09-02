@@ -51,7 +51,8 @@ function BestSeller() {
     },
   ];
   return (
-    <Container maxWidth="xl">
+    // <Container maxWidth="xl">
+    <>
       <Typography
         variant="h4"
         color="inherit"
@@ -82,52 +83,53 @@ function BestSeller() {
           </div>
         ))}
       </div>
-    </Container>
+    {/* </Container> */}
+        </>
   );
 }
 
 export default BestSeller;
 
-{/* <Swiper
-  slidesPerView={1}
-  spaceBetween={10}
-  grabCursor={true}
-  loop={true}
-  autoplay={{
-    delay: 2500,
-    disableOnInteraction: false,
-  }}
-  pagination={{
-    clickable: true,
-  }}
-  breakpoints={{
-    640: {
-      slidesPerView: 2,
-      spaceBetween: 20,
-    },
-    768: {
-      slidesPerView: 4,
-      spaceBetween: 40,
-    },
-    1024: {
-      slidesPerView: 4,
-      spaceBetween: 50,
-    },
-  }}
-  modules={[Autoplay, Pagination]}
-  className="mySwiper"
->
-  {cardArr?.map((card, index) => (
-    <SwiperSlide key={index}>
-      <BestSellerCard
-        name={card?.name || ""}
-        subname={card?.subname || ""}
-        price={card?.price || ""}
-        offerprice={card?.offerprice || ""}
-        img={card?.img || ""}
-        rating={card?.rating || "0"}
-        ratingcolor={card?.ratingcolor || "#FF5894"}
-      />
-    </SwiperSlide>
-  ))}
-</Swiper>; */}
+//  <Swiper
+//   slidesPerView={1}
+//   spaceBetween={10}
+//   grabCursor={true}
+//   loop={true}
+//   autoplay={{
+//     delay: 2500,
+//     disableOnInteraction: false,
+//   }}
+//   pagination={{
+//     clickable: true,
+//   }}
+//   breakpoints={{
+//     640: {
+//       slidesPerView: 2,
+//       spaceBetween: 20,
+//     },
+//     768: {
+//       slidesPerView: 4,
+//       spaceBetween: 40,
+//     },
+//     1024: {
+//       slidesPerView: 4,
+//       spaceBetween: 50,
+//     },
+//   }}
+//   modules={[Autoplay, Pagination]}
+//   className="mySwiper"
+// >
+//   {cardArr?.map((card, index) => (
+//     <SwiperSlide key={index}>
+//       <BestSellerCard
+//         name={card?.name || ""}
+//         subname={card?.subname || ""}
+//         price={card?.price || ""}
+//         offerprice={card?.offerprice || ""}
+//         img={card?.img || ""}
+//         rating={card?.rating || "0"}
+//         ratingcolor={card?.ratingcolor || "#FF5894"}
+//       />
+//     </SwiperSlide>
+//   ))}
+// </Swiper>; 
