@@ -324,7 +324,7 @@ function Productlist() {
           </Grid>
         </Card>
       </Container>
-      <BasicMenu />
+      {/* <BasicMenu /> */}
       {/* {sortByMenu ? (
         <div
           style={{
@@ -348,7 +348,7 @@ function Productlist() {
       ) : (
         ""
       )} */}
-      <Divider sx={{ marginBottom: "20px" }} />
+      {/* <Divider sx={{ marginBottom: "20px" }} /> */}
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
@@ -372,7 +372,9 @@ function Productlist() {
             lg={2}
             key={index}
             sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
-            onClick={()=>navigate(`/productdetail/${card?.id}`)}
+            onClick={()=>window.open(`/productdetail/${card?.id}`)}
+            // component={RouterLink}
+						// 	to={`/productdetail/${card?.id}`}
           >
             <CustomCard
               name={card?.name || ""}

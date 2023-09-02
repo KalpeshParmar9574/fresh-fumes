@@ -407,7 +407,7 @@ export default function MiniDrawer(props) {
                       }}
                     >
                       <PersonRoundedIcon
-                        sx={{ width: "20px", hieght: "20px" }}
+                        sx={{ width: "35px", hieght: "35px" }}
                       />
                     </Grid>
                     <Grid
@@ -424,8 +424,8 @@ export default function MiniDrawer(props) {
                     >
                       <FavoriteBorderRoundedIcon
                         sx={{
-                          width: "20px",
-                          hieght: "20px",
+                          width: "35px",
+                          hieght: "35px",
                           cursor: "pointer",
                         }}
                         onClick={() => navigate("/wishlist")}
@@ -444,7 +444,7 @@ export default function MiniDrawer(props) {
                       }}
                     >
                       <ShoppingCartRoundedIcon
-                        sx={{ width: "20px", hieght: "20px" }}
+                        sx={{ width: "35px", hieght: "35px" }}
                       />
                     </Grid>
                   </Grid>
@@ -768,6 +768,7 @@ export default function MiniDrawer(props) {
                   display: "flex",
                   alignItems: "center",
                 }}
+                
               >
                 Lorem ipsum dolor sit amet consectetur. Elementum ut adipiscing
                 hendrerit dignissim. Duis viverra ultrices est est neque sed

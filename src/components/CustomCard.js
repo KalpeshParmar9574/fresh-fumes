@@ -21,6 +21,7 @@ import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
+import AddShoppingCartRoundedIcon from "@mui/icons-material/AddShoppingCartRounded";
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from "react";
 const ExpandMore = styled((props) => {
@@ -167,12 +168,13 @@ function CustomCard(props) {
               borderRadius: "9px 0px 0px 9px",
             }}
           >
-            <IconButton onClick={() => alert(`Thank You for like`)}>
-              <img
+            <IconButton onClick={() => alert(`Thank You for like`)} sx={{borderRadius:"10px",backgroundColor:"grey"}}>
+              {/* <img
                 src="/assets/images/icons/AddCartIcon.png"
                 alt=""
                 style={{ width: "25px", height: "25px" }}
-              />
+              /> */}
+              <AddShoppingCartRoundedIcon />
             </IconButton>
             <IconButton onClick={() => alert(`Thank You for Comment`)}>
               <FavoriteBorderRoundedIcon />
