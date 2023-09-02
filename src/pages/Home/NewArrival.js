@@ -19,6 +19,7 @@ import CustomCard from "../../components/CustomCard";
 function NewArrival() {
     const cardArr = [
       {
+        id:1,
         name: "Jasmin Noir",
         subname: "By Jasmin",
         price: "20.00",
@@ -28,6 +29,7 @@ function NewArrival() {
         rating: "4.5",
       },
       {
+         id:2,
         name: "Jasmin Noir",
         subname: "By Jasmin",
         price: "211.00",
@@ -37,6 +39,7 @@ function NewArrival() {
         rating: "4.5",
       },
       {
+         id:3,
         name: "Jasmin Noir",
         subname: "By Jasmin",
         price: "122 .00",
@@ -46,6 +49,7 @@ function NewArrival() {
         rating: "4.5",
       },
       {
+         id:4,
         name: "Jasmin Noir",
         subname: "By Jasmin",
         price: "120.00",
@@ -66,11 +70,7 @@ function NewArrival() {
       </Typography>
       <div className="custom-container">
         {cardArr?.map((card, index) => (
-          <div
-            className="custom-card"
-            key={index}
-            onClick={() => window.open(`/productdetail/${card?.id}`)}
-          >
+          <div className="custom-card" key={index}>
             <CustomCard
               name={card?.name || ""}
               subname={card?.subname || ""}
@@ -82,6 +82,7 @@ function NewArrival() {
               ratingcolor={card?.ratingcolor || "#FF5894"}
               totalReviews={card?.totalReviews || "0"}
               latestArrival={card?.latestArrival || false}
+              path={card?.id ? card?.id : ""}
             />
           </div>
         ))}

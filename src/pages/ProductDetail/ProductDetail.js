@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { CardArr } from '../CardArr';
 import CustomCard from '../../components/CustomCard';
-import { Box, Checkbox, Container, FormControl, FormControlLabel, Grid, Stack, Tab, Tabs, Typography } from '@mui/material';
+import { Box, Button, Checkbox, Container, FormControl, FormControlLabel, Grid, IconButton, Stack, Tab, Tabs, Typography } from '@mui/material';
 import PropTypes from "prop-types";
 import "./ProductDetail.css";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
@@ -113,7 +113,7 @@ function ProductDetail() {
             sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
             // onClick={()=>navigate(`/productdetail/${card?.id}`)}
           >
-            <div style={{display:"flex"}}>
+            <div style={{ display: "flex" }}>
               <Typography
                 variant="h6"
                 color="text.dark"
@@ -121,7 +121,7 @@ function ProductDetail() {
                   marginTop: "10px",
                   marginBottom: "10px",
                   fontWeight: "400",
-                  marginRight:"auto"
+                  marginRight: "auto",
                 }}
               >
                 Gucci
@@ -135,25 +135,30 @@ function ProductDetail() {
                   fontWeight: "400",
                 }}
               >
-                <ShareRoundedIcon />
+                <IconButton>
+                  <ShareRoundedIcon />
+                </IconButton>
               </Typography>
             </div>
-            <Stack>
+            <div style={{ display: "flex", justifyContent: "start" }}>
               <Typography
                 variant="h6"
                 color="text.dark"
-                sx={{
+                style={{
                   marginTop: "10px",
                   marginBottom: "10px",
                   fontWeight: "400",
                   height: "27px",
-                  weight: "88px",
+                  color: "white",
+                  paddingLeft: "10px",
+                  paddingRight: "10px",
+                  // weight: "70px",
                   backgroundColor: "rgba(0, 0, 0, 0.7)",
                 }}
               >
                 In Stock
               </Typography>
-            </Stack>
+            </div>
             <Stack>
               <Typography
                 variant="h2"
@@ -178,19 +183,6 @@ function ProductDetail() {
                 }}
               >
                 $ 298.99
-              </Typography>
-            </Stack>
-            <Stack>
-              <Typography
-                variant="h6"
-                color="text.dark"
-                sx={{
-                  marginTop: "10px",
-                  marginBottom: "10px",
-                  fontWeight: "400",
-                }}
-              >
-                inclusive of All Taxes
               </Typography>
             </Stack>
             <Stack>
@@ -264,7 +256,7 @@ function ProductDetail() {
             </Stack>
             <Stack>
               <Typography
-                variant="h6"
+                variant="caption"
                 color="text.dark"
                 sx={{
                   marginTop: "10px",
@@ -287,11 +279,49 @@ function ProductDetail() {
                       )} */}
               </FormControl>
             </Stack>
-            <div style={{display:"flex"}}>
-              Product Quantity 
-              <>
-              <RemoveRoundedIcon onClick={minusQuantity} /> {quantity}<AddRoundedIcon onClick={plusQuantity} />
-              </>
+            <div style={{ display: "flex" }}>
+              <div style={{ marginRight: "auto" }}>
+                <Typography
+                  variant="h6"
+                  color="text.dark"
+                  sx={{
+                    marginTop: "10px",
+                    marginBottom: "10px",
+                    fontWeight: "400",
+                  }}
+                >
+                  Product Quantity
+                </Typography>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  marginLeft: "auto",
+                  marginRight: "10px",
+                }}
+              >
+                <IconButton onClick={minusQuantity}>
+                  <RemoveRoundedIcon />
+                </IconButton>
+                <Typography
+                  variant="h6"
+                  color="text.dark"
+                  sx={{
+                    marginTop: "10px",
+                    marginBottom: "10px",
+                    fontWeight: "400",
+                    backgroundColor: "rgba(0, 0, 0, 0.1)",
+                    borderRadius: "10px",
+                    width: "45px",
+                    textAlign: "center",
+                  }}
+                >
+                  {quantity}
+                </Typography>
+                <IconButton onClick={plusQuantity}>
+                  <AddRoundedIcon />
+                </IconButton>
+              </div>
             </div>
           </Grid>
         </Grid>
@@ -446,9 +476,6 @@ function ProductDetail() {
             </div>
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
-            Product Details
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={2}>
             <Typography
               variant="h6"
               color="text.dark"
@@ -462,6 +489,155 @@ function ProductDetail() {
                 ? " Gucci was founded in Florence, Tuscany, in 1921 by Guccio Gucci.Under the leadership of Aldo Gucci (Guccio's son), Gucci became a world-renowned brand and an icon of the Italian Dolce Vita era. The product line includes bags, ready-to-wear, footwear,accessories, fragrances, and home furnishings. Influential,innovative, and progressive, Gucci is reinventing an utterly contemporary approach to fashion. The brand has redefined luxury for the 21st century and cemented its position as one of the world's most coveted fashion houses. "
                 : ""}
             </Typography>
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={2}>
+            <Typography
+              variant="h6"
+              color="text.dark"
+              sx={{
+                marginTop: "10px",
+                marginBottom: "10px",
+                fontWeight: "400",
+              }}
+            >
+              Customer Review and Retting
+            </Typography>
+            <div style={{ display: "flex" }}>
+              <div>
+                <Typography
+                  variant="h6"
+                  color="text.dark"
+                  sx={{
+                    marginTop: "10px",
+                    marginBottom: "10px",
+                    fontWeight: "400",
+                  }}
+                >
+                  Average Rating
+                </Typography>
+                <Typography
+                  variant="h2"
+                  color="text.dark"
+                  sx={{
+                    marginTop: "10px",
+                    marginBottom: "10px",
+                    fontWeight: "400",
+                  }}
+                >
+                  4.3
+                </Typography>
+                <Typography
+                  variant="h6"
+                  color="text.dark"
+                  sx={{
+                    marginTop: "10px",
+                    marginBottom: "10px",
+                    fontWeight: "400",
+                  }}
+                >
+                  Rating's
+                </Typography>
+              </div>
+              <div>
+                <Typography
+                  variant="h6"
+                  color="text.dark"
+                  sx={{
+                    marginTop: "10px",
+                    marginBottom: "10px",
+                    fontWeight: "400",
+                  }}
+                >
+                  250 out of 500 reviews
+                </Typography>
+              </div>
+              <div></div>
+            </div>
+            <div>
+              <div>
+                <img
+                  src=""
+                  alt=""
+                  style={{
+                    backgroundColor: "red",
+                    borderRadius: "50%",
+                    width: "35px",
+                    height: "35px",
+                  }}
+                />
+                <Typography
+                  variant="h6"
+                  color="text.dark"
+                  sx={{
+                    marginTop: "10px",
+                    marginBottom: "10px",
+                    fontWeight: "400",
+                  }}
+                >
+                  Customer Name
+                </Typography>
+              </div>
+              <div>
+                <Typography
+                  variant="body2"
+                  color="text.dark"
+                  sx={{
+                    marginTop: "10px",
+                    marginBottom: "10px",
+                    fontWeight: "400",
+                  }}
+                >
+                  This product manufacture and quality are good and its
+                  fragrance very cool and fresh all of this are great product.
+                </Typography>
+              </div>
+              <div style={{ display: "flex" }}>
+                <div>
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{
+                    marginTop: "4px",
+                    // marginBottom: "auto",
+                  }}
+                >
+                  <StarRoundedIcon
+                    sx={{
+                      color: "#FF5894",
+                      width: "20px",
+                      height: "20px",
+                      marginTop: "auto",
+                      marginBottom: "auto",
+                    }}
+                  />
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{
+                    marginTop: "auto",
+                    marginBottom: "auto",
+                  }}
+                >
+                  4.5
+                </Typography>
+                {/* <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{
+                    marginTop: "auto",
+                    marginBottom: "auto",
+                    marginLeft: "10px",
+                  }}
+                >
+                  {totalReviews ? `(${totalReviews} reviews)` : `(0 reviews)`}
+                </Typography> */}
+              </div>
+              <div style={{marginTop:"auto"}}>
+                <Button>All Reviews</Button>
+              </div>
+              </div>
+            </div>
           </CustomTabPanel>
         </Box>
         <Typography
