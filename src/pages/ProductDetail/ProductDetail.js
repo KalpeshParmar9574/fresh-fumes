@@ -56,7 +56,6 @@ function ProductDetail() {
 
   const handleAgreed = (event) => {
     // console.log("Values", values);
-    console.log("event.target.value", event.target.checked);
     // setFieldValue(`agreed`, event.target.checked);
   };
   const handleChange = (event, newValue) => {

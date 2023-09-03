@@ -7,22 +7,19 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
+  Checkbox,
   Collapse,
+  FormControl,
+  FormControlLabel,
+  Grid,
   IconButton,
+  Stack,
   Typography,
 } from "@mui/material";
-import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
-import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
-import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
-import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
-import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
-import AddShoppingCartRoundedIcon from "@mui/icons-material/AddShoppingCartRounded";
+import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+
 import { useState } from "react";
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -48,13 +45,30 @@ function AddToCartCard(props) {
     totalReviews,
     latestArrival,
     path,
+    productweight,
   } = props;
   const [isHovered, setIsHovered] = useState(false);
+  const handleAgreed = (event) => {
+    // console.log("Values", values);
+    // setFieldValue(`agreed`, event.target.checked);
+  };
+  
+  const plusQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const minusQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+    const [quantity, setQuantity] = useState(1);
   return (
     <Card
       style={{
         position: "relative",
-        maxWidth: 270,
+        maxWidth: 770,
         marginBottom: "20px",
         marginLeft: "auto",
         marginRight: "auto",
@@ -83,183 +97,239 @@ function AddToCartCard(props) {
           Latest Arrival
         </div>
       )}
-      <CardMedia
-        component="img"
-        image={
-          isHovered
-            ? img
-              ? img
-              : "/assets/images/products/product2.png"
-            : "/assets/images/products/product2.png"
-        }
-        alt=""
+      <Grid
+        container
+        spacing={{ xs: 2, md: 3 }}
+        columns={{ xs: 4, sm: 8, md: 12 }}
+        alignItems="center"
+        justifyContent="center"
         sx={{
-          width: "200px",
-          height: "240px",
           marginLeft: "auto",
           marginRight: "auto",
-          marginTop: "10px",
+          marginBottom: "20px",
+          marginTop: "20px",
+          padding: "0px",
         }}
-        onClick={() => window.open(`/productdetail/${path}`)}
-      />
-      <CardContent sx={{ paddingBottom: "8px", paddingTop: "0px" }}>
-        <div>
-          <Typography
-            variant="h6"
-            color="text.secondary"
-            // sx={{ marginBottom: "10px" }}
-          >
-            {name ? name : ""}
-          </Typography>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{
-              marginTop: "auto",
-              marginBottom: "10px",
-            }}
-          >
-            {subname ? subname : ""}
-          </Typography>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{
-              marginTop: "auto",
-              marginBottom: "10px",
-            }}
-          >
-            {productName ? productName : ""}
-          </Typography>
-        </div>
-        <div style={{ display: "flex", marginBottom: "10px" }}>
-          <Typography
-            variant="h6"
-            color="text.secondary"
-            sx={{
-              marginTop: "auto",
-              marginBottom: "auto",
-            }}
-          >
-            {offerprice ? `$${offerprice}` : ""}
-          </Typography>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{
-              marginTop: "auto",
-              marginBottom: "auto",
-              marginLeft: "auto",
-              textDecoration: "line-through",
-            }}
-          >
-            {price ? `$${price}` : ""}
-          </Typography>
-        </div>
-        {isHovered && (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-end", // Align icons to the right
-              position: "absolute",
-              top: "0px",
-              bottom: "166px",
-              right: 0, // Position the div on the right side
-              width: "21%",
-              height: "36%",
-              // backgroundColor: "rgba(255, 255, 255, 0.8)",
-              backgroundColor: "rgba(255, 255, 255, 1)",
-              boxShadow:
-                " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-              padding: "8px", // Add padding for spacing
-              boxSizing: "border-box",
-              marginTop: "auto",
-              marginBottom: "auto",
-              borderRadius: "9px 0px 0px 9px",
-            }}
-          >
-            <IconButton
-              onClick={() => alert(`Thank You for Add to Cart`)}
+      >
+        <Grid
+          item
+          xs={1}
+          sm={3}
+          md={5}
+          lg={2}
+          sx={{ marginLeft: "auto", marginRight: "auto" }}
+        >
+          <img
+            src={
+              isHovered
+                ? img
+                  ? img
+                  : "/assets/images/products/product2.png"
+                : "/assets/images/products/product2.png"
+            }
+            alt=""
+            style={{ width: "100%", height: "100%", paddingLeft: "10px" }}
+          />
+        </Grid>
+        <Grid
+          item
+          xs={3}
+          sm={5}
+          md={7}
+          lg={2}
+          sx={{
+            marginLeft: "auto",
+            marginRight: "auto",
+            padding: "0px",
+            marginTop: "10px",
+          }}
+        >
+          <div>
+            <Typography
+              variant="h6"
+              sx={{ fontWeight: "700", color: "rgba(0, 0, 0, 1)" }}
+            >
+              {name ? name : ""}
+            </Typography>
+            <Typography
+              variant="body2"
               sx={{
-                borderRadius: "10px",
-                backgroundColor: "rgba(0, 0, 0, 0.1)",
-                marginBottom: "8px",
+                marginTop: "auto",
+                marginBottom: "10px",
+                color: "rgba(0, 0, 0, 1)",
               }}
             >
-              {/* <img
-                src="/assets/images/icons/AddCartIcon.png"
-                alt=""
-                style={{ width: "25px", height: "25px" }}
-              /> */}
-              <AddShoppingCartRoundedIcon />
-            </IconButton>
-            <IconButton
-              onClick={() => alert(`Thank You for Like`)}
+              {subname ? subname : ""}
+            </Typography>
+            {/* <Typography
+              variant="body2"
+              color="text.secondary"
               sx={{
-                borderRadius: "10px",
-                backgroundColor: "rgba(0, 0, 0, 0.1)",
-                marginBottom: "8px",
+                marginTop: "auto",
+                marginBottom: "10px",
               }}
             >
-              <FavoriteBorderRoundedIcon />
-            </IconButton>
-            <IconButton
-              onClick={() => alert(`Thank You for Share`)}
-              sx={{
-                borderRadius: "10px",
-                backgroundColor: "rgba(0, 0, 0, 0.1)",
-                // marginBottom:"8px"
-              }}
-            >
-              <ShareOutlinedIcon />
-            </IconButton>
+              {productName ? productName : ""}
+            </Typography> */}
           </div>
-        )}
-        <div style={{ display: "flex" }}>
-          <Typography
-            variant="body1"
-            color="text.secondary"
-            sx={{
-              marginTop: "4px",
-              // marginBottom: "auto",
-            }}
-          >
-            <StarRoundedIcon
+          <div style={{ display: "flex" }}>
+            <Typography
+              variant="h6"
               sx={{
-                color: "#FF5894",
-                width: "20px",
-                height: "20px",
+                marginTop: "auto",
+                marginBottom: "auto",
+                color: "rgba(0, 0, 0, 1)",
+                fontWeight: "700",
+              }}
+            >
+              {offerprice ? `$${offerprice}` : ""}
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                marginTop: "auto",
+                marginBottom: "auto",
+                color: "rgba(0, 0, 0, 1)",
+                marginLeft: "20px",
+                textDecoration: "line-through",
+              }}
+            >
+              {price ? `$${price}` : ""}
+            </Typography>
+          </div>
+          <div style={{ display: "flex", justifyContent: "start" }}>
+            <Typography
+              variant="h6"
+              color="text.dark"
+              style={{
+                marginTop: "10px",
+                marginBottom: "10px",
+                fontWeight: "400",
+                height: "27px",
+                color: "white",
+                paddingLeft: "10px",
+                paddingRight: "10px",
+                // weight: "70px",
+                backgroundColor: "rgba(0, 0, 0, 0.7)",
+              }}
+            >
+              In Stock
+            </Typography>
+          </div>
+          <div style={{ display: "flex" }}>
+            <Typography
+              variant="body1"
+              sx={{
+                color: "rgba(0, 0, 0, 1)",
+                marginTop: "4px",
+                marginRight: "10px",
+              }}
+            >
+              {productweight ? productweight : "50ml"}
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                color: "rgba(0, 0, 0, 1)",
+                marginTop: "4px",
+                // marginBottom: "auto",
+              }}
+            >
+              <StarRoundedIcon
+                sx={{
+                  color: "#FF5894",
+                  width: "20px",
+                  height: "20px",
+                  marginTop: "auto",
+                  marginBottom: "auto",
+                }}
+              />
+            </Typography>
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{
                 marginTop: "auto",
                 marginBottom: "auto",
               }}
-            />
-          </Typography>
-          <Typography
-            variant="body1"
-            color="text.secondary"
-            sx={{
-              marginTop: "auto",
-              marginBottom: "auto",
-            }}
-          >
-            {` ${rating}`}
-          </Typography>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{
-              marginTop: "auto",
-              marginBottom: "auto",
+            >
+              {` ${rating}`}
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                marginTop: "auto",
+                marginBottom: "auto",
+                marginLeft: "10px",
+              }}
+            >
+              {totalReviews ? `(${totalReviews} reviews)` : `(0 reviews)`}
+            </Typography>
+          </div>
+          <Stack>
+            <Typography
+              variant="caption"
+              color="text.dark"
+              sx={{
+                marginTop: "2px",
+                marginBottom: "2px",
+                fontWeight: "400",
+              }}
+            >
+              Free shipping available
+            </Typography>
+          </Stack>
+          <Stack>
+            <FormControl>
+              <FormControlLabel
+                control={<Checkbox name="agreed" onChange={handleAgreed} />}
+                label="Pack for Gift"
+              />
+              {/*                       
+                      {(touched?.agreed && errors?.agreed) && (
+                        <FormHelperText>{errors?.agreed}</FormHelperText>
+                      )} */}
+            </FormControl>
+          </Stack>
+          <div
+            style={{
+              display: "flex",
+              marginRight: "auto",
               marginLeft: "10px",
             }}
           >
-            {totalReviews ? `(${totalReviews} reviews)` : `(0 reviews)`}
-          </Typography>
-        </div>
-      </CardContent>
-      {/* <CardActions disableSpacing>
-        </CardActions> */}
+            <IconButton onClick={minusQuantity}>
+              <RemoveRoundedIcon />
+            </IconButton>
+            <Typography
+              variant="h6"
+              color="text.dark"
+              sx={{
+                marginTop: "10px",
+                marginBottom: "10px",
+                fontWeight: "400",
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+                borderRadius: "10px",
+                width: "45px",
+                textAlign: "center",
+              }}
+            >
+              {quantity}
+            </Typography>
+            <IconButton onClick={plusQuantity}>
+              <AddRoundedIcon />
+            </IconButton>
+          </div>
+          <div>
+            <IconButton onClick={plusQuantity} sx={{color:"white",width:"25px",height:"25px",backgroundColor:"rgba(0, 0, 0, 0.9)",borderRadius:"50%","&:hover":{
+                backgroundColor:"rgba(0, 0, 0, 0.9)"
+            }}}>
+              <AddRoundedIcon />
+            </IconButton>
+          </div>
+        </Grid>
+      </Grid>
     </Card>
   );
 }
