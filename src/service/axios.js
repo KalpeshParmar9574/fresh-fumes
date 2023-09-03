@@ -2,7 +2,6 @@ import axios from "axios";
 import LocalStorage from "./localStorage";
 import { BASE_URL } from "../constants";
 import { store } from "../redux/store";
-import { logOutUser } from "../redux/auth/authSlice";
 import { toast } from "react-toastify";
 let flag = false;
 let accessToken = ""
@@ -52,7 +51,7 @@ Axios.interceptors.response.use(
   (err) => {
     if (err.response.status === 401) {
       showToastMassage();
-      store.dispatch(logOutUser());
+      // store.dispatch(logOutUser());
       return Promise.reject(err);
     }
     if (err.response.status === 404) {

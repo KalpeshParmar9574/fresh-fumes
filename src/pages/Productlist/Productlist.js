@@ -389,7 +389,6 @@ const cardMediaQueries = {
           <div
             className="custom-card"
             key={index}
-            onClick={() => window.open(`/productdetail/${card?.id}`)}
           >
             <CustomCard
               name={card?.name || ""}
@@ -402,6 +401,7 @@ const cardMediaQueries = {
               ratingcolor={card?.ratingcolor || "#FF5894"}
               totalReviews={card?.totalReviews || "0"}
               latestArrival={card?.latestArrival || false}
+              path={card?.id ? card?.id : "" }
             />
           </div>
         ))}

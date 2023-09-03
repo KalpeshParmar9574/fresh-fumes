@@ -47,6 +47,7 @@ function CustomCard(props) {
     rating,
     totalReviews,
     latestArrival,
+    path,
   } = props;
   const [isHovered, setIsHovered] = useState(false);
   return (
@@ -84,7 +85,13 @@ function CustomCard(props) {
       )}
       <CardMedia
         component="img"
-        image={isHovered ? (img ? img : "/assets/images/products/product2.png") : "/assets/images/products/product2.png"}
+        image={
+          isHovered
+            ? img
+              ? img
+              : "/assets/images/products/product2.png"
+            : "/assets/images/products/product2.png"
+        }
         alt=""
         sx={{
           width: "200px",
@@ -93,6 +100,7 @@ function CustomCard(props) {
           marginRight: "auto",
           marginTop: "10px",
         }}
+        onClick={() => window.open(`/productdetail/${path}`)}
       />
       <CardContent sx={{ paddingBottom: "8px", paddingTop: "0px" }}>
         <div>
@@ -162,7 +170,8 @@ function CustomCard(props) {
               height: "36%",
               // backgroundColor: "rgba(255, 255, 255, 0.8)",
               backgroundColor: "rgba(255, 255, 255, 1)",
-              boxShadow:" 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+              boxShadow:
+                " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
               padding: "8px", // Add padding for spacing
               boxSizing: "border-box",
               marginTop: "auto",
@@ -175,7 +184,7 @@ function CustomCard(props) {
               sx={{
                 borderRadius: "10px",
                 backgroundColor: "rgba(0, 0, 0, 0.1)",
-                marginBottom:"8px"
+                marginBottom: "8px",
               }}
             >
               {/* <img
@@ -190,7 +199,7 @@ function CustomCard(props) {
               sx={{
                 borderRadius: "10px",
                 backgroundColor: "rgba(0, 0, 0, 0.1)",
-                marginBottom:"8px"
+                marginBottom: "8px",
               }}
             >
               <FavoriteBorderRoundedIcon />

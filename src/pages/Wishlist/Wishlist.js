@@ -66,11 +66,7 @@ function Wishlist() {
       <Divider sx={{ marginBottom: "20px" }} />
       <div className="custom-container">
         {CardArr?.map((card, index) => (
-          <div
-            className="custom-card"
-            key={index}
-            onClick={() => window.open(`/productdetail/${card?.id}`)}
-          >
+          <div className="custom-card" key={index}>
             <CustomCard
               name={card?.name || ""}
               subname={card?.subname || ""}
@@ -82,6 +78,7 @@ function Wishlist() {
               ratingcolor={card?.ratingcolor || "#FF5894"}
               totalReviews={card?.totalReviews || "0"}
               latestArrival={card?.latestArrival || false}
+              path={card?.id ? card?.id : ""}
             />
           </div>
         ))}

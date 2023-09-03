@@ -1,0 +1,29 @@
+image: node:14  # Choose an appropriate Node.js version
+
+stages:
+  - build
+  - deploy
+
+cache:
+  paths:
+    - node_modules/  # Cache the node_modules directory to speed up builds
+
+before_script:
+  - npm install -g yarn
+  - yarn install
+
+build:
+  stage: build
+  script:
+    - yarn build  # Or npm run build, depending on your setup
+  artifacts:
+    paths:
+      - build/
+deploy:
+  stage: deploy
+  only:
+    - develop  # Deploy only when changes are pushed to the master branch
+  script:
+    - npm install -g netlify-cli
+    - netlify login -a $NETLIFY_AUTH_TOKEN  # Use the environment variable
+    - netlify deploy --dir=build --prod 
