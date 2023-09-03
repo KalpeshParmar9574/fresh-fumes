@@ -1,4 +1,4 @@
-image: node:14  # Choose an appropriate Node.js version
+image: node:18.17.1  # Choose an appropriate Node.js version
 
 stages:
   - build
