@@ -19,7 +19,7 @@ import {
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { useState } from "react";
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -48,11 +48,14 @@ function AddToCartCard(props) {
     productweight,
   } = props;
   const [isHovered, setIsHovered] = useState(false);
+  const [showCartMenu, setShowCartMenu] = useState(false);
   const handleAgreed = (event) => {
     // console.log("Values", values);
     // setFieldValue(`agreed`, event.target.checked);
   };
-  
+  const OpenCartMenu =()=>{
+setShowCartMenu(!showCartMenu)
+  }
   const plusQuantity = () => {
     setQuantity(quantity + 1);
   };
@@ -321,11 +324,66 @@ function AddToCartCard(props) {
               <AddRoundedIcon />
             </IconButton>
           </div>
-          <div>
-            <IconButton onClick={plusQuantity} sx={{color:"white",width:"25px",height:"25px",backgroundColor:"rgba(0, 0, 0, 0.9)",borderRadius:"50%","&:hover":{
-                backgroundColor:"rgba(0, 0, 0, 0.9)"
-            }}}>
-              <AddRoundedIcon />
+          <div style={{display:"flex"}}>
+            {showCartMenu ?
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "rgba(0, 0, 0, 1)",
+                  marginTop: "4px",
+                  marginRight: "10px",
+                }}
+              >
+                {productweight ? productweight : "50ml"}
+              </Typography>
+              : ""
+            }
+            {showCartMenu ?
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "rgba(0, 0, 0, 1)",
+                  marginTop: "4px",
+                  marginRight: "10px",
+                }}
+              >
+                {productweight ? productweight : "50ml"}
+              </Typography>
+              : ""
+            }
+            {showCartMenu ?
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "rgba(0, 0, 0, 1)",
+                  marginTop: "4px",
+                  marginRight: "10px",
+                }}
+              >
+                {productweight ? productweight : "50ml"}
+              </Typography>
+              : ""
+            }
+            <IconButton
+              onClick={OpenCartMenu}
+              sx={{
+                color: "white",
+                display:"flex",justifyContent:"end",
+                width: "45px",
+                marginRight:"20px",
+                height: "45px",
+                backgroundColor: "rgba(0, 0, 0, 0.9)",
+                borderRadius: "50%",
+                "&:hover": {
+                  backgroundColor: "rgba(0, 0, 0, 0.9)",
+                },
+              }}
+            >
+              {!showCartMenu ? (
+                <AddRoundedIcon style={{ width: "25px", height: "25px" }} />
+              ) : (
+                <CloseRoundedIcon style={{ width: "25px", height: "25px" }} />
+              )}
             </IconButton>
           </div>
         </Grid>
