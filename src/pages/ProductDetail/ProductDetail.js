@@ -1,17 +1,33 @@
-import React from 'react'
+import React from "react";
 import DashboardLayout from "../../layouts/dashboard";
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { CardArr } from '../CardArr';
-import CustomCard from '../../components/CustomCard';
-import { Box, Button, Checkbox, Container, FormControl, FormControlLabel, Grid, IconButton, Stack, Tab, Tabs, Typography } from '@mui/material';
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
+import { CardArr } from "../CardArr";
+import CustomCard from "../../components/CustomCard";
+import CircularProgress from "@mui/material/CircularProgress";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Container,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  IconButton,
+  Stack,
+  Tab,
+  Tabs,
+  Typography,
+} from "@mui/material";
 import PropTypes from "prop-types";
 import "./ProductDetail.css";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
-import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
- import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import ReviewChart from "./ReviewChart";
+
 const imageArr = [
   "/assets/images/products/product1.png",
   "/assets/images/products/product2.png",
@@ -23,19 +39,20 @@ const imageArr = [
 ];
 
 function ProductDetail() {
-    const {id} = useParams();
-    console.log('params: ', id);
-    const [product,setProduct] = useState(null);
-    const [quantity, setQuantity] = useState(1);
-    const [showImage, setShowImage] = useState(
-      "/assets/images/products/product1.png"
-      );
-      console.log('product: ', product);
-      useEffect(() => {
-      setProduct(CardArr?.find((item) => item?.id == id));
-    }, [id]);
+  const progress = 65;
+  const { id } = useParams();
+  console.log("params: ", id);
+  const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const [showImage, setShowImage] = useState(
+    "/assets/images/products/product1.png"
+  );
+  console.log("product: ", product);
+  useEffect(() => {
+    setProduct(CardArr?.find((item) => item?.id == id));
+  }, [id]);
 
-      const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(0);
 
   const handleAgreed = (event) => {
     // console.log("Values", values);
@@ -45,18 +62,16 @@ function ProductDetail() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  
+
   const plusQuantity = () => {
     setQuantity(quantity + 1);
-  }
+  };
 
-  
   const minusQuantity = () => {
-    if(quantity > 1){
+    if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   };
-
 
   return (
     <div>
@@ -323,6 +338,44 @@ function ProductDetail() {
                 </IconButton>
               </div>
             </div>
+            <div
+              style={{
+                display: "flex",
+                marginLeft: "auto",
+                marginRight: "10px",
+              }}
+            >
+              <Button
+                style={{
+                  color: "white",
+                  backgroundColor: "rgba(0, 0, 0, 0.8)",
+                  marginTop: "20px",
+                  padding: "10px 20px",
+                  marginRight: "20px",
+                  "&:hover": {
+                    backgroundColor: "rgba(0, 0, 0, 0.8)",
+                  },
+                }}
+              >
+                <span style={{ marginRight: "10px" }}>Add to Cart</span>
+                <img src="/assets/images/icons/AddCartIconWhite.png" alt="" />
+              </Button>
+              <Button
+                style={{
+                    color: "black",
+                  backgroundColor: "white",
+                  marginTop: "20px",
+                  padding: "10px 20px",
+                  boxShadow:
+                    " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+                  "&:hover": {
+                    backgroundColor: "rgba(0, 0, 0, 0.8)",
+                  },
+                }}
+              >
+                Buy Now
+              </Button>
+            </div>
           </Grid>
         </Grid>
         <Box sx={{ width: "100%" }}>
@@ -500,7 +553,7 @@ function ProductDetail() {
                 fontWeight: "400",
               }}
             >
-              Customer Review and Retting
+              Customer Review and Rating
             </Typography>
             <div style={{ display: "flex" }}>
               <div>
@@ -538,7 +591,8 @@ function ProductDetail() {
                   Rating's
                 </Typography>
               </div>
-              <div>
+              <div style={{ marginLeft: "20px" }}>
+                <ReviewChart value={progress} />
                 <Typography
                   variant="h6"
                   color="text.dark"
@@ -554,7 +608,7 @@ function ProductDetail() {
               <div></div>
             </div>
             <div>
-              <div>
+              <div style={{ display: "flex", marginTop: "20px" }}>
                 <img
                   src=""
                   alt=""
@@ -563,6 +617,9 @@ function ProductDetail() {
                     borderRadius: "50%",
                     width: "35px",
                     height: "35px",
+                    marginTop: "auto",
+                    marginBottom: "auto",
+                    marginRight: "8px",
                   }}
                 />
                 <Typography
@@ -592,7 +649,6 @@ function ProductDetail() {
                 </Typography>
               </div>
               <div style={{ display: "flex" }}>
-                <div>
                 <Typography
                   variant="body1"
                   color="text.secondary"
@@ -633,9 +689,89 @@ function ProductDetail() {
                   {totalReviews ? `(${totalReviews} reviews)` : `(0 reviews)`}
                 </Typography> */}
               </div>
-              <div style={{marginTop:"auto"}}>
-                <Button>All Reviews</Button>
+              <div style={{ display: "flex", marginTop: "20px" }}>
+                <img
+                  src=""
+                  alt=""
+                  style={{
+                    backgroundColor: "red",
+                    borderRadius: "50%",
+                    width: "35px",
+                    height: "35px",
+                    marginTop: "auto",
+                    marginBottom: "auto",
+                    marginRight: "8px",
+                  }}
+                />
+                <Typography
+                  variant="h6"
+                  color="text.dark"
+                  sx={{
+                    marginTop: "10px",
+                    marginBottom: "10px",
+                    fontWeight: "400",
+                  }}
+                >
+                  Customer Name
+                </Typography>
               </div>
+              <div>
+                <Typography
+                  variant="body2"
+                  color="text.dark"
+                  sx={{
+                    marginTop: "10px",
+                    marginBottom: "10px",
+                    fontWeight: "400",
+                  }}
+                >
+                  This product manufacture and quality are good and its
+                  fragrance very cool and fresh all of this are great product.
+                </Typography>
+              </div>
+              <div style={{ display: "flex" }}>
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{
+                    marginTop: "4px",
+                    // marginBottom: "auto",
+                  }}
+                >
+                  <StarRoundedIcon
+                    sx={{
+                      color: "#FF5894",
+                      width: "20px",
+                      height: "20px",
+                      marginTop: "auto",
+                      marginBottom: "auto",
+                    }}
+                  />
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{
+                    marginTop: "auto",
+                    marginBottom: "auto",
+                  }}
+                >
+                  4.5
+                </Typography>
+                {/* <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{
+                    marginTop: "auto",
+                    marginBottom: "auto",
+                    marginLeft: "10px",
+                  }}
+                >
+                  {totalReviews ? `(${totalReviews} reviews)` : `(0 reviews)`}
+                </Typography> */}
+              </div>
+              <div style={{ textAlign: "end" }}>
+                <Button>All Reviews</Button>
               </div>
             </div>
           </CustomTabPanel>
@@ -706,7 +842,6 @@ const componentConfig = {
 };
 
 export default componentConfig;
-
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;

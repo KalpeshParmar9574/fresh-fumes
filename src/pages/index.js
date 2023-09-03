@@ -9,6 +9,8 @@ import Home from "./Home/Home";
 import Wishlist from "./Wishlist/Wishlist";
 import Productlist from "./Productlist/Productlist";
 import ProductDetail from "./ProductDetail/ProductDetail";
+import PaymentSuccess from "./PaymentSuccess/PaymentSuccess";
+import AddToCart from "./AddToCart/AddToCart";
 import New from "./Home/New";
 const config = [
   // Login,
@@ -16,6 +18,8 @@ const config = [
   Wishlist,
   Productlist,
   ProductDetail,
+  PaymentSuccess,
+  AddToCart,
   DashboardApp,
   EvaluationForm,
   Evaluation,
