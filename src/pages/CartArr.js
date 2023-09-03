@@ -12,6 +12,9 @@ export const CartArr = [
     rating: "4.5",
     totalReviews: "233",
     latestArrival: true,
+    productweight: "50ml",
+    offer: "90% Off",
+    tag: "#New Arrivals",
   },
   {
     id: 2,
@@ -25,6 +28,9 @@ export const CartArr = [
     rating: "4.5",
     totalReviews: "233",
     latestArrival: false,
+    productweight: "100ml",
+    offer: "40% Off",
+    tag: "",
   },
   {
     id: 3,
@@ -38,6 +44,9 @@ export const CartArr = [
     rating: "4.5",
     totalReviews: "233",
     latestArrival: true,
+    productweight: "50ml",
+    offer: "",
+    tag: "",
   },
   {
     id: 4,
@@ -51,5 +60,8 @@ export const CartArr = [
     rating: "4.5",
     totalReviews: "233",
     latestArrival: false,
+    productweight: "50ml",
+    offer: "10% Off",
+    tag: "#Top Seller",
   },
 ];

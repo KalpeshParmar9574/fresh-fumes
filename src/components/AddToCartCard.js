@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled } from "@mui/material/styles";
 import {
   Avatar,
@@ -46,9 +46,19 @@ function AddToCartCard(props) {
     latestArrival,
     path,
     productweight,
+    tag,
+    offer,
   } = props;
   const [isHovered, setIsHovered] = useState(false);
   const [showCartMenu, setShowCartMenu] = useState(false);
+  const [tagColor, setTagColor] = useState("rgba(246, 190, 44, 1)");
+  useEffect(()=>{
+      if(tag=="#Top Seller"){
+        setTagColor("rgba(246, 190, 44, 1)");
+    }else if(tag=="#New Arrivals"){
+        setTagColor("rgba(84, 95, 113, 1)")
+    }
+  },[])
   const handleAgreed = (event) => {
     // console.log("Values", values);
     // setFieldValue(`agreed`, event.target.checked);
@@ -79,27 +89,53 @@ setShowCartMenu(!showCartMenu)
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {latestArrival && (
+      {offer && (
         <div
           style={{
             position: "absolute",
-            top: "-25px",
-            left: "-6px",
-            width: "150px",
-            height: "51px",
+            top: "10px",
+            left: "15px",
+            width: "94px",
+            height: "4px",
             marginTop: "auto",
             marginBottom: "auto",
-            padding: "26px 15px 7px 15px",
-            backgroundColor: "rgba(255, 88, 148, 0.5)",
-            color: "black",
+            padding: "3px 3px 27px 3px",
+            backgroundColor: "rgba(255, 88, 148, 1)",
+            color: "white",
             zIndex: "1",
             borderRadius: "inherit",
             textAlign: "center",
+            fontWeight: "700",
           }}
         >
-          Latest Arrival
+          {offer}
         </div>
       )}
+      {tag && (
+        <div
+          style={{
+            position: "absolute",
+            top: "37px",
+            left: "645px",
+            width: "120px",
+            height: "4px",
+            marginTop: "auto",
+            marginBottom: "auto",
+            padding: "3px 3px 27px 3px",
+            backgroundColor: tagColor,
+            color: "white",
+            zIndex: "1",
+            borderRadius: "0px 0px 0px 10px",
+            textAlign: "center",
+            fontWeight: "400",
+          }}
+        >
+          {console.log('tagColor: ', tagColor)}
+          {/* #Top Seller */}
+          {tag}
+        </div>
+      )}
+
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
@@ -111,7 +147,7 @@ setShowCartMenu(!showCartMenu)
           marginRight: "auto",
           marginBottom: "20px",
           marginTop: "20px",
-          padding: "0px",
+          padding: "10px",
         }}
       >
         <Grid
@@ -120,7 +156,7 @@ setShowCartMenu(!showCartMenu)
           sm={3}
           md={5}
           lg={2}
-          sx={{ marginLeft: "auto", marginRight: "auto" }}
+          sx={{ marginLeft: "auto", marginRight: "auto", marginTop: "30px" }}
         >
           <img
             src={
@@ -324,65 +360,147 @@ setShowCartMenu(!showCartMenu)
               <AddRoundedIcon />
             </IconButton>
           </div>
-          <div style={{display:"flex"}}>
-            {showCartMenu ?
+          <div style={{ display: "flex", justifyContent: "end" }}>
+            {showCartMenu ? (
               <Typography
                 variant="body1"
                 sx={{
                   color: "rgba(0, 0, 0, 1)",
-                  marginTop: "4px",
-                  marginRight: "10px",
+                  marginTop: "auto",
+                  marginBottom: "auto",
+                  marginRight: "15px",
+                  transform: "translateX(0)",
+                  transition: "opacity 0.3s ease, transform 0.3s ease",
+                  opacity: 1,
+                  textDecoration: "underline",
+                  cursor: "pointer",
                 }}
+                onClick={() => alert("Thank you for Save")}
               >
-                {productweight ? productweight : "50ml"}
+                Save For Later
               </Typography>
-              : ""
-            }
-            {showCartMenu ?
+            ) : (
               <Typography
                 variant="body1"
                 sx={{
                   color: "rgba(0, 0, 0, 1)",
-                  marginTop: "4px",
-                  marginRight: "10px",
+                  marginTop: "auto",
+                  marginBottom: "auto",
+                  marginRight: "15px",
+                  transform: "translateX(50px)",
+                  transition: "opacity 0.3s ease, transform 0.3s ease",
+                  opacity: 0,
                 }}
               >
-                {productweight ? productweight : "50ml"}
+                Save For Later
               </Typography>
-              : ""
-            }
-            {showCartMenu ?
+            )}
+
+            {showCartMenu ? (
               <Typography
                 variant="body1"
                 sx={{
                   color: "rgba(0, 0, 0, 1)",
-                  marginTop: "4px",
-                  marginRight: "10px",
+                  marginTop: "auto",
+                  marginBottom: "auto",
+                  marginRight: "15px",
+                  transform: "translateX(0)",
+                  transition: "opacity 0.3s ease, transform 0.3s ease",
+                  opacity: 1,
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+                onClick={() => alert("Thank you for like")}
+              >
+                Like
+              </Typography>
+            ) : (
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "rgba(0, 0, 0, 1)",
+                  marginTop: "auto",
+                  marginBottom: "auto",
+                  marginRight: "15px",
+                  transform: "translateX(50px)",
+                  transition: "opacity 0.3s ease, transform 0.3s ease",
+                  opacity: 0,
                 }}
               >
-                {productweight ? productweight : "50ml"}
+                Like
               </Typography>
-              : ""
-            }
+            )}
+
+            {showCartMenu ? (
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "rgba(0, 0, 0, 1)",
+                  marginTop: "auto",
+                  marginBottom: "auto",
+                  marginRight: "15px",
+                  transform: "translateX(0)",
+                  transition: "opacity 0.3s ease, transform 0.3s ease",
+                  opacity: 1,
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+                onClick={() => alert("Thank you for Share")}
+              >
+                Share
+              </Typography>
+            ) : (
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "rgba(0, 0, 0, 1)",
+                  marginTop: "auto",
+                  marginBottom: "auto",
+                  marginRight: "15px",
+                  transform: "translateX(50px)",
+                  transition: "opacity 0.3s ease, transform 0.3s ease",
+                  opacity: 0,
+                }}
+              >
+                Share
+              </Typography>
+            )}
+
             <IconButton
               onClick={OpenCartMenu}
               sx={{
                 color: "white",
-                display:"flex",justifyContent:"end",
+                display: "flex",
+                justifyContent: "end",
                 width: "45px",
-                marginRight:"20px",
+                marginRight: "20px",
                 height: "45px",
                 backgroundColor: "rgba(0, 0, 0, 0.9)",
                 borderRadius: "50%",
+                transition: "background-color 0.3s ease",
                 "&:hover": {
                   backgroundColor: "rgba(0, 0, 0, 0.9)",
                 },
               }}
             >
               {!showCartMenu ? (
-                <AddRoundedIcon style={{ width: "25px", height: "25px" }} />
+                <AddRoundedIcon
+                  style={{
+                    width: "25px",
+                    height: "25px",
+                    marginRight: "auto",
+                    marginLeft: "auto",
+                  }}
+                />
               ) : (
-                <CloseRoundedIcon style={{ width: "25px", height: "25px" }} />
+                <CloseRoundedIcon
+                  style={{
+                    width: "25px",
+                    height: "25px",
+                    marginRight: "auto",
+                    marginLeft: "auto",
+                  }}
+                />
               )}
             </IconButton>
           </div>
