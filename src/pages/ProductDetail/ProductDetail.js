@@ -27,6 +27,7 @@ import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import ReviewChart from "./ReviewChart";
+import CustomerReviews from "./CustomerReviews";
 
 const imageArr = [
   "/assets/images/products/product1.png",
@@ -47,6 +48,13 @@ function ProductDetail() {
   const [showImage, setShowImage] = useState(
     "/assets/images/products/product1.png"
   );
+  const customerReviews = [
+    { rating: 5, count: 10 },
+    { rating: 4, count: 20 },
+    { rating: 3, count: 5 },
+    { rating: 2, count: 3 },
+    { rating: 1, count: 2 },
+  ];
   console.log("product: ", product);
   useEffect(() => {
     setProduct(CardArr?.find((item) => item?.id == id));
@@ -361,7 +369,7 @@ function ProductDetail() {
               </Button>
               <Button
                 style={{
-                    color: "black",
+                  color: "black",
                   backgroundColor: "white",
                   marginTop: "20px",
                   padding: "10px 20px",
@@ -554,8 +562,28 @@ function ProductDetail() {
             >
               Customer Review and Rating
             </Typography>
-            <div style={{ display: "flex" }}>
-              <div>
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 4, sm: 8, md: 12 }}
+              alignItems="center"
+              justifyContent="center"
+              sx={{
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginBottom: "20px",
+                marginTop: "20px",
+                padding: "0px",
+              }}
+            >
+              <Grid
+                item
+                xs={2}
+                sm={4}
+                md={1.8}
+                lg={2}
+                sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
+              >
                 <Typography
                   variant="h6"
                   color="text.dark"
@@ -563,6 +591,7 @@ function ProductDetail() {
                     marginTop: "10px",
                     marginBottom: "10px",
                     fontWeight: "400",
+                    textAlign: "center",
                   }}
                 >
                   Average Rating
@@ -574,6 +603,7 @@ function ProductDetail() {
                     marginTop: "10px",
                     marginBottom: "10px",
                     fontWeight: "400",
+                    textAlign: "center",
                   }}
                 >
                   4.3
@@ -585,12 +615,20 @@ function ProductDetail() {
                     marginTop: "10px",
                     marginBottom: "10px",
                     fontWeight: "400",
+                    textAlign: "center",
                   }}
                 >
                   Rating's
                 </Typography>
-              </div>
-              <div style={{ marginLeft: "20px" }}>
+              </Grid>
+              <Grid
+                item
+                xs={2}
+                sm={4}
+                md={3}
+                lg={2}
+                sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
+              >
                 <ReviewChart value={progress} />
                 <Typography
                   variant="h6"
@@ -599,13 +637,56 @@ function ProductDetail() {
                     marginTop: "10px",
                     marginBottom: "10px",
                     fontWeight: "400",
+                    textAlign: "center",
                   }}
                 >
                   250 out of 500 reviews
                 </Typography>
-              </div>
-              <div></div>
-            </div>
+              </Grid>
+              <Grid
+                item
+                xs={4}
+                sm={4}
+                md={5.4}
+                lg={2}
+                sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
+              >
+                <CustomerReviews customerReviews={customerReviews} />
+              </Grid>
+              <Grid
+                item
+                xs={4}
+                sm={4}
+                md={1.8}
+                lg={2}
+                sx={{
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  padding: "0px",
+                  marginTop: "auto",
+                  textAlign:"center",
+                  marginBottom:"10px"
+                }}
+              >
+                <Button
+                  style={{
+                    color: "black",
+                    backgroundColor: "white",
+                    marginTop: "20px",
+                    padding: "10px 20px",
+                    boxShadow:
+                      " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+                    "&:hover": {
+                      backgroundColor: "rgba(0, 0, 0, 0.8)",
+                      boxShadow:
+                        " 0 4px 8px 0 rgba(0, 0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0, 0)",
+                    },
+                  }}
+                >
+                  All Reviews
+                </Button>
+              </Grid>
+            </Grid>
             <div>
               <div style={{ display: "flex", marginTop: "20px" }}>
                 <img
@@ -769,9 +850,6 @@ function ProductDetail() {
                   {totalReviews ? `(${totalReviews} reviews)` : `(0 reviews)`}
                 </Typography> */}
               </div>
-              <div style={{ textAlign: "end" }}>
-                <Button>All Reviews</Button>
-              </div>
             </div>
           </CustomTabPanel>
         </Box>
@@ -807,7 +885,6 @@ function ProductDetail() {
               sm={4}
               md={3}
               lg={2}
-              key={index}
               sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
             >
               <CustomCard
