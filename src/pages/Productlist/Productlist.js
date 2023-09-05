@@ -3,14 +3,20 @@ import * as React from "react";
 import {
   Breadcrumbs,
   Card,
+  Checkbox,
   Container,
   Divider,
+  FormControl,
+  FormControlLabel,
   Grid,
   IconButton,
+  Input,
+  InputAdornment,
   Link,
   Menu,
   MenuItem,
   Paper,
+  Slider,
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +25,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay,Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
 import "./swiper.css";
 import "swiper/css";
+import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import BasicMenu from "./Menu";
@@ -28,9 +35,130 @@ import { CardArr } from "../CardArr";
 // import "swiper/css/navigation";
 // import "swiper/css/pagination";
 
-function Productlist() {
-  
+const marks = [
+  {
+    value: 0,
+    label: '$0',
+  },
+  {
+    value: 50,
+    label: '$50',
+  },
+  {
+    value: 100,
+    label: '$100',
+  },
+  {
+    value: 150,
+    label: '$150',
+  },
+  {
+    value: 200,
+    label: '$200',
+  },
+  {
+    value: 250,
+    label: '$250',
+  },
+  {
+    value: 300,
+    label: '$300',
+  },
+  {
+    value: 350,
+    label: '$350',
+  },
+  {
+    value: 400,
+    label: '$400',
+  },
+  {
+    value: 450,
+    label: '$450',
+  },
+  {
+    value: 500,
+    label: '$500',
+  },
+  {
+    value: 550,
+    label: '$550',
+  },
+  {
+    value: 600,
+    label: '$600',
+  },
+  {
+    value: 650,
+    label: '$650',
+  },
+  {
+    value: 700,
+    label: '$700',
+  },
+  {
+    value: 750,
+    label: '$750',
+  },
+  {
+    value: 800,
+    label: '$800',
+  },
+  {
+    value: 850,
+    label: '$850',
+  },
+  {
+    value: 900,
+    label: '$900',
+  },
+  {
+    value: 950,
+    label: '$950',
+  },
+  {
+    value: 1000,
+    label: '$1000',
+  },
+];
 
+function valuetext(value) {
+  return `${value}`;
+}
+
+
+function Productlist() {
+  const bySizeArr = ["15 ml","30 ml","40 ml","50 ml","60 ml","90 ml","100 ml","125 ml","200 ml"]
+  const [bySize,setBySize] = React.useState(false)
+  const openBySize = ()=>{
+  setBySize(!bySize)
+  }
+  const byFragranceArr = [
+    "Lavender",
+    "Burberry",
+    "Rose",
+    "Eternity",
+    "Fresh",
+  ];
+  const [byPriceRange, setByPriceRange] = React.useState(false);
+const openByPriceRange = () => {
+  setByPriceRange(!byPriceRange);
+};
+  const [byFragrance, setByFragrance] = React.useState(false);
+const openByFragrance = () => {
+  setByFragrance(!byFragrance);
+};
+  const byBrandArr = [
+    "Gucci",
+    "Rolex",
+    "Millen",
+    "Hugo Boss",
+    "Chenal",
+  ];
+  const [byBrand, setByBrand] = React.useState(false);
+const openByBrand = () => {
+  setByBrand(!byBrand);
+};
 const cardStyles = {
   marginLeft: "auto",
   marginRight: "auto",
@@ -349,47 +477,219 @@ const cardMediaQueries = {
               MenuListProps={{
                 "aria-labelledby": "basic-button",
               }}
-              sx={{ width: "330px" }}
+              style={{ width: "500px" }}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
-              <MenuItem onClick={handleClose}>Logout</MenuItem>
+              <MenuItem>
+                <FormControl
+                  variant="standard"
+                  sx={{
+                    m: 1,
+                    mt: 3,
+                    width: "100%",
+                    marginTop: "auto",
+                    marginBottom: "auto",
+                  }}
+                >
+                  <Input
+                    id="standard-adornment-weight"
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <SearchRoundedIcon />
+                      </InputAdornment>
+                    }
+                    aria-describedby="standard-weight-helper-text"
+                    inputProps={{
+                      "aria-label": "weight",
+                    }}
+                    placeholder="Search"
+                  />
+                </FormControl>
+              </MenuItem>
+              <MenuItem>
+                <div style={{ display: "flex" }}>
+                  <Typography
+                    variant="body2"
+                    color="inherit"
+                    sx={{
+                      textAlign: "left",
+                      paddingTop: "10px",
+                      paddingBottom: "10px",
+                    }}
+                  >
+                    By Size
+                  </Typography>
+                  {!bySize ? (
+                    <IconButton onClick={openBySize}>
+                      <AddRoundedIcon />
+                    </IconButton>
+                  ) : (
+                    <IconButton onClick={openBySize}>
+                      <RemoveRoundedIcon />
+                    </IconButton>
+                  )}
+                </div>
+                {!bySize &&
+                  bySizeArr?.map((item, index) => (
+                    <div style={{ display: "flex" }} key={index}>
+                      <Typography
+                        variant="body2"
+                        color="inherit"
+                        sx={{
+                          textAlign: "left",
+                          paddingTop: "10px",
+                          paddingBottom: "10px",
+                        }}
+                      >
+                        {item}
+                      </Typography>
+                      <FormControl>
+                        <FormControlLabel
+                          control={<Checkbox name={item} />}
+                          // control={<Checkbox name="agreed" onChange={handleAgreed} />}
+                          // label="Pack for Gift"
+                        />
+                      </FormControl>
+                    </div>
+                  ))}
+              </MenuItem>
+              <MenuItem>
+                <div style={{ display: "flex" }}>
+                  <Typography
+                    variant="body2"
+                    color="inherit"
+                    sx={{
+                      textAlign: "left",
+                      paddingTop: "10px",
+                      paddingBottom: "10px",
+                    }}
+                  >
+                    By Price Range
+                  </Typography>
+                  {!byPriceRange ? (
+                    <IconButton onClick={openByPriceRange}>
+                      <AddRoundedIcon />
+                    </IconButton>
+                  ) : (
+                    <IconButton onClick={openByPriceRange}>
+                      <RemoveRoundedIcon />
+                    </IconButton>
+                  )}
+                </div>
+                {!byPriceRange && (
+                  <div style={{ display: "flex" }}>
+                    <Slider
+                      aria-label="Always visible"
+                      defaultValue={80}
+                      getAriaValueText={valuetext}
+                      step={10}
+                      marks={marks}
+                      valueLabelDisplay="on"
+                    />
+                  </div>
+                )}
+              </MenuItem>
+              <MenuItem>
+                <div style={{ display: "flex" }}>
+                  <Typography
+                    variant="body2"
+                    color="inherit"
+                    sx={{
+                      textAlign: "left",
+                      paddingTop: "10px",
+                      paddingBottom: "10px",
+                    }}
+                  >
+                    By Fragrance
+                  </Typography>
+                  {!byFragrance ? (
+                    <IconButton onClick={openByFragrance}>
+                      <AddRoundedIcon />
+                    </IconButton>
+                  ) : (
+                    <IconButton onClick={openByFragrance}>
+                      <RemoveRoundedIcon />
+                    </IconButton>
+                  )}
+                </div>
+                {!byFragrance &&
+                  byFragranceArr?.map((item, index) => (
+                    <div style={{ display: "flex" }} key={index}>
+                      <Typography
+                        variant="body2"
+                        color="inherit"
+                        sx={{
+                          textAlign: "left",
+                          paddingTop: "10px",
+                          paddingBottom: "10px",
+                        }}
+                      >
+                        {item}
+                      </Typography>
+                      <FormControl>
+                        <FormControlLabel
+                          control={<Checkbox name={item} />}
+                          // control={<Checkbox name="agreed" onChange={handleAgreed} />}
+                          // label="Pack for Gift"
+                        />
+                      </FormControl>
+                    </div>
+                  ))}
+              </MenuItem>
+              <MenuItem>
+                <div style={{ display: "flex" }}>
+                  <Typography
+                    variant="body2"
+                    color="inherit"
+                    sx={{
+                      textAlign: "left",
+                      paddingTop: "10px",
+                      paddingBottom: "10px",
+                    }}
+                  >
+                    By Brand
+                  </Typography>
+                  {!byBrand ? (
+                    <IconButton onClick={openByBrand}>
+                      <AddRoundedIcon />
+                    </IconButton>
+                  ) : (
+                    <IconButton onClick={openByBrand}>
+                      <RemoveRoundedIcon />
+                    </IconButton>
+                  )}
+                </div>
+                {!byBrand &&
+                  byBrandArr?.map((item, index) => (
+                    <div style={{ display: "flex" }} key={index}>
+                      <Typography
+                        variant="body2"
+                        color="inherit"
+                        sx={{
+                          textAlign: "left",
+                          paddingTop: "10px",
+                          paddingBottom: "10px",
+                        }}
+                      >
+                        {item}
+                      </Typography>
+                      <FormControl>
+                        <FormControlLabel
+                          control={<Checkbox name={item} />}
+                          // control={<Checkbox name="agreed" onChange={handleAgreed} />}
+                          // label="Pack for Gift"
+                        />
+                      </FormControl>
+                    </div>
+                  ))}
+              </MenuItem>
             </Menu>
           </Grid>
         </Card>
       </Container>
       {/* <BasicMenu /> */}
-      {/* {sortByMenu ? (
-        <div
-          style={{
-            position: "absolute",
-            top: "-25px",
-            left: "-6px",
-            width: "150px",
-            height: "51px",
-            marginTop: "auto",
-            marginBottom: "auto",
-            padding: "26px 15px 7px 15px",
-            backgroundColor: "rgba(255, 88, 148, 0.5)",
-            color: "black",
-            zIndex: "1000",
-            borderRadius: "inherit",
-            textAlign: "center",
-          }}
-        >
-          Latest Arrivalsdebgdffdgsfg
-        </div>
-      ) : (
-        ""
-      )} */}
-      {/* <Divider sx={{ marginBottom: "20px" }} /> */}
-      
       <div className="custom-container">
         {CardArr?.map((card, index) => (
-          <div
-            className="custom-card"
-            key={index}
-          >
+          <div className="custom-card" key={index}>
             <CustomCard
               name={card?.name || ""}
               subname={card?.subname || ""}
@@ -401,7 +701,7 @@ const cardMediaQueries = {
               ratingcolor={card?.ratingcolor || "#FF5894"}
               totalReviews={card?.totalReviews || "0"}
               latestArrival={card?.latestArrival || false}
-              path={card?.id ? card?.id : "" }
+              path={card?.id ? card?.id : ""}
             />
           </div>
         ))}
