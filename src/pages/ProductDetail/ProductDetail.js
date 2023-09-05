@@ -28,6 +28,7 @@ import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import ReviewChart from "./ReviewChart";
 import CustomerReviews from "./CustomerReviews";
+import ProductDetailCarousel from "./ProductDetailCarousel";
 
 const imageArr = [
   "/assets/images/products/product1.png",
@@ -55,6 +56,18 @@ function ProductDetail() {
     { rating: 2, count: 3 },
     { rating: 1, count: 2 },
   ];
+  const productData = {
+    title: "Example Product",
+    price: 49.99,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget augue ut augue viverra euismod. In at est vel justo commodo fringilla. Vestibulum fringilla ex id lacus fringilla, quis consequat nulla venenatis. Sed eleifend elit vel tristique.",
+    images: [
+      "/assets/images/products/product1.png",
+      "/assets/images/products/product2.png",
+      "/assets/images/products/product3.png",
+      // Add more image URLs here
+    ],
+  };
   console.log("product: ", product);
   useEffect(() => {
     setProduct(CardArr?.find((item) => item?.id == id));
@@ -97,7 +110,7 @@ function ProductDetail() {
             padding: "0px",
           }}
         >
-          <Grid
+          {/* <Grid
             item
             xs={1}
             sm={1}
@@ -114,25 +127,26 @@ function ProductDetail() {
                 onClick={() => setShowImage(image)}
               />
             ))}
-          </Grid>
+          </Grid> */}
           <Grid
             item
-            xs={1.5}
-            sm={3.5}
-            md={5}
+            xs={4}
+            sm={4}
+            md={7}
             lg={2}
             sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
             // onClick={()=>navigate(`/productdetail/${card?.id}`)}
           >
-            <img src={showImage} alt="" />
+            {/* <img src={showImage} alt="" /> */}
+            <ProductDetailCarousel product={productData} />
           </Grid>
           <Grid
             item
-            xs={1.5}
-            sm={3.5}
+            xs={4}
+            sm={4}
             md={5}
             lg={2}
-            sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
+            sx={{ marginLeft: "auto", marginRight: "auto" }}
             // onClick={()=>navigate(`/productdetail/${card?.id}`)}
           >
             <div style={{ display: "flex" }}>
@@ -189,6 +203,7 @@ function ProductDetail() {
                   marginTop: "10px",
                   marginBottom: "10px",
                   fontWeight: "400",
+                  fontSize: "42px",
                 }}
               >
                 Gucci Guilty Eau De Toilette(50 ml)
@@ -356,7 +371,8 @@ function ProductDetail() {
                 style={{
                   color: "white",
                   backgroundColor: "rgba(0, 0, 0, 0.8)",
-                  marginTop: "20px",
+                  marginTop: "8px",
+                  marginBottom: "20px",
                   padding: "10px 20px",
                   marginRight: "20px",
                   "&:hover": {
@@ -371,7 +387,8 @@ function ProductDetail() {
                 style={{
                   color: "black",
                   backgroundColor: "white",
-                  marginTop: "20px",
+                  marginTop: "8px",
+                  marginBottom: "20px",
                   padding: "10px 20px",
                   boxShadow:
                     " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
@@ -664,8 +681,8 @@ function ProductDetail() {
                   marginRight: "auto",
                   padding: "0px",
                   marginTop: "auto",
-                  textAlign:"center",
-                  marginBottom:"10px"
+                  textAlign: "center",
+                  marginBottom: "10px",
                 }}
               >
                 <Button
