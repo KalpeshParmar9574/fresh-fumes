@@ -40,98 +40,38 @@ import { Delete } from "@mui/icons-material";
 const marks = [
   {
     value: 0,
-    label: '$0',
-  },
-  {
-    value: 50,
-    label: '$50',
-  },
-  {
-    value: 100,
-    label: '$100',
-  },
-  {
-    value: 150,
-    label: '$150',
-  },
-  {
-    value: 200,
-    label: '$200',
+    label: "$0",
   },
   {
     value: 250,
-    label: '$250',
-  },
-  {
-    value: 300,
-    label: '$300',
-  },
-  {
-    value: 350,
-    label: '$350',
-  },
-  {
-    value: 400,
-    label: '$400',
-  },
-  {
-    value: 450,
-    label: '$450',
+    label: "$250",
   },
   {
     value: 500,
-    label: '$500',
-  },
-  {
-    value: 550,
-    label: '$550',
-  },
-  {
-    value: 600,
-    label: '$600',
-  },
-  {
-    value: 650,
-    label: '$650',
-  },
-  {
-    value: 700,
-    label: '$700',
+    label: "$500",
   },
   {
     value: 750,
-    label: '$750',
-  },
-  {
-    value: 800,
-    label: '$800',
-  },
-  {
-    value: 850,
-    label: '$850',
-  },
-  {
-    value: 900,
-    label: '$900',
-  },
-  {
-    value: 950,
-    label: '$950',
+    label: "$750",
   },
   {
     value: 1000,
-    label: '$1000',
+    label: "$1000",
   },
 ];
 
 function valuetext(value) {
-  return `${value}`;
+  return `$${value}`;
+}
+
+function valueLabelFormat(value) {
+  return marks.findIndex((mark) => mark.value === value) * 250; // Adjusted for $250 increments
 }
 
 
 function Productlist() {
   const bySizeArr = ["15 ml","30 ml","40 ml","50 ml","60 ml","90 ml","100 ml","125 ml","200 ml"]
-  const [bySize,setBySize] = React.useState(false)
+  const [bySize,setBySize] = React.useState(true)
   const openBySize = ()=>{
   setBySize(!bySize)
   }
@@ -142,11 +82,11 @@ function Productlist() {
     "Eternity",
     "Fresh",
   ];
-  const [byPriceRange, setByPriceRange] = React.useState(false);
+  const [byPriceRange, setByPriceRange] = React.useState(true);
 const openByPriceRange = () => {
   setByPriceRange(!byPriceRange);
 };
-  const [byFragrance, setByFragrance] = React.useState(false);
+  const [byFragrance, setByFragrance] = React.useState(true);
 const openByFragrance = () => {
   setByFragrance(!byFragrance);
 };
@@ -157,15 +97,14 @@ const openByFragrance = () => {
     "Hugo Boss",
     "Chenal",
   ];
-  const [byBrand, setByBrand] = React.useState(false);
+  const [byBrand, setByBrand] = React.useState(true);
   const openByBrand = () => {
     setByBrand(!byBrand);
   };
-  const [byGender, setByGender] = React.useState(false);
+  const [byGender, setByGender] = React.useState(true);
   const openByGender = () => {
     setByGender(!byGender);
   };
-  const byGenderArr = ["Male","Female","Unisex"]
 const cardStyles = {
   marginLeft: "auto",
   marginRight: "auto",
@@ -197,23 +136,48 @@ const cardMediaQueries = {
     width: "33.33%", // 3 cards per row for lg screens
   },
 };
- const [chips, setChips] = React.useState([
-   { label: "Chip 1", isDeletable: false },
-   { label: "Chip 2", isDeletable: false },
-   { label: "Chip 3", isDeletable: false },
+ const [byGenderChips, setByGenderChips] = React.useState([
+   { label: "Men", isDeletable: false },
+   { label: "Women", isDeletable: false },
+   { label: "Unisex", isDeletable: false },
  ]);
 
+const [byType, setByType] = React.useState(true);
+const openByType = () => {
+  setByType(!byType);
+};
+
+
  const handleChipClick = (index) => {
-   const updatedChips = [...chips];
+   const updatedChips = [...byGenderChips];
    updatedChips[index].isDeletable = !updatedChips[index].isDeletable;
-   setChips(updatedChips);
+   setByGenderChips(updatedChips);
  };
 
  const handleDeleteClick = (index) => {
-   const updatedChips = [...chips];
+   const updatedChips = [...byGenderChips];
    updatedChips[index].isDeletable = false;
-   setChips(updatedChips);
- };
+   setByGenderChips(updatedChips);
+  };
+
+
+  const [byTypeChips, setByTypeChips] = React.useState([
+    { label: "Eau de toilettes", isDeletable: false },
+    { label: "Eau de cologne", isDeletable: false },
+    { label: "Eau de Parfum", isDeletable: false },
+  ]);
+
+const handleChipClickByType = (index) => {
+  const updatedChips = [...byTypeChips];
+  updatedChips[index].isDeletable = !updatedChips[index].isDeletable;
+  setByTypeChips(updatedChips);
+};
+
+const handleDeleteClickByType = (index) => {
+  const updatedChips = [...byTypeChips];
+  updatedChips[index].isDeletable = false;
+  setByTypeChips(updatedChips);
+};
 
   const navigate = useNavigate();
   const [sortBy,setSortBy] = React.useState(false);
@@ -516,33 +480,84 @@ const cardMediaQueries = {
                 )}
               </div>
               <Divider sx={{ border: "1px solid black" }} />
-              {/* {!byGender &&
-                byGenderArr?.map((item, index) => (
-                  <div key={index} style={{ display: "flex", padding: "15px" }}>
-                    
-                  </div>
-                ))} */}
-              {chips.map((chip, index) => (
-                <Chip
-                  key={index}
-                  label={chip.label}
-                  onClick={() => handleChipClick(index)}
-                  onDelete={
-                    chip.isDeletable
-                      ? () => handleDeleteClick(index)
-                      : undefined
-                  }
-                  color={chip.isDeletable ? "secondary" : "primary"}
-                  // icon={
-                  //   chip.isDeletable && (
-                  //     <IconButton onClick={() => handleDeleteClick(index)}>
-                  //       <Delete />
-                  //     </IconButton>
-                  //   )
-                  // }
-                  style={{ margin: "5px" }}
-                />
-              ))}
+              {!byGender && (
+                <div style={{ padding: "15px" }}>
+                  {byGenderChips.map((chip, index) => (
+                    <Chip
+                      key={index}
+                      label={chip.label}
+                      onClick={() => handleChipClick(index)}
+                      onDelete={
+                        chip.isDeletable
+                          ? () => handleDeleteClick(index)
+                          : undefined
+                      }
+                      style={{
+                        margin: "5px",
+                        padding: "15px",
+                        backgroundColor: chip.isDeletable ? "#FF5894" : "White",
+                        color: chip.isDeletable ? "white" : "Black",
+                        border: chip.isDeletable ? "none" : "2px solid black",
+                      }}
+                    />
+                  ))}
+                </div>
+              )}
+              <div
+                style={{
+                  display: "flex",
+                  padding: "15px",
+                  paddingBottom: "5px",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  color="inherit"
+                  sx={{
+                    textAlign: "left",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                    marginRight: "auto",
+                    color: "rgba(0,0,0,1)",
+                  }}
+                >
+                  By Type
+                </Typography>
+                {byType ? (
+                  <IconButton onClick={openByType} sx={{ marginLeft: "auto" }}>
+                    <AddRoundedIcon />
+                  </IconButton>
+                ) : (
+                  <IconButton onClick={openByType} sx={{ marginLeft: "auto" }}>
+                    <RemoveRoundedIcon />
+                  </IconButton>
+                )}
+              </div>
+              <Divider sx={{ border: "1px solid black" }} />
+              {!byType && (
+                <div style={{ padding: "15px" }}>
+                  {byTypeChips.map((chip, index) => (
+                    <Chip
+                      key={index}
+                      label={chip.label}
+                      onClick={() => handleChipClickByType(index)}
+                      onDelete={
+                        chip.isDeletable
+                          ? () => handleDeleteClickByType(index)
+                          : undefined
+                      }
+                      style={{
+                        margin: "5px",
+                        padding: "15px",
+                        backgroundColor: chip.isDeletable ? "#FF5894" : "White",
+                        color: chip.isDeletable ? "white" : "Black",
+                        border: chip.isDeletable ? "none" : "2px solid black",
+                      }}
+                    />
+                  ))}
+                </div>
+              )}
+
               <div
                 style={{
                   display: "flex",
@@ -575,14 +590,18 @@ const cardMediaQueries = {
               </div>
               <Divider sx={{ border: "1px solid black" }} />
               {!byPriceRange && (
-                <div style={{ display: "flex", padding: "15px" }}>
+                <div
+                  style={{ display: "flex", padding: "15px", width: "400px" }}
+                >
                   <Slider
-                    aria-label="Always visible"
-                    defaultValue={250}
+                    aria-label="Price range"
+                    defaultValue={0}
+                    valueLabelFormat={valueLabelFormat}
                     getAriaValueText={valuetext}
-                    step={50}
+                    step={null}
+                    valueLabelDisplay="auto"
                     marks={marks}
-                    valueLabelDisplay="on"
+                    max={1000} // Set the maximum value to 1000
                   />
                 </div>
               )}
