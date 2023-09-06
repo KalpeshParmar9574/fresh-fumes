@@ -1,0 +1,8 @@
+/* ReviewChart.css */
+.circular-progress {
+  transition: stroke-dashoffset 1s ease-in-out; /* Adjust the duration and timing function as needed */
+}
+
+.circular-progress.animate {
+  stroke-dashoffset: 0; /* This will animate the stroke-dashoffset property to 0 */
+}

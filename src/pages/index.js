@@ -4,6 +4,7 @@ import Productlist from "./Productlist/Productlist";
 import ProductDetail from "./ProductDetail/ProductDetail";
 import PaymentSuccess from "./PaymentSuccess/PaymentSuccess";
 import AddToCart from "./AddToCart/AddToCart";
+import CheckOut from "./CheckOut/CheckOut";
 const config = [
   // Login,
   Home,
@@ -12,6 +13,7 @@ const config = [
   ProductDetail,
   PaymentSuccess,
   AddToCart,
+  CheckOut,
 ];
 
 export default config;

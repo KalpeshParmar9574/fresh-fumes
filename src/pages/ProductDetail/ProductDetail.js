@@ -27,6 +27,8 @@ import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import ReviewChart from "./ReviewChart";
+import CustomerReviews from "./CustomerReviews";
+import ProductDetailCarousel from "./ProductDetailCarousel";
 
 const imageArr = [
   "/assets/images/products/product1.png",
@@ -47,6 +49,25 @@ function ProductDetail() {
   const [showImage, setShowImage] = useState(
     "/assets/images/products/product1.png"
   );
+  const customerReviews = [
+    { rating: 5, count: 10 },
+    { rating: 4, count: 20 },
+    { rating: 3, count: 5 },
+    { rating: 2, count: 3 },
+    { rating: 1, count: 2 },
+  ];
+  const productData = {
+    title: "Example Product",
+    price: 49.99,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget augue ut augue viverra euismod. In at est vel justo commodo fringilla. Vestibulum fringilla ex id lacus fringilla, quis consequat nulla venenatis. Sed eleifend elit vel tristique.",
+    images: [
+      "/assets/images/products/product1.png",
+      "/assets/images/products/product2.png",
+      "/assets/images/products/product3.png",
+      // Add more image URLs here
+    ],
+  };
   console.log("product: ", product);
   useEffect(() => {
     setProduct(CardArr?.find((item) => item?.id == id));
@@ -89,7 +110,7 @@ function ProductDetail() {
             padding: "0px",
           }}
         >
-          <Grid
+          {/* <Grid
             item
             xs={1}
             sm={1}
@@ -106,25 +127,26 @@ function ProductDetail() {
                 onClick={() => setShowImage(image)}
               />
             ))}
-          </Grid>
+          </Grid> */}
           <Grid
             item
-            xs={1.5}
-            sm={3.5}
-            md={5}
+            xs={4}
+            sm={4}
+            md={7}
             lg={2}
             sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
             // onClick={()=>navigate(`/productdetail/${card?.id}`)}
           >
-            <img src={showImage} alt="" />
+            {/* <img src={showImage} alt="" /> */}
+            <ProductDetailCarousel product={productData} />
           </Grid>
           <Grid
             item
-            xs={1.5}
-            sm={3.5}
+            xs={4}
+            sm={4}
             md={5}
             lg={2}
-            sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
+            sx={{ marginLeft: "auto", marginRight: "auto" }}
             // onClick={()=>navigate(`/productdetail/${card?.id}`)}
           >
             <div style={{ display: "flex" }}>
@@ -181,6 +203,7 @@ function ProductDetail() {
                   marginTop: "10px",
                   marginBottom: "10px",
                   fontWeight: "400",
+                  fontSize: "42px",
                 }}
               >
                 Gucci Guilty Eau De Toilette(50 ml)
@@ -348,7 +371,8 @@ function ProductDetail() {
                 style={{
                   color: "white",
                   backgroundColor: "rgba(0, 0, 0, 0.8)",
-                  marginTop: "20px",
+                  marginTop: "8px",
+                  marginBottom: "20px",
                   padding: "10px 20px",
                   marginRight: "20px",
                   "&:hover": {
@@ -361,9 +385,10 @@ function ProductDetail() {
               </Button>
               <Button
                 style={{
-                    color: "black",
+                  color: "black",
                   backgroundColor: "white",
-                  marginTop: "20px",
+                  marginTop: "8px",
+                  marginBottom: "20px",
                   padding: "10px 20px",
                   boxShadow:
                     " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
@@ -554,8 +579,28 @@ function ProductDetail() {
             >
               Customer Review and Rating
             </Typography>
-            <div style={{ display: "flex" }}>
-              <div>
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 4, sm: 8, md: 12 }}
+              alignItems="center"
+              justifyContent="center"
+              sx={{
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginBottom: "20px",
+                marginTop: "20px",
+                padding: "0px",
+              }}
+            >
+              <Grid
+                item
+                xs={2}
+                sm={4}
+                md={1.8}
+                lg={2}
+                sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
+              >
                 <Typography
                   variant="h6"
                   color="text.dark"
@@ -563,6 +608,7 @@ function ProductDetail() {
                     marginTop: "10px",
                     marginBottom: "10px",
                     fontWeight: "400",
+                    textAlign: "center",
                   }}
                 >
                   Average Rating
@@ -574,6 +620,7 @@ function ProductDetail() {
                     marginTop: "10px",
                     marginBottom: "10px",
                     fontWeight: "400",
+                    textAlign: "center",
                   }}
                 >
                   4.3
@@ -585,12 +632,20 @@ function ProductDetail() {
                     marginTop: "10px",
                     marginBottom: "10px",
                     fontWeight: "400",
+                    textAlign: "center",
                   }}
                 >
                   Rating's
                 </Typography>
-              </div>
-              <div style={{ marginLeft: "20px" }}>
+              </Grid>
+              <Grid
+                item
+                xs={2}
+                sm={4}
+                md={3}
+                lg={2}
+                sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
+              >
                 <ReviewChart value={progress} />
                 <Typography
                   variant="h6"
@@ -599,13 +654,56 @@ function ProductDetail() {
                     marginTop: "10px",
                     marginBottom: "10px",
                     fontWeight: "400",
+                    textAlign: "center",
                   }}
                 >
                   250 out of 500 reviews
                 </Typography>
-              </div>
-              <div></div>
-            </div>
+              </Grid>
+              <Grid
+                item
+                xs={4}
+                sm={4}
+                md={5.4}
+                lg={2}
+                sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
+              >
+                <CustomerReviews customerReviews={customerReviews} />
+              </Grid>
+              <Grid
+                item
+                xs={4}
+                sm={4}
+                md={1.8}
+                lg={2}
+                sx={{
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  padding: "0px",
+                  marginTop: "auto",
+                  textAlign: "center",
+                  marginBottom: "10px",
+                }}
+              >
+                <Button
+                  style={{
+                    color: "black",
+                    backgroundColor: "white",
+                    marginTop: "20px",
+                    padding: "10px 20px",
+                    boxShadow:
+                      " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+                    "&:hover": {
+                      backgroundColor: "rgba(0, 0, 0, 0.8)",
+                      boxShadow:
+                        " 0 4px 8px 0 rgba(0, 0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0, 0)",
+                    },
+                  }}
+                >
+                  All Reviews
+                </Button>
+              </Grid>
+            </Grid>
             <div>
               <div style={{ display: "flex", marginTop: "20px" }}>
                 <img
@@ -769,9 +867,6 @@ function ProductDetail() {
                   {totalReviews ? `(${totalReviews} reviews)` : `(0 reviews)`}
                 </Typography> */}
               </div>
-              <div style={{ textAlign: "end" }}>
-                <Button>All Reviews</Button>
-              </div>
             </div>
           </CustomTabPanel>
         </Box>
@@ -807,7 +902,6 @@ function ProductDetail() {
               sm={4}
               md={3}
               lg={2}
-              key={index}
               sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
             >
               <CustomCard

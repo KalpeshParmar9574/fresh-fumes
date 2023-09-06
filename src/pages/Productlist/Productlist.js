@@ -3,14 +3,21 @@ import * as React from "react";
 import {
   Breadcrumbs,
   Card,
+  Checkbox,
+  Chip,
   Container,
   Divider,
+  FormControl,
+  FormControlLabel,
   Grid,
   IconButton,
+  Input,
+  InputAdornment,
   Link,
   Menu,
   MenuItem,
   Paper,
+  Slider,
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -19,18 +26,146 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay,Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
 import "./swiper.css";
 import "swiper/css";
+import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import BasicMenu from "./Menu";
 import { v4 as uuidv4 } from "uuid";
 import { CardArr } from "../CardArr";
+import { Delete } from "@mui/icons-material";
 
 // import "swiper/css/navigation";
 // import "swiper/css/pagination";
 
-function Productlist() {
-  
+const marks = [
+  {
+    value: 0,
+    label: '$0',
+  },
+  {
+    value: 50,
+    label: '$50',
+  },
+  {
+    value: 100,
+    label: '$100',
+  },
+  {
+    value: 150,
+    label: '$150',
+  },
+  {
+    value: 200,
+    label: '$200',
+  },
+  {
+    value: 250,
+    label: '$250',
+  },
+  {
+    value: 300,
+    label: '$300',
+  },
+  {
+    value: 350,
+    label: '$350',
+  },
+  {
+    value: 400,
+    label: '$400',
+  },
+  {
+    value: 450,
+    label: '$450',
+  },
+  {
+    value: 500,
+    label: '$500',
+  },
+  {
+    value: 550,
+    label: '$550',
+  },
+  {
+    value: 600,
+    label: '$600',
+  },
+  {
+    value: 650,
+    label: '$650',
+  },
+  {
+    value: 700,
+    label: '$700',
+  },
+  {
+    value: 750,
+    label: '$750',
+  },
+  {
+    value: 800,
+    label: '$800',
+  },
+  {
+    value: 850,
+    label: '$850',
+  },
+  {
+    value: 900,
+    label: '$900',
+  },
+  {
+    value: 950,
+    label: '$950',
+  },
+  {
+    value: 1000,
+    label: '$1000',
+  },
+];
 
+function valuetext(value) {
+  return `${value}`;
+}
+
+
+function Productlist() {
+  const bySizeArr = ["15 ml","30 ml","40 ml","50 ml","60 ml","90 ml","100 ml","125 ml","200 ml"]
+  const [bySize,setBySize] = React.useState(false)
+  const openBySize = ()=>{
+  setBySize(!bySize)
+  }
+  const byFragranceArr = [
+    "Lavender",
+    "Burberry",
+    "Rose",
+    "Eternity",
+    "Fresh",
+  ];
+  const [byPriceRange, setByPriceRange] = React.useState(false);
+const openByPriceRange = () => {
+  setByPriceRange(!byPriceRange);
+};
+  const [byFragrance, setByFragrance] = React.useState(false);
+const openByFragrance = () => {
+  setByFragrance(!byFragrance);
+};
+  const byBrandArr = [
+    "Gucci",
+    "Rolex",
+    "Millen",
+    "Hugo Boss",
+    "Chenal",
+  ];
+  const [byBrand, setByBrand] = React.useState(false);
+  const openByBrand = () => {
+    setByBrand(!byBrand);
+  };
+  const [byGender, setByGender] = React.useState(false);
+  const openByGender = () => {
+    setByGender(!byGender);
+  };
+  const byGenderArr = ["Male","Female","Unisex"]
 const cardStyles = {
   marginLeft: "auto",
   marginRight: "auto",
@@ -62,6 +197,23 @@ const cardMediaQueries = {
     width: "33.33%", // 3 cards per row for lg screens
   },
 };
+ const [chips, setChips] = React.useState([
+   { label: "Chip 1", isDeletable: false },
+   { label: "Chip 2", isDeletable: false },
+   { label: "Chip 3", isDeletable: false },
+ ]);
+
+ const handleChipClick = (index) => {
+   const updatedChips = [...chips];
+   updatedChips[index].isDeletable = !updatedChips[index].isDeletable;
+   setChips(updatedChips);
+ };
+
+ const handleDeleteClick = (index) => {
+   const updatedChips = [...chips];
+   updatedChips[index].isDeletable = false;
+   setChips(updatedChips);
+ };
 
   const navigate = useNavigate();
   const [sortBy,setSortBy] = React.useState(false);
@@ -80,114 +232,8 @@ const cardMediaQueries = {
    };
    const handleClose = () => {
      setAnchorEl(null);
+     setSortBy(false);
    };
-  // const cardArr = [
-  //   {
-  //     id: uuidv4(),
-  //     name: "Jasmin Noir",
-  //     subname: "By Jasmin",
-  //     productName: "eau de toilette",
-  //     price: "20.00",
-  //     offerprice: "20.00",
-  //     img: "/assets/images/products/product1.png",
-  //     ratingcolor: "#FF5894",
-  //     rating: "4.5",
-  //     totalReviews: "233",
-  //     latestArrival: true,
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: "Jasmin Noir",
-  //     subname: "By Jasmin",
-  //     productName: "eau de toilette",
-  //     price: "211.00",
-  //     offerprice: "322.00",
-  //     img: "/assets/images/products/product2.png",
-  //     ratingcolor: "#FF5894",
-  //     rating: "4.5",
-  //     totalReviews: "233",
-  //     latestArrival: false,
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: "Jasmin Noir",
-  //     subname: "By Jasmin",
-  //     productName: "eau de toilette",
-  //     price: "122 .00",
-  //     offerprice: "320.00",
-  //     img: "/assets/images/products/product3.png",
-  //     ratingcolor: "#FF5894",
-  //     rating: "4.5",
-  //     totalReviews: "233",
-  //     latestArrival: true,
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: "Jasmin Noir",
-  //     subname: "By Jasmin",
-  //     productName: "eau de toilette",
-  //     price: "120.00",
-  //     offerprice: "320.00",
-  //     img: "/assets/images/products/product4.png",
-  //     ratingcolor: "#FF5894",
-  //     rating: "4.5",
-  //     totalReviews: "233",
-  //     latestArrival: false,
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: "Jasmin Noir",
-  //     subname: "By Jasmin",
-  //     productName: "eau de toilette",
-  //     price: "120.00",
-  //     offerprice: "320.00",
-  //     img: "/assets/images/products/product4.png",
-  //     ratingcolor: "#FF5894",
-  //     rating: "4.5",
-  //     totalReviews: "23",
-  //     latestArrival: false,
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: "Jasmin Noir",
-  //     subname: "By Jasmin",
-  //     productName: "eau de toilette",
-  //     price: "120.00",
-  //     offerprice: "320.00",
-  //     img: "/assets/images/products/product4.png",
-  //     ratingcolor: "#FF5894",
-  //     rating: "4.5",
-  //     totalReviews: "2",
-  //     latestArrival: false,
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: "Jasmin Noir",
-  //     subname: "By Jasmin",
-  //     productName: "eau de toilette",
-  //     price: "120.00",
-  //     offerprice: "320.00",
-  //     img: "/assets/images/products/product4.png",
-  //     ratingcolor: "#FF5894",
-  //     rating: "4.5",
-  //     totalReviews: "",
-  //     latestArrival: false,
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: "Jasmin Noir",
-  //     subname: "By Jasmin",
-  //     productName: "eau de toilette",
-  //     price: "120.00",
-  //     offerprice: "320.00",
-  //     img: "/assets/images/products/product4.png",
-  //     ratingcolor: "#FF5894",
-  //     rating: "4.5",
-  //     totalReviews: "1",
-  //     latestArrival: true,
-  //   },
-  // ];
-
 
   return (
     <>
@@ -349,47 +395,320 @@ const cardMediaQueries = {
               MenuListProps={{
                 "aria-labelledby": "basic-button",
               }}
-              sx={{ width: "330px" }}
+              style={{ width: "100%", height: "auto" }}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
-              <MenuItem onClick={handleClose}>Logout</MenuItem>
+              <MenuItem>
+                <FormControl
+                  variant="standard"
+                  sx={{
+                    m: 1,
+                    mt: 3,
+                    width: "100%",
+                    marginTop: "auto",
+                    marginBottom: "auto",
+                  }}
+                >
+                  <Input
+                    id="standard-adornment-weight"
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <SearchRoundedIcon />
+                      </InputAdornment>
+                    }
+                    aria-describedby="standard-weight-helper-text"
+                    inputProps={{
+                      "aria-label": "weight",
+                    }}
+                    placeholder="Search"
+                  />
+                </FormControl>
+              </MenuItem>
+              <div
+                style={{
+                  display: "flex",
+                  padding: "15px",
+                  paddingBottom: "5px",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  color="inherit"
+                  sx={{
+                    textAlign: "left",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                    marginRight: "auto",
+                    color: "rgba(0,0,0,1)",
+                  }}
+                >
+                  By Size
+                </Typography>
+                {bySize ? (
+                  <IconButton onClick={openBySize} sx={{ marginLeft: "auto" }}>
+                    <AddRoundedIcon />
+                  </IconButton>
+                ) : (
+                  <IconButton onClick={openBySize} sx={{ marginLeft: "auto" }}>
+                    <RemoveRoundedIcon />
+                  </IconButton>
+                )}
+              </div>
+              <Divider sx={{ border: "1px solid black" }} />
+              {!bySize &&
+                bySizeArr?.map((item, index) => (
+                  <div key={index} style={{ display: "flex", padding: "15px" }}>
+                    <Typography
+                      variant="body2"
+                      color="inherit"
+                      sx={{
+                        textAlign: "left",
+                        paddingTop: "10px",
+                        paddingBottom: "10px",
+                        marginRight: "auto",
+                      }}
+                    >
+                      {item}
+                    </Typography>
+                    <FormControl sx={{ marginLeft: "auto" }}>
+                      <FormControlLabel
+                        control={<Checkbox name={item} />}
+                        // control={<Checkbox name="agreed" onChange={handleAgreed} />}
+                        // label="Pack for Gift"
+                        sx={{ marginRight: "0px" }}
+                      />
+                    </FormControl>
+                  </div>
+                ))}
+              <div
+                style={{
+                  display: "flex",
+                  padding: "15px",
+                  paddingBottom: "5px",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  color="inherit"
+                  sx={{
+                    textAlign: "left",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                    marginRight: "auto",
+                    color: "rgba(0,0,0,1)",
+                  }}
+                >
+                  By Gender
+                </Typography>
+                {byGender ? (
+                  <IconButton
+                    onClick={openByGender}
+                    sx={{ marginLeft: "auto" }}
+                  >
+                    <AddRoundedIcon />
+                  </IconButton>
+                ) : (
+                  <IconButton
+                    onClick={openByGender}
+                    sx={{ marginLeft: "auto" }}
+                  >
+                    <RemoveRoundedIcon />
+                  </IconButton>
+                )}
+              </div>
+              <Divider sx={{ border: "1px solid black" }} />
+              {/* {!byGender &&
+                byGenderArr?.map((item, index) => (
+                  <div key={index} style={{ display: "flex", padding: "15px" }}>
+                    
+                  </div>
+                ))} */}
+              {chips.map((chip, index) => (
+                <Chip
+                  key={index}
+                  label={chip.label}
+                  onClick={() => handleChipClick(index)}
+                  onDelete={
+                    chip.isDeletable
+                      ? () => handleDeleteClick(index)
+                      : undefined
+                  }
+                  color={chip.isDeletable ? "secondary" : "primary"}
+                  // icon={
+                  //   chip.isDeletable && (
+                  //     <IconButton onClick={() => handleDeleteClick(index)}>
+                  //       <Delete />
+                  //     </IconButton>
+                  //   )
+                  // }
+                  style={{ margin: "5px" }}
+                />
+              ))}
+              <div
+                style={{
+                  display: "flex",
+                  padding: "15px",
+                  paddingBottom: "5px",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  color="inherit"
+                  sx={{
+                    textAlign: "left",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                    marginRight: "auto",
+                    color: "rgba(0,0,0,1)",
+                  }}
+                >
+                  By Price Range
+                </Typography>
+                {byPriceRange ? (
+                  <IconButton onClick={openByPriceRange}>
+                    <AddRoundedIcon />
+                  </IconButton>
+                ) : (
+                  <IconButton onClick={openByPriceRange}>
+                    <RemoveRoundedIcon />
+                  </IconButton>
+                )}
+              </div>
+              <Divider sx={{ border: "1px solid black" }} />
+              {!byPriceRange && (
+                <div style={{ display: "flex", padding: "15px" }}>
+                  <Slider
+                    aria-label="Always visible"
+                    defaultValue={250}
+                    getAriaValueText={valuetext}
+                    step={50}
+                    marks={marks}
+                    valueLabelDisplay="on"
+                  />
+                </div>
+              )}
+              <div
+                style={{
+                  display: "flex",
+                  padding: "15px",
+                  paddingBottom: "5px",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  color="inherit"
+                  sx={{
+                    textAlign: "left",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                    marginRight: "auto",
+                    color: "rgba(0,0,0,1)",
+                  }}
+                >
+                  By Fragrance
+                </Typography>
+                {byFragrance ? (
+                  <IconButton onClick={openByFragrance}>
+                    <AddRoundedIcon />
+                  </IconButton>
+                ) : (
+                  <IconButton onClick={openByFragrance}>
+                    <RemoveRoundedIcon />
+                  </IconButton>
+                )}
+              </div>
+              <Divider sx={{ border: "1px solid black" }} />
+              {!byFragrance &&
+                byFragranceArr?.map((item, index) => (
+                  <div style={{ display: "flex", padding: "15px" }} key={index}>
+                    <Typography
+                      variant="body2"
+                      color="inherit"
+                      sx={{
+                        textAlign: "left",
+                        paddingTop: "10px",
+                        paddingBottom: "10px",
+                        marginRight: "auto",
+                      }}
+                    >
+                      {item}
+                    </Typography>
+                    <FormControl sx={{ marginLeft: "auto" }}>
+                      <FormControlLabel
+                        control={<Checkbox name={item} />}
+                        // control={<Checkbox name="agreed" onChange={handleAgreed} />}
+                        // label="Pack for Gift"
+                        sx={{ marginRight: "0px" }}
+                      />
+                    </FormControl>
+                  </div>
+                ))}
+              <div
+                style={{
+                  display: "flex",
+                  padding: "15px",
+                  paddingBottom: "5px",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  color="inherit"
+                  sx={{
+                    textAlign: "left",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                    marginRight: "auto",
+                    color: "rgba(0,0,0,1)",
+                  }}
+                >
+                  By Brand
+                </Typography>
+                {byBrand ? (
+                  <IconButton onClick={openByBrand}>
+                    <AddRoundedIcon />
+                  </IconButton>
+                ) : (
+                  <IconButton onClick={openByBrand}>
+                    <RemoveRoundedIcon />
+                  </IconButton>
+                )}
+              </div>
+              <Divider sx={{ border: "1px solid black" }} />
+              {!byBrand &&
+                byBrandArr?.map((item, index) => (
+                  <MenuItem
+                    style={{ display: "flex", padding: "15px" }}
+                    key={index}
+                  >
+                    <Typography
+                      variant="body2"
+                      color="inherit"
+                      sx={{
+                        textAlign: "left",
+                        paddingTop: "10px",
+                        paddingBottom: "10px",
+                        marginRight: "auto",
+                      }}
+                    >
+                      {item}
+                    </Typography>
+                    <FormControl sx={{ marginLeft: "auto" }}>
+                      <FormControlLabel
+                        control={<Checkbox name={item} />}
+                        // control={<Checkbox name="agreed" onChange={handleAgreed} />}
+                        // label="Pack for Gift"
+                        sx={{ marginRight: "0px" }}
+                      />
+                    </FormControl>
+                  </MenuItem>
+                ))}
             </Menu>
           </Grid>
         </Card>
       </Container>
       {/* <BasicMenu /> */}
-      {/* {sortByMenu ? (
-        <div
-          style={{
-            position: "absolute",
-            top: "-25px",
-            left: "-6px",
-            width: "150px",
-            height: "51px",
-            marginTop: "auto",
-            marginBottom: "auto",
-            padding: "26px 15px 7px 15px",
-            backgroundColor: "rgba(255, 88, 148, 0.5)",
-            color: "black",
-            zIndex: "1000",
-            borderRadius: "inherit",
-            textAlign: "center",
-          }}
-        >
-          Latest Arrivalsdebgdffdgsfg
-        </div>
-      ) : (
-        ""
-      )} */}
-      {/* <Divider sx={{ marginBottom: "20px" }} /> */}
-      
       <div className="custom-container">
         {CardArr?.map((card, index) => (
-          <div
-            className="custom-card"
-            key={index}
-          >
+          <div className="custom-card" key={index}>
             <CustomCard
               name={card?.name || ""}
               subname={card?.subname || ""}
@@ -401,7 +720,7 @@ const cardMediaQueries = {
               ratingcolor={card?.ratingcolor || "#FF5894"}
               totalReviews={card?.totalReviews || "0"}
               latestArrival={card?.latestArrival || false}
-              path={card?.id ? card?.id : "" }
+              path={card?.id ? card?.id : ""}
             />
           </div>
         ))}
