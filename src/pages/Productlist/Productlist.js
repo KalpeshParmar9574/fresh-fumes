@@ -601,7 +601,7 @@ const handleDeleteClickByType = (index) => {
                     step={null}
                     valueLabelDisplay="auto"
                     marks={marks}
-                    max={1000} // Set the maximum value to 1000
+                    max={1000}
                   />
                 </div>
               )}
