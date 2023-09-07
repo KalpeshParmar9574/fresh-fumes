@@ -64,25 +64,35 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-function HideOnScroll(props) {
-  const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-  });
+// function HideOnScroll(props) {
+//   const { children, window } = props;
+//   // Note that you normally won't need to set the window ref as useScrollTrigger
+//   // will default to window.
+//   // This is only being set here because the demo is in an iframe.
+//   const trigger = useScrollTrigger({
+//     target: window ? window() : undefined,
+//   });
 
-  return (
-    <Slide appear={false} direction="down" in={!trigger}>
-      {children}
-    </Slide>
-  );
-}
+//   return (
+//     <Slide appear={false} direction="down" in={!trigger}>
+//       {children}
+//     </Slide>
+//   );
+// }
 
 
 export default function MiniDrawer(props) {
   const { children, window } = props;
+  const [isHidden, setIsHidden] = useState(false);
+  console.log('isHidden: ', isHidden);
+
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+  });
+
+  React.useEffect(() => {
+    setIsHidden(trigger);
+  }, [trigger]);
   const mail = "freshfumes18@gmail.com"
   const call = "845-633-6739";
   const hoverColor = (theme)=>theme.palette.primary.main;
@@ -207,7 +217,10 @@ export default function MiniDrawer(props) {
       <CssBaseline />
       <Box sx={{ flexGrow: 1 }}>
         <AppBarRootStyle position="fixed" component="nav">
-          <Toolbar sx={{paddingTop:"5px"}}>
+          <Toolbar  sx={{
+    paddingTop: "5px",
+    display: isHidden ? "none" : "block",
+  }} >
             <Grid
               container
               spacing={{ xs: 2, md: 3 }}
