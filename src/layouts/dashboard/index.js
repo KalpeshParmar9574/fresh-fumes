@@ -465,7 +465,7 @@ export default function MiniDrawer(props) {
                       }}
                     >
                       <ShoppingCartRoundedIcon
-                        sx={{ width: "35px", hieght: "35px" }}
+                        sx={{ width: "35px", hieght: "35px",cursor:"pointer" }} onClick={()=>navigate("/addtocart")}
                       />
                     </Grid>
                   </Grid>

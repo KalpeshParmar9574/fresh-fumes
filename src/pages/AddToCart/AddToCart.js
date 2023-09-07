@@ -301,7 +301,7 @@ function AddToCart() {
                       backgroundColor: "#FF5894",
                     },
                   }}
-                  onClick={()=>navigate("/paymentsuccess")}
+                  onClick={()=>navigate("/checkout")}
                 >
                   Checkout
                 </Button>

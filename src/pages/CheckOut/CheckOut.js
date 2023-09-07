@@ -11,6 +11,7 @@ import {
   FormLabel,
   Grid,
   IconButton,
+  Input,
   Radio,
   RadioGroup,
   Typography,
@@ -215,7 +216,9 @@ function CheckOut() {
           sx={{
             marginLeft: "auto",
             marginRight: "auto",
-            // padding: "0px",
+            padding: "0px",
+            marginTop: "20px",
+            paddingTop: "24px",
             marginBottom: "auto",
           }}
         >
@@ -233,20 +236,115 @@ function CheckOut() {
               padding: "0px",
             }}
           >
+            {/* <Grid
+                item
+                xs={4}
+                sm={8}
+                md={12}
+                lg={2}
+                sx={{ marginLeft: "15px", marginRight: "auto", dispay: "flex" }}
+              >
+                <Typography variant="h6" sx={{ color: "rgba(0, 0, 0, 1)",marginRight:"auto" }}>
+                  Gucci Guilty Eau De Toilette (50 ml)
+                </Typography>
+                <Typography variant="h6" sx={{ color: "rgba(0, 0, 0, 1)",marginLeft:"auto" }}>
+                  $232.99
+                </Typography>
+              </Grid> */}
             <Grid
               item
               xs={4}
               sm={8}
               md={12}
               lg={2}
-              sx={{ marginLeft: "15px", marginRight: "auto", dispay: "flex" }}
+              sx={{
+                marginLeft: "15px",
+                // marginRight: "auto",
+                padding: "12px",
+                display: "flex",
+                paddingLeft: "5px",
+              }}
             >
-              <Typography variant="h6" sx={{ color: "rgba(0, 0, 0, 1)",marginRight:"auto" }}>
-                Gucci Guilty Eau De Toilette (50 ml)
-              </Typography>
-              <Typography variant="h6" sx={{ color: "rgba(0, 0, 0, 1)",marginLeft:"auto" }}>
-                $232.99
-              </Typography>
+              <Grid
+                container
+                spacing={{ xs: 2, md: 3 }}
+                columns={{ xs: 4, sm: 8, md: 12 }}
+                alignItems="center"
+                justifyContent="center"
+                sx={{
+                  // marginLeft: "auto",
+                  // marginRight: "auto",
+                  // marginBottom: "20px",
+                  // marginTop: "20px",
+                  padding: "0px",
+                }}
+              >
+                <Grid
+                  item
+                  xs={3}
+                  sm={5}
+                  md={9}
+                  lg={2}
+                  style={{
+                    paddingLeft: "5px",
+                    // paddingRight: "17px",
+                    paddingTop: "30px",
+                  }}
+                >
+                  <FormControl
+                    variant="standard"
+                    sx={{
+                      m: 1,
+                      mt: 3,
+                      width: "100%",
+                      marginTop: "auto",
+                      marginBottom: "auto",
+                    }}
+                  >
+                    <Input
+                      id="standard-adornment-weight"
+                      // endAdornment={
+                      //   <InputAdornment position="end">
+                      //     <SearchRoundedIcon />
+                      //   </InputAdornment>
+                      // }
+                      aria-describedby="standard-weight-helper-text"
+                      inputProps={{
+                        "aria-label": "weight",
+                      }}
+                      placeholder="Apply Promocode"
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid
+                  item
+                  xs={1}
+                  sm={3}
+                  md={3}
+                  lg={2}
+                  style={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                >
+                  <Button
+                    variant="contained"
+                    sx={{
+                      // marginTop: "20px",
+                      marginLeft: "auto",
+                      color: "rgba(0,0,0,1)",
+                      backgroundColor: "white",
+                      boxShadow: "0 8px 16px 0 rgba(0, 0, 0, 0.24)",
+                      "&:hover": {
+                        backgroundColor: "white",
+                      },
+                    }}
+                    // onClick={() => navigate("/paymentsuccess")}
+                  >
+                    Apply
+                  </Button>
+                </Grid>
+              </Grid>
             </Grid>
             <Grid
               item
@@ -294,29 +392,7 @@ function CheckOut() {
                       fontWeight: "400",
                     }}
                   >
-                    Shipping
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      color: "rgba(0, 0, 0, 1)",
-                      marginLeft: "auto",
-                      fontWeight: "400",
-                    }}
-                  >
-                    --
-                  </Typography>
-                </div>
-                <div style={{ display: "flex", marginBottom: "15px" }}>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      color: "rgba(0, 0, 0, 1)",
-                      marginRight: "auto",
-                      fontWeight: "400",
-                    }}
-                  >
-                    Gift Packing
+                    Delivery Charge
                   </Typography>
                   <Typography
                     variant="h6"
