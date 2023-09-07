@@ -4,6 +4,23 @@ import { Card, IconButton, Typography } from '@mui/material';
 import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
 import { Container } from '@mui/system';
 function PaymentSuccess() {
+
+   const downloadReciept = () => {
+     // using Java Script method to get PDF file
+     fetch("logo.pdf").then((response) => {
+       response.blob().then((blob) => {
+         // Creating new object of PDF file
+         const fileURL = window.URL.createObjectURL(blob);
+         // Setting various property values
+         let alink = document.createElement("a");
+         alink.href = fileURL;
+         alink.download = "logo.pdf";
+         alink.click();
+       });
+     });
+   };
+
+
   return (
     <Container maxWidth="md">
       <Card sx={{marginBottom:"30px"}}>
@@ -62,7 +79,7 @@ function PaymentSuccess() {
                 Receipt Print
               </span>
               <IconButton
-                onClick={() => alert(`Thank You for Download`)}
+                onClick={downloadReciept}
                 sx={{
                   borderRadius: "10px",
                   //   backgroundColor: "rgba(0, 0, 0, 0.1)",

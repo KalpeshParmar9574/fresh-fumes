@@ -26,9 +26,41 @@ function Category() {
           key={index}
           sx={{ paddingLeft: "0px", margin: "0px", position: "relative" }}
         >
-          <div style={{ position: "relative" }}>
+          <div
+            style={{
+              position: "relative",
+              overflow: "hidden",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.querySelector(".zoom-box").style.width = "446px";
+              e.currentTarget.querySelector(".zoom-box").style.height = "333px";
+              e.currentTarget.querySelector(".label").style.fontSize = "60px";
+              e.currentTarget.querySelector(".label").style.transition =
+                "font-size 0.3s ease-in-out";
+              e.currentTarget.querySelector(".zoom-box").style.transition =
+                "transform 0.6s, width 0.6s, height 0.6s";
+              e.currentTarget.querySelector(
+                ".zoom-box"
+              ).style.transitionTimingFunction =
+                "cubic-bezier(0.25, 0.1, 0.25, 1.3)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.querySelector(".zoom-box").style.width = "289px";
+              e.currentTarget.querySelector(".zoom-box").style.height = "162px";
+              e.currentTarget.querySelector(".label").style.fontSize = "42px";
+              e.currentTarget.querySelector(".label").style.transition =
+                "font-size 0.3s ease-in-out";
+              e.currentTarget.querySelector(".zoom-box").style.transition =
+                "transform 0.6s, width 0.6s, height 0.6s";
+              e.currentTarget.querySelector(
+                ".zoom-box"
+              ).style.transitionTimingFunction =
+                "cubic-bezier(0.25, 0.1, 0.25, 0.75)";
+            }}
+          >
             <img src={category.src} alt="" style={{ width: "100%" }} />
             <Box
+              className="zoom-box"
               sx={{
                 position: "absolute",
                 top: "50%",
@@ -36,13 +68,20 @@ function Category() {
                 transform: "translate(-50%, -50%)",
                 background: "rgb(255 254 254 / 33%)",
                 color: "#fff",
-                padding: "8px 16px",
                 width: "289px",
                 height: "162px",
                 borderRadius: "4px",
+                transition: "transform 0.6s, width 0.6s, height 0.6s",
+                display: "flex",
+                alignItems: "center", // Center vertically
+                justifyContent: "center", // Center horizontally
               }}
             >
-              <Typography variant="body2" sx={{ fontSize: "42px",paddingTop:"40px" }}>
+              <Typography
+                variant="body2"
+                className="label"
+                sx={{ fontSize: "42px" }}
+              >
                 {category.label}
               </Typography>
             </Box>
