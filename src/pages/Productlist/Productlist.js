@@ -108,7 +108,7 @@ function Productlist() {
     // validationSchema: LoginSchema,
     onSubmit: async (values) => {},
   });
-const inputRef = React.useRef(null);
+  const inputRef = React.useRef(null);
   const {
     values,
     errors,
@@ -327,15 +327,36 @@ const inputRef = React.useRef(null);
     setSortBy(false);
   };
 
-
-  const handleSearch =async (e)=>{
-  const value= e?.target?.value
-  console.log('value:----------------- ', value.length);
-  
-  }
+  const handleSearch = async (e) => {
+    const value = e?.target?.value;
+    console.log("value:----------------- ", value.length);
+    if (value.length == 0) {
+      const i = selectedFilters?.findIndex(
+        (filter) => filter?.filterType == "search"
+      );
+      if (i >= 0) {
+        selectedFilters?.splice(i, 1);
+        setSelectedFilters([...selectedFilters]);
+      }
+    } else {
+      const duplicate = selectedFilters?.filter(
+        (filter) => filter?.filterType == "search"
+      );
+      if (duplicate?.length > 0) {
+        const duplicateIndex = selectedFilters?.findIndex(
+          (filter) => filter?.filterType == "search"
+        );
+        selectedFilters[duplicateIndex].label = value;
+        setSelectedFilters([...selectedFilters]);
+      } else {
+        setSelectedFilters([
+          ...selectedFilters,
+          { label: value, filterType: "search", isDeletable: true },
+        ]);
+      }
+    }
+  };
   const debounceWithSearch = debounce(handleSearch, 500);
-
-
 
   return (
     <>
