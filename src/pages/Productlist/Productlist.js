@@ -18,12 +18,19 @@ import {
   MenuItem,
   Paper,
   Slider,
+  TextField,
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import CustomCard from "../../components/CustomCard";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay,Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
+import {
+  Autoplay,
+  Navigation,
+  Pagination,
+  Mousewheel,
+  Keyboard,
+} from "swiper/modules";
 import "./swiper.css";
 import "swiper/css";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
@@ -33,6 +40,8 @@ import BasicMenu from "./Menu";
 import { v4 as uuidv4 } from "uuid";
 import { CardArr } from "../CardArr";
 import { Delete } from "@mui/icons-material";
+import { useFormik } from "formik";
+import { debounce } from "lodash";
 
 // import "swiper/css/navigation";
 // import "swiper/css/pagination";
@@ -68,35 +77,75 @@ function valueLabelFormat(value) {
   return marks.findIndex((mark) => mark.value === value) * 250; // Adjusted for $250 increments
 }
 
-
 function Productlist() {
-  const bySizeArr = ["15 ml","30 ml","40 ml","50 ml","60 ml","90 ml","100 ml","125 ml","200 ml"]
-  const [bySize,setBySize] = React.useState(true)
-  const openBySize = ()=>{
-  setBySize(!bySize)
-  }
-  const byFragranceArr = [
-    "Lavender",
-    "Burberry",
-    "Rose",
-    "Eternity",
-    "Fresh",
+  const formik = useFormik({
+    initialValues: {
+      bySize: {
+        "15 ml": "",
+        "30 ml": "",
+        "40 ml": "",
+        "50 ml": "",
+        "60 ml": "",
+        "90 ml": "",
+        "100 ml": "",
+        "125 ml": "",
+      },
+      byFragrance: {
+        Lavender: "",
+        Burberry: "",
+        Rose: "",
+        Eternity: "",
+        Fresh: "",
+      },
+      byBrand: {
+        Gucci: "",
+        Rolex: "",
+        Millen: "",
+        "Hugo Boss": "",
+        Chenal: "",
+      },
+    },
+    // validationSchema: LoginSchema,
+    onSubmit: async (values) => {},
+  });
+  const inputRef = React.useRef(null);
+  const {
+    values,
+    errors,
+    touched,
+    isSubmitting,
+    handleSubmit,
+    getFieldProps,
+    setFieldValue,
+  } = formik;
+  console.log("values: ", values);
+
+  const [selectedFilters, setSelectedFilters] = React.useState([]);
+  const bySizeArr = [
+    "15 ml",
+    "30 ml",
+    "40 ml",
+    "50 ml",
+    "60 ml",
+    "90 ml",
+    "100 ml",
+    "125 ml",
+    "200 ml",
   ];
+  const [bySize, setBySize] = React.useState(true);
+  const openBySize = () => {
+    setBySize(!bySize);
+  };
+  const byFragranceArr = ["Lavender", "Burberry", "Rose", "Eternity", "Fresh"];
   const [byPriceRange, setByPriceRange] = React.useState(true);
-const openByPriceRange = () => {
-  setByPriceRange(!byPriceRange);
-};
+  const openByPriceRange = () => {
+    setByPriceRange(!byPriceRange);
+  };
   const [byFragrance, setByFragrance] = React.useState(true);
-const openByFragrance = () => {
-  setByFragrance(!byFragrance);
-};
-  const byBrandArr = [
-    "Gucci",
-    "Rolex",
-    "Millen",
-    "Hugo Boss",
-    "Chenal",
-  ];
+  const openByFragrance = () => {
+    setByFragrance(!byFragrance);
+  };
+  const byBrandArr = ["Gucci", "Rolex", "Millen", "Hugo Boss", "Chenal"];
   const [byBrand, setByBrand] = React.useState(true);
   const openByBrand = () => {
     setByBrand(!byBrand);
@@ -105,61 +154,70 @@ const openByFragrance = () => {
   const openByGender = () => {
     setByGender(!byGender);
   };
-const cardStyles = {
-  marginLeft: "auto",
-  marginRight: "auto",
-  padding: "0px",
-};
+  // const cardStyles = {
+  //   marginLeft: "auto",
+  //   marginRight: "auto",
+  //   padding: "0px",
+  // };
 
-const cardContainerStyles = {
-  display: "flex",
-  flexWrap: "wrap",
-  alignItems: "flex-start", // Align items to the top of the container
-  marginLeft: "auto",
-  marginRight: "auto",
-  marginBottom: "20px",
-  marginTop: "20px",
-  padding: "0px",
-};
+  // const cardContainerStyles = {
+  //   display: "flex",
+  //   flexWrap: "wrap",
+  //   alignItems: "flex-start", // Align items to the top of the container
+  //   marginLeft: "auto",
+  //   marginRight: "auto",
+  //   marginBottom: "20px",
+  //   marginTop: "20px",
+  //   padding: "0px",
+  // };
 
-const cardMediaQueries = {
-  xs: {
-    width: "50%", // 2 cards per row for xs screens
-  },
-  sm: {
-    width: "50%", // 2 cards per row for sm screens
-  },
-  md: {
-    width: "33.33%", // 3 cards per row for md screens
-  },
-  lg: {
-    width: "33.33%", // 3 cards per row for lg screens
-  },
-};
- const [byGenderChips, setByGenderChips] = React.useState([
-   { label: "Men", isDeletable: false },
-   { label: "Women", isDeletable: false },
-   { label: "Unisex", isDeletable: false },
- ]);
+  // const cardMediaQueries = {
+  //   xs: {
+  //     width: "50%", // 2 cards per row for xs screens
+  //   },
+  //   sm: {
+  //     width: "50%", // 2 cards per row for sm screens
+  //   },
+  //   md: {
+  //     width: "33.33%", // 3 cards per row for md screens
+  //   },
+  //   lg: {
+  //     width: "33.33%", // 3 cards per row for lg screens
+  //   },
+  // };
+  const [byGenderChips, setByGenderChips] = React.useState([
+    { label: "Men", isDeletable: false },
+    { label: "Women", isDeletable: false },
+    { label: "Unisex", isDeletable: false },
+  ]);
 
-const [byType, setByType] = React.useState(true);
-const openByType = () => {
-  setByType(!byType);
-};
-
-
- const handleChipClick = (index) => {
-   const updatedChips = [...byGenderChips];
-   updatedChips[index].isDeletable = !updatedChips[index].isDeletable;
-   setByGenderChips(updatedChips);
- };
-
- const handleDeleteClick = (index) => {
-   const updatedChips = [...byGenderChips];
-   updatedChips[index].isDeletable = false;
-   setByGenderChips(updatedChips);
+  const [byType, setByType] = React.useState(true);
+  const openByType = () => {
+    setByType(!byType);
   };
 
+  const handleChipClick = (index) => {
+    const updatedChips = [...byGenderChips];
+    updatedChips[index].isDeletable = !updatedChips[index].isDeletable;
+    setByGenderChips(updatedChips);
+    setSelectedFilters([
+      ...selectedFilters,
+      { ...updatedChips[index], filterType: "byGender" },
+    ]);
+  };
+
+  const handleDeleteClick = (index) => {
+    const updatedChips = [...byGenderChips];
+    updatedChips[index].isDeletable = false;
+    setByGenderChips(updatedChips);
+    const i = selectedFilters?.findIndex(
+      (filter) => filter?.label == updatedChips[index]?.label
+    );
+    selectedFilters?.splice(i, 1);
+    setSelectedFilters([...selectedFilters]);
+  };
+
+  console.log("selectedFilters: =======>>>>>>>>>>>>", selectedFilters);
 
   const [byTypeChips, setByTypeChips] = React.useState([
     { label: "Eau de toilettes", isDeletable: false },
@@ -167,37 +225,138 @@ const openByType = () => {
     { label: "Eau de Parfum", isDeletable: false },
   ]);
 
-const handleChipClickByType = (index) => {
-  const updatedChips = [...byTypeChips];
-  updatedChips[index].isDeletable = !updatedChips[index].isDeletable;
-  setByTypeChips(updatedChips);
-};
+  const handleChipClickByType = (index) => {
+    const updatedChips = [...byTypeChips];
+    updatedChips[index].isDeletable = !updatedChips[index].isDeletable;
+    setByTypeChips(updatedChips);
+    setSelectedFilters([
+      ...selectedFilters,
+      { ...updatedChips[index], filterType: "byType" },
+    ]);
+  };
 
-const handleDeleteClickByType = (index) => {
-  const updatedChips = [...byTypeChips];
-  updatedChips[index].isDeletable = false;
-  setByTypeChips(updatedChips);
-};
+  const handleDeleteClickByType = (index) => {
+    const updatedChips = [...byTypeChips];
+    updatedChips[index].isDeletable = false;
+    setByTypeChips(updatedChips);
+    const i = selectedFilters?.findIndex(
+      (filter) => filter?.label == updatedChips[index]?.label
+    );
+    selectedFilters?.splice(i, 1);
+    setSelectedFilters([...selectedFilters]);
+  };
+
+  const handleCheckBox = (event, label, filterType) => {
+    const checkboxValue = event?.target?.checked;
+    const fieldName = `${filterType}.${label}`;
+    console.log("checkboxValue: ", checkboxValue);
+    if (checkboxValue) {
+      setFieldValue(fieldName, true);
+      const duplicate = selectedFilters?.filter(
+        (filter) => filter?.label == label
+      );
+      if (duplicate?.length == 0) {
+        setSelectedFilters([
+          ...selectedFilters,
+          { label: label, filterType: filterType, isDeletable: true },
+        ]);
+      }
+    } else {
+      setFieldValue(fieldName, false);
+      const i = selectedFilters?.findIndex((filter) => filter?.label == label);
+      if (i >= 0) {
+        selectedFilters?.splice(i, 1);
+        setSelectedFilters([...selectedFilters]);
+      }
+    }
+  };
+
+  const handleDeleteFilterChips = (index) => {
+    if (selectedFilters[index]?.filterType == "byGender") {
+      const updatedChips = [...byGenderChips];
+
+      const i = selectedFilters?.find(
+        (filter) => filter?.label == updatedChips[index]?.label
+      );
+      const genderIndex = updatedChips?.findIndex(
+        (filter) => filter?.label == selectedFilters[index]?.label
+      );
+      updatedChips[genderIndex].isDeletable = false;
+      setByGenderChips(updatedChips);
+      selectedFilters?.splice(index, 1);
+      setSelectedFilters([...selectedFilters]);
+    } else if (selectedFilters[index]?.filterType == "byType") {
+      const updatedChips = [...byTypeChips];
+
+      const i = selectedFilters?.find(
+        (filter) => filter?.label == updatedChips[index]?.label
+      );
+      const genderIndex = updatedChips?.findIndex(
+        (filter) => filter?.label == selectedFilters[index]?.label
+      );
+      updatedChips[genderIndex].isDeletable = false;
+      setByTypeChips(updatedChips);
+      selectedFilters?.splice(index, 1);
+      setSelectedFilters([...selectedFilters]);
+    } else {
+      const fieldName = `${selectedFilters[index]?.filterType}.${selectedFilters[index]?.label}`;
+      setFieldValue(fieldName, false);
+      setFieldValue();
+      selectedFilters?.splice(index, 1);
+      setSelectedFilters([...selectedFilters]);
+    }
+  };
 
   const navigate = useNavigate();
-  const [sortBy,setSortBy] = React.useState(false);
-  const [sortByMenu,setSortByMenu] = React.useState(false);
-   const [anchorEl, setAnchorEl] = React.useState(null);
-   const open = Boolean(anchorEl);
-   const handleClick = (event,bool) => {
-     setAnchorEl(event.currentTarget);
-     if(bool){
+  const [sortBy, setSortBy] = React.useState(false);
+  const [sortByMenu, setSortByMenu] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event, bool) => {
+    setAnchorEl(event.currentTarget);
+    if (bool) {
       setSortBy(true);
       setSortByMenu(true);
-    }else{
-       setSortBy(false);
-       setSortByMenu(false);
-     }
-   };
-   const handleClose = () => {
-     setAnchorEl(null);
-     setSortBy(false);
-   };
+    } else {
+      setSortBy(false);
+      setSortByMenu(false);
+    }
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+    setSortBy(false);
+  };
+
+  const handleSearch = async (e) => {
+    const value = e?.target?.value;
+    console.log("value:----------------- ", value.length);
+    if (value.length == 0) {
+      const i = selectedFilters?.findIndex(
+        (filter) => filter?.filterType == "search"
+      );
+      if (i >= 0) {
+        selectedFilters?.splice(i, 1);
+        setSelectedFilters([...selectedFilters]);
+      }
+    } else {
+      const duplicate = selectedFilters?.filter(
+        (filter) => filter?.filterType == "search"
+      );
+      if (duplicate?.length > 0) {
+        const duplicateIndex = selectedFilters?.findIndex(
+          (filter) => filter?.filterType == "search"
+        );
+        selectedFilters[duplicateIndex].label = value;
+        setSelectedFilters([...selectedFilters]);
+      } else {
+        setSelectedFilters([
+          ...selectedFilters,
+          { label: value, filterType: "search", isDeletable: true },
+        ]);
+      }
+    }
+  };
+  const debounceWithSearch = debounce(handleSearch, 500);
 
   return (
     <>
@@ -280,17 +439,26 @@ const handleDeleteClickByType = (index) => {
                 marginBottom: "auto",
               }}
             >
-              <Typography
-                variant="body2"
-                color="inherit"
-                sx={{
-                  textAlign: "center",
-                  paddingTop: "10px",
-                  paddingBottom: "10px",
-                }}
-              >
-                Product List
-              </Typography>
+              {selectedFilters?.length > 0 &&
+                selectedFilters?.map((filters, index) => (
+                  <Chip
+                    key={index}
+                    label={filters.label}
+                    // onClick={() => handleChipClick(index)}
+                    onDelete={
+                      filters.isDeletable
+                        ? () => handleDeleteFilterChips(index)
+                        : undefined
+                    }
+                    style={{
+                      margin: "5px",
+                      padding: "15px",
+                      // backgroundColor: chip.isDeletable ? "#FF5894" : "White",
+                      // color: chip.isDeletable ? "white" : "Black",
+                      // border: chip.isDeletable ? "none" : "2px solid black",
+                    }}
+                  />
+                ))}
             </Grid>
             <Grid
               item
@@ -372,7 +540,7 @@ const handleDeleteClickByType = (index) => {
                     marginBottom: "auto",
                   }}
                 >
-                  <Input
+                  {/* <Input
                     id="standard-adornment-weight"
                     endAdornment={
                       <InputAdornment position="end">
@@ -383,7 +551,24 @@ const handleDeleteClickByType = (index) => {
                     inputProps={{
                       "aria-label": "weight",
                     }}
+                    onChange={(e) => handleCheckBox(e, item, "byFragrance")}
                     placeholder="Search"
+                  /> */}
+                  <TextField
+                    fullWidth
+                    // label="Search by Title"
+                    placeholder="Search"
+                    name="search"
+                    variant="standard"
+                    size="small"
+                    onChange={debounceWithSearch}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <SearchRoundedIcon />
+                        </InputAdornment>
+                      ),
+                    }}
                   />
                 </FormControl>
               </MenuItem>
@@ -435,7 +620,14 @@ const handleDeleteClickByType = (index) => {
                     </Typography>
                     <FormControl sx={{ marginLeft: "auto" }}>
                       <FormControlLabel
-                        control={<Checkbox name={item} />}
+                        control={
+                          <Checkbox
+                            name={bySize?.[item]}
+                            checked={values?.bySize?.[item]}
+                            // {...getFieldProps(`bySize.${item}`)}
+                            onChange={(e) => handleCheckBox(e, item, "bySize")}
+                          />
+                        }
                         // control={<Checkbox name="agreed" onChange={handleAgreed} />}
                         // label="Pack for Gift"
                         sx={{ marginRight: "0px" }}
@@ -653,7 +845,16 @@ const handleDeleteClickByType = (index) => {
                     </Typography>
                     <FormControl sx={{ marginLeft: "auto" }}>
                       <FormControlLabel
-                        control={<Checkbox name={item} />}
+                        control={
+                          <Checkbox
+                            name={byFragrance?.[item]}
+                            checked={values?.byFragrance?.[item]}
+                            // {...getFieldProps(`bySize.${item}`)}
+                            onChange={(e) =>
+                              handleCheckBox(e, item, "byFragrance")
+                            }
+                          />
+                        }
                         // control={<Checkbox name="agreed" onChange={handleAgreed} />}
                         // label="Pack for Gift"
                         sx={{ marginRight: "0px" }}
@@ -712,7 +913,14 @@ const handleDeleteClickByType = (index) => {
                     </Typography>
                     <FormControl sx={{ marginLeft: "auto" }}>
                       <FormControlLabel
-                        control={<Checkbox name={item} />}
+                        control={
+                          <Checkbox
+                            name={byBrand?.[item]}
+                            checked={values?.byBrand?.[item]}
+                            // {...getFieldProps(`bySize.${item}`)}
+                            onChange={(e) => handleCheckBox(e, item, "byBrand")}
+                          />
+                        }
                         // control={<Checkbox name="agreed" onChange={handleAgreed} />}
                         // label="Pack for Gift"
                         sx={{ marginRight: "0px" }}
@@ -760,7 +968,6 @@ const componentConfig = {
 };
 
 export default componentConfig;
-
 
 //  <Grid
 //         container

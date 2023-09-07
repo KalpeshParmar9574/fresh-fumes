@@ -19,10 +19,12 @@ import {
 import { useNavigate } from "react-router-dom";
 import HouseRoundedIcon from "@mui/icons-material/HouseRounded";
 import DebitCard from "./DebitCard";
+import NiceModal from "@ebay/nice-modal-react";
+import AddressModel from "../../components/Model/AddressModel";
 function CheckOut() {
   const navigate = useNavigate();
   const editAddress = () => {
-      
+      NiceModal.show(AddressModel);
   }
   return (
     <Container maxWidth="lg">
