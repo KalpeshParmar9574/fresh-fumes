@@ -1,11 +1,11 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Grid, Typography, Box } from "@mui/material";
 
 function Category() {
   const categoryArr = [
-    "/assets/images/freshfumes/man.png",
-    "/assets/images/freshfumes/women.png",
-    "/assets/images/freshfumes/unisex.png",
+    { src: "/assets/images/freshfumes/man.png", label: "FOR MAN" },
+    { src: "/assets/images/freshfumes/women.png", label: "FOR WOMEN" },
+    { src: "/assets/images/freshfumes/unisex.png", label: "UNISEX" },
   ];
 
   return (
@@ -24,9 +24,29 @@ function Category() {
           md={4}
           lg={2}
           key={index}
-          sx={{ paddingLeft: "0px", margin: "0px" }}
+          sx={{ paddingLeft: "0px", margin: "0px", position: "relative" }}
         >
-          <img src={category} alt="" style={{ width: "100%" }} />
+          <div style={{ position: "relative" }}>
+            <img src={category.src} alt="" style={{ width: "100%" }} />
+            <Box
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                background: "rgb(255 254 254 / 33%)",
+                color: "#fff",
+                padding: "8px 16px",
+                width: "289px",
+                height: "162px",
+                borderRadius: "4px",
+              }}
+            >
+              <Typography variant="body2" sx={{ fontSize: "42px",paddingTop:"40px" }}>
+                {category.label}
+              </Typography>
+            </Box>
+          </div>
         </Grid>
       ))}
     </Grid>
