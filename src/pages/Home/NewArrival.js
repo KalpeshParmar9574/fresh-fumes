@@ -4,6 +4,8 @@ import "swiper/css/pagination";
 
 import "./NewArrivalCard.css";
 
+import ScrollCarousel from "scroll-carousel-react";
+import { CardArr } from "../CardArr";
 import {
   Autoplay,
   Navigation,
@@ -60,7 +62,8 @@ function NewArrival() {
       },
     ];
   return (
-    <Container maxWidth="xl">
+    // <Container maxWidth="xl">
+    <>
       <Typography
         variant="h4"
         color="inherit"
@@ -68,7 +71,28 @@ function NewArrival() {
       >
         New Arrivals
       </Typography>
-      <div className="custom-container">
+      <Container maxWidth="xl">
+        <ScrollCarousel autoplay autoplaySpeed={8} speed={1}>
+          {CardArr.map((card, item) => (
+            <div key={item} style={{ width: "280px", marginRight: "20px" }}>
+              <CustomCard
+                name={card?.name || ""}
+                subname={card?.subname || ""}
+                productName={card?.productName || ""}
+                price={card?.price || ""}
+                offerprice={card?.offerprice || ""}
+                img={card?.img || ""}
+                rating={card?.rating || "0"}
+                ratingcolor={card?.ratingcolor || "#FF5894"}
+                totalReviews={card?.totalReviews || "0"}
+                latestArrival={card?.latestArrival || false}
+                path={card?.id ? card?.id : ""}
+              />
+            </div>
+          ))}
+        </ScrollCarousel>
+      </Container>
+      {/* <div className="custom-container">
         {cardArr?.map((card, index) => (
           <div className="custom-card" key={index}>
             <CustomCard
@@ -86,8 +110,9 @@ function NewArrival() {
             />
           </div>
         ))}
-      </div>
-    </Container>
+      </div> */}
+      {/* </Container> */}
+    </>
   );
 }
 
