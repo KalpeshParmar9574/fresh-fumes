@@ -31,35 +31,35 @@ function Category() {
               position: "relative",
               overflow: "hidden",
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.querySelector(".zoom-box").style.width = "446px";
-              e.currentTarget.querySelector(".zoom-box").style.height = "333px";
-              e.currentTarget.querySelector(".label").style.fontSize = "60px";
-              e.currentTarget.querySelector(".label").style.transition =
-                "font-size 0.3s ease-in-out";
-              e.currentTarget.querySelector(".zoom-box").style.transition =
-                "transform 0.6s, width 0.6s, height 0.6s";
-              e.currentTarget.querySelector(
-                ".zoom-box"
-              ).style.transitionTimingFunction =
-                "cubic-bezier(0.25, 0.1, 0.25, 1.3)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.querySelector(".zoom-box").style.width = "289px";
-              e.currentTarget.querySelector(".zoom-box").style.height = "162px";
-              e.currentTarget.querySelector(".label").style.fontSize = "42px";
-              e.currentTarget.querySelector(".label").style.transition =
-                "font-size 0.3s ease-in-out";
-              e.currentTarget.querySelector(".zoom-box").style.transition =
-                "transform 0.6s, width 0.6s, height 0.6s";
-              e.currentTarget.querySelector(
-                ".zoom-box"
-              ).style.transitionTimingFunction =
-                "cubic-bezier(0.25, 0.1, 0.25, 0.75)";
-            }}
+            // onMouseEnter={(e) => {
+            //   e.currentTarget.querySelector(".zoom-box").style.width = "446px";
+            //   e.currentTarget.querySelector(".zoom-box").style.height = "333px";
+            //   e.currentTarget.querySelector(".label").style.fontSize = "60px";
+            //   e.currentTarget.querySelector(".label").style.transition =
+            //     "font-size 0.3s ease-in-out";
+            //   e.currentTarget.querySelector(".zoom-box").style.transition =
+            //     "transform 0.6s, width 0.6s, height 0.6s";
+            //   e.currentTarget.querySelector(
+            //     ".zoom-box"
+            //   ).style.transitionTimingFunction =
+            //     "cubic-bezier(0.25, 0.1, 0.25, 1.3)";
+            // }}
+            // onMouseLeave={(e) => {
+            //   e.currentTarget.querySelector(".zoom-box").style.width = "289px";
+            //   e.currentTarget.querySelector(".zoom-box").style.height = "162px";
+            //   e.currentTarget.querySelector(".label").style.fontSize = "42px";
+            //   e.currentTarget.querySelector(".label").style.transition =
+            //     "font-size 0.3s ease-in-out";
+            //   e.currentTarget.querySelector(".zoom-box").style.transition =
+            //     "transform 0.6s, width 0.6s, height 0.6s";
+            //   e.currentTarget.querySelector(
+            //     ".zoom-box"
+            //   ).style.transitionTimingFunction =
+            //     "cubic-bezier(0.25, 0.1, 0.25, 0.75)";
+            // }}
           >
             <img src={category.src} alt="" style={{ width: "100%" }} />
-            <Box
+            {/* <Box
               className="zoom-box"
               sx={{
                 position: "absolute",
@@ -84,7 +84,7 @@ function Category() {
               >
                 {category.label}
               </Typography>
-            </Box>
+            </Box> */}
           </div>
         </Grid>
       ))}

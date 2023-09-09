@@ -65,6 +65,10 @@ function ProductDetail() {
       "/assets/images/products/product1.png",
       "/assets/images/products/product2.png",
       "/assets/images/products/product3.png",
+      "/assets/images/products/product3.png",
+      "/assets/images/products/product3.png",
+      "/assets/images/products/product3.png",
+      "/assets/images/products/product3.png",
       // Add more image URLs here
     ],
   };
@@ -131,7 +135,7 @@ function ProductDetail() {
           <Grid
             item
             xs={4}
-            sm={4}
+            sm={8}
             md={7}
             lg={2}
             sx={{ marginLeft: "auto", marginRight: "auto", padding: "0px" }}
@@ -143,13 +147,13 @@ function ProductDetail() {
           <Grid
             item
             xs={4}
-            sm={4}
+            sm={8}
             md={5}
             lg={2}
-            sx={{ marginLeft: "auto", marginRight: "auto" }}
+            style={{ marginLeft: "auto", marginRight: "auto",paddingTop:"10px",marginBottom:"auto" }}
             // onClick={()=>navigate(`/productdetail/${card?.id}`)}
           >
-            <div style={{ display: "flex" }}>
+            <div style={{ display: "flex",justifyContent:"center",alignItems:"center" }}>
               <Typography
                 variant="h6"
                 color="text.dark"
@@ -181,8 +185,8 @@ function ProductDetail() {
                 variant="h6"
                 color="text.dark"
                 style={{
-                  marginTop: "10px",
-                  marginBottom: "10px",
+                  // marginTop: "10px",
+                  // marginBottom: "10px",
                   fontWeight: "400",
                   height: "27px",
                   color: "white",
@@ -197,13 +201,13 @@ function ProductDetail() {
             </div>
             <Stack>
               <Typography
-                variant="h2"
+                variant="h3"
                 color="text.dark"
                 sx={{
-                  marginTop: "10px",
-                  marginBottom: "10px",
+                  marginTop: "7px",
+                  marginBottom: "7px",
                   fontWeight: "400",
-                  fontSize: "42px",
+                  fontSize: "38px",
                 }}
               >
                 Gucci Guilty Eau De Toilette(50 ml)
@@ -214,8 +218,8 @@ function ProductDetail() {
                 variant="h6"
                 color="text.dark"
                 sx={{
-                  marginTop: "10px",
-                  marginBottom: "10px",
+                  marginTop: "8px",
+                  marginBottom: "8px",
                   fontWeight: "400",
                 }}
               >
@@ -227,8 +231,8 @@ function ProductDetail() {
                 variant="h6"
                 color="text.dark"
                 sx={{
-                  marginTop: "10px",
-                  marginBottom: "10px",
+                  marginTop: "5px",
+                  marginBottom: "5px",
                   fontWeight: "400",
                 }}
               >
@@ -283,8 +287,8 @@ function ProductDetail() {
                 variant="h6"
                 color="text.dark"
                 sx={{
-                  marginTop: "10px",
-                  marginBottom: "10px",
+                  marginTop: "5px",
+                  marginBottom: "5px",
                   fontWeight: "400",
                 }}
               >
@@ -296,8 +300,8 @@ function ProductDetail() {
                 variant="caption"
                 color="text.dark"
                 sx={{
-                  marginTop: "10px",
-                  marginBottom: "10px",
+                  marginTop: "5px",
+                  marginBottom: "5px",
                   fontWeight: "400",
                 }}
               >
@@ -351,6 +355,9 @@ function ProductDetail() {
                     borderRadius: "10px",
                     width: "45px",
                     textAlign: "center",
+                    display:"flex",
+                    justifyContent:"center",
+                    alignItems:"center"
                   }}
                 >
                   {quantity}
