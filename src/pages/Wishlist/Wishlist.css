@@ -1,45 +1,29 @@
 
-/* YourComponent.css */
-.custom-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Center the container horizontally */
-  align-items: flex-start;
-  margin: 35px auto;
-  padding: 0;
+
+
+
+/* Custom Card Listing Css */
+.custom-container-wishlist {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 20px; 
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px; 
 }
 
-.custom-card {
-  width: 270px;
-  margin: 10px;
+.custom-card-wishlist {
   border-radius: 4px;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
-
-  &:nth-child(6n + 1) {
-    clear: left;
-  }
 
   &:hover {
     transform: scale(1.05);
   }
 }
 
-/* Add a pseudo-element to create space before the second row */
-.custom-container::before {
-  content: "";
-  flex-basis: 100%; /* Push the second row to a new line */
-  height: 0; /* Hide the pseudo-element's height */
-  visibility: hidden; /* Hide the pseudo-element */
-}
-
-/* Media Query for Smaller Screens */
-@media (max-width: 1000px) {
-  .custom-container {
-    justify-content: center; /* Center the container */
-  }
-
-  .custom-card {
-    width: 100%; /* Make the cards 100% width to center them */
-  }
-}
+/* Apply Flexbox for the first row */
+/* .custom-container-wishlist > .custom-card-wishlist:nth-child(4n - 3) {
+  width: 100%;
+  max-width: 270px; 
+} */

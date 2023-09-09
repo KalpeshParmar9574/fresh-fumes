@@ -64,9 +64,9 @@ function Wishlist() {
         Wishlist
       </Typography>
       <Divider sx={{ marginBottom: "20px" }} />
-      <div className="custom-container">
+      <div className="custom-container-wishlist">
         {CardArr?.map((card, index) => (
-          <div className="custom-card" key={index}>
+          <div className="custom-card-wishlist" key={index}>
             <CustomCard
               name={card?.name || ""}
               subname={card?.subname || ""}

@@ -5,12 +5,13 @@ import {
   Autoplay,
   Pagination,
 } from "swiper/modules";
-
+import ScrollCarousel from "scroll-carousel-react";
+import {CardArr} from "../CardArr"
 import { Container, Typography } from "@mui/material";
 import BestSellerCard from "./BestSellerCard";
 import "./BestSellerCard.css";
 import CustomCard from "../../components/CustomCard";
-
+import { useEffect, useRef, useState } from "react";
 function BestSeller() {
   const cardArr = [
     {
@@ -50,6 +51,7 @@ function BestSeller() {
       rating: "4.5",
     },
   ];
+
   return (
     // <Container maxWidth="xl">
     <>
@@ -60,8 +62,29 @@ function BestSeller() {
       >
         Best Seller
       </Typography>
-      
-      <div className="custom-container">
+      <Container maxWidth="lg">
+        <ScrollCarousel autoplay={true} autoplaySpeed={1} speed={1}>
+          {CardArr.map((card, item) => (
+            <div key={item} style={{ width: "280px", marginRight: "20px" }}>
+              <CustomCard
+                name={card?.name || ""}
+                subname={card?.subname || ""}
+                productName={card?.productName || ""}
+                price={card?.price || ""}
+                offerprice={card?.offerprice || ""}
+                img={card?.img || ""}
+                rating={card?.rating || "0"}
+                ratingcolor={card?.ratingcolor || "#FF5894"}
+                totalReviews={card?.totalReviews || "0"}
+                latestArrival={card?.latestArrival || false}
+                path={card?.id ? card?.id : ""}
+              />
+            </div>
+          ))}
+        </ScrollCarousel>
+      </Container>
+
+      {/* <div className="custom-container">
         {cardArr?.map((card, index) => (
           <div
             className="custom-card"
@@ -82,9 +105,9 @@ function BestSeller() {
             />
           </div>
         ))}
-      </div>
-    {/* </Container> */}
-        </>
+      </div> */}
+      {/* </Container> */}
+    </>
   );
 }
 

@@ -45,3 +45,18 @@
   font-size: 12px;
   margin-left: 10px;
 }
+
+/* Responsive styles for small screens (max-width: 768px) */
+@media (max-width: 768px) {
+  .rating-label {
+    font-size: 10px; /* Reduce font size for small screens */
+  }
+
+  .bar-container {
+    width: 150px; /* Reduce width for small screens */
+  }
+
+  .count-label {
+    font-size: 10px; /* Reduce font size for small screens */
+  }
+}

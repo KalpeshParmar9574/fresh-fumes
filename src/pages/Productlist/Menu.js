@@ -1,42 +1,34 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import React, { useState } from "react";
+import "./Productlist.css"; // Import your custom CSS file for styling
 
-export default function BasicMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
+const CardMenu = () => {
+  // State to track whether the menu card is open or closed
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Function to toggle the menu card
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
-    <div>
-      <Button
-        id="basic-button"
-        aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-      >
-        Dashboard
-      </Button>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
-      >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
-      </Menu>
+    <div className="card-menu-container">
+      <button onClick={toggleMenu} className="menu-button">
+        Open Menu
+      </button>
+
+      {isOpen && (
+        <div className="menu-card">
+          {/* Add content for your menu card */}
+          <p>Menu Content</p>
+          <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+          </ul>
+        </div>
+      )}
     </div>
   );
-}
+};
+
+export default CardMenu;
