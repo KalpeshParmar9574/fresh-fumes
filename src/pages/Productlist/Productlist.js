@@ -31,7 +31,7 @@ import {
   Mousewheel,
   Keyboard,
 } from "swiper/modules";
-import "./swiper.css";
+import "./Productlist.css";
 import "swiper/css";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
@@ -42,6 +42,7 @@ import { CardArr } from "../CardArr";
 import { Delete } from "@mui/icons-material";
 import { useFormik } from "formik";
 import { debounce } from "lodash";
+import CardMenu from "./Menu";
 
 // import "swiper/css/navigation";
 // import "swiper/css/pagination";
@@ -519,28 +520,41 @@ function Productlist() {
                 )}
               </div>
             </Grid>
-            <Menu
-              id="basic-menu"
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              MenuListProps={{
-                "aria-labelledby": "basic-button",
+          </Grid>
+        </Card>
+      </Container>
+      {sortByMenu ? (
+        <div
+          // id="basic-menu"
+          // anchorEl={anchorEl}
+          // open={open}
+          // onClose={handleClose}
+          // MenuListProps={{
+          //   "aria-labelledby": "basic-button",
+          // }}
+          // sx={{ width: "400px", height: "auto", maxWidth: "100%" }}
+          // anchorOrigin={{
+          //   vertical: "bottom",
+          //   horizontal: "right",
+          // }}
+          // transformOrigin={{
+          //   vertical: "top",
+          //   horizontal: "right",
+          // }}
+          className="Menu-data"
+        >
+          <MenuItem>
+            <FormControl
+              variant="standard"
+              sx={{
+                m: 1,
+                mt: 3,
+                width: "100%",
+                marginTop: "auto",
+                marginBottom: "auto",
               }}
-              style={{ width: "100%", height: "auto" }}
             >
-              <MenuItem>
-                <FormControl
-                  variant="standard"
-                  sx={{
-                    m: 1,
-                    mt: 3,
-                    width: "100%",
-                    marginTop: "auto",
-                    marginBottom: "auto",
-                  }}
-                >
-                  {/* <Input
+              {/* <Input
                     id="standard-adornment-weight"
                     endAdornment={
                       <InputAdornment position="end">
@@ -554,388 +568,385 @@ function Productlist() {
                     onChange={(e) => handleCheckBox(e, item, "byFragrance")}
                     placeholder="Search"
                   /> */}
-                  <TextField
-                    fullWidth
-                    // label="Search by Title"
-                    placeholder="Search"
-                    name="search"
-                    variant="standard"
-                    size="small"
-                    onChange={debounceWithSearch}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <SearchRoundedIcon />
-                        </InputAdornment>
-                      ),
-                    }}
+              <TextField
+                fullWidth
+                // label="Search by Title"
+                placeholder="Search"
+                name="search"
+                variant="standard"
+                size="small"
+                onChange={debounceWithSearch}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <SearchRoundedIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </FormControl>
+          </MenuItem>
+          <div
+            style={{
+              display: "flex",
+              padding: "15px",
+              paddingBottom: "5px",
+            }}
+          >
+            <Typography
+              variant="h6"
+              color="inherit"
+              sx={{
+                textAlign: "left",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+                marginRight: "auto",
+                color: "rgba(0,0,0,1)",
+              }}
+            >
+              By Size
+            </Typography>
+            {bySize ? (
+              <IconButton onClick={openBySize} sx={{ marginLeft: "auto" }}>
+                <AddRoundedIcon />
+              </IconButton>
+            ) : (
+              <IconButton onClick={openBySize} sx={{ marginLeft: "auto" }}>
+                <RemoveRoundedIcon />
+              </IconButton>
+            )}
+          </div>
+          <Divider sx={{ border: "1px solid black" }} />
+          {!bySize &&
+            bySizeArr?.map((item, index) => (
+              <div key={index} style={{ display: "flex", padding: "15px" }}>
+                <Typography
+                  variant="body2"
+                  color="inherit"
+                  sx={{
+                    textAlign: "left",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                    marginRight: "auto",
+                  }}
+                >
+                  {item}
+                </Typography>
+                <FormControl sx={{ marginLeft: "auto" }}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name={bySize?.[item]}
+                        checked={values?.bySize?.[item]}
+                        // {...getFieldProps(`bySize.${item}`)}
+                        onChange={(e) => handleCheckBox(e, item, "bySize")}
+                      />
+                    }
+                    // control={<Checkbox name="agreed" onChange={handleAgreed} />}
+                    // label="Pack for Gift"
+                    sx={{ marginRight: "0px" }}
+                  />
+                </FormControl>
+              </div>
+            ))}
+          <div
+            style={{
+              display: "flex",
+              padding: "15px",
+              paddingBottom: "5px",
+            }}
+          >
+            <Typography
+              variant="h6"
+              color="inherit"
+              sx={{
+                textAlign: "left",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+                marginRight: "auto",
+                color: "rgba(0,0,0,1)",
+              }}
+            >
+              By Gender
+            </Typography>
+            {byGender ? (
+              <IconButton onClick={openByGender} sx={{ marginLeft: "auto" }}>
+                <AddRoundedIcon />
+              </IconButton>
+            ) : (
+              <IconButton onClick={openByGender} sx={{ marginLeft: "auto" }}>
+                <RemoveRoundedIcon />
+              </IconButton>
+            )}
+          </div>
+          <Divider sx={{ border: "1px solid black" }} />
+          {!byGender && (
+            <div style={{ padding: "15px" }}>
+              {byGenderChips.map((chip, index) => (
+                <Chip
+                  key={index}
+                  label={chip.label}
+                  onClick={() => handleChipClick(index)}
+                  onDelete={
+                    chip.isDeletable
+                      ? () => handleDeleteClick(index)
+                      : undefined
+                  }
+                  style={{
+                    margin: "5px",
+                    padding: "15px",
+                    backgroundColor: chip.isDeletable ? "#FF5894" : "White",
+                    color: chip.isDeletable ? "white" : "Black",
+                    border: chip.isDeletable ? "none" : "2px solid black",
+                  }}
+                />
+              ))}
+            </div>
+          )}
+          <div
+            style={{
+              display: "flex",
+              padding: "15px",
+              paddingBottom: "5px",
+            }}
+          >
+            <Typography
+              variant="h6"
+              color="inherit"
+              sx={{
+                textAlign: "left",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+                marginRight: "auto",
+                color: "rgba(0,0,0,1)",
+              }}
+            >
+              By Type
+            </Typography>
+            {byType ? (
+              <IconButton onClick={openByType} sx={{ marginLeft: "auto" }}>
+                <AddRoundedIcon />
+              </IconButton>
+            ) : (
+              <IconButton onClick={openByType} sx={{ marginLeft: "auto" }}>
+                <RemoveRoundedIcon />
+              </IconButton>
+            )}
+          </div>
+          <Divider sx={{ border: "1px solid black" }} />
+          {!byType && (
+            <div style={{ padding: "15px" }}>
+              {byTypeChips.map((chip, index) => (
+                <Chip
+                  key={index}
+                  label={chip.label}
+                  onClick={() => handleChipClickByType(index)}
+                  onDelete={
+                    chip.isDeletable
+                      ? () => handleDeleteClickByType(index)
+                      : undefined
+                  }
+                  style={{
+                    margin: "5px",
+                    padding: "15px",
+                    backgroundColor: chip.isDeletable ? "#FF5894" : "White",
+                    color: chip.isDeletable ? "white" : "Black",
+                    border: chip.isDeletable ? "none" : "2px solid black",
+                  }}
+                />
+              ))}
+            </div>
+          )}
+
+          <div
+            style={{
+              display: "flex",
+              padding: "15px",
+              paddingBottom: "5px",
+            }}
+          >
+            <Typography
+              variant="h6"
+              color="inherit"
+              sx={{
+                textAlign: "left",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+                marginRight: "auto",
+                color: "rgba(0,0,0,1)",
+              }}
+            >
+              By Price Range
+            </Typography>
+            {byPriceRange ? (
+              <IconButton onClick={openByPriceRange}>
+                <AddRoundedIcon />
+              </IconButton>
+            ) : (
+              <IconButton onClick={openByPriceRange}>
+                <RemoveRoundedIcon />
+              </IconButton>
+            )}
+          </div>
+          <Divider sx={{ border: "1px solid black" }} />
+          {!byPriceRange && (
+            <div
+              style={{
+                display: "flex",
+                padding: "15px",
+                width: "400px",
+              }}
+            >
+              <Slider
+                aria-label="Price range"
+                defaultValue={0}
+                valueLabelFormat={valueLabelFormat}
+                getAriaValueText={valuetext}
+                step={null}
+                valueLabelDisplay="auto"
+                marks={marks}
+                max={1000}
+              />
+            </div>
+          )}
+          <div
+            style={{
+              display: "flex",
+              padding: "15px",
+              paddingBottom: "5px",
+            }}
+          >
+            <Typography
+              variant="h6"
+              color="inherit"
+              sx={{
+                textAlign: "left",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+                marginRight: "auto",
+                color: "rgba(0,0,0,1)",
+              }}
+            >
+              By Fragrance
+            </Typography>
+            {byFragrance ? (
+              <IconButton onClick={openByFragrance}>
+                <AddRoundedIcon />
+              </IconButton>
+            ) : (
+              <IconButton onClick={openByFragrance}>
+                <RemoveRoundedIcon />
+              </IconButton>
+            )}
+          </div>
+          <Divider sx={{ border: "1px solid black" }} />
+          {!byFragrance &&
+            byFragranceArr?.map((item, index) => (
+              <div style={{ display: "flex", padding: "15px" }} key={index}>
+                <Typography
+                  variant="body2"
+                  color="inherit"
+                  sx={{
+                    textAlign: "left",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                    marginRight: "auto",
+                  }}
+                >
+                  {item}
+                </Typography>
+                <FormControl sx={{ marginLeft: "auto" }}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name={byFragrance?.[item]}
+                        checked={values?.byFragrance?.[item]}
+                        // {...getFieldProps(`bySize.${item}`)}
+                        onChange={(e) => handleCheckBox(e, item, "byFragrance")}
+                      />
+                    }
+                    // control={<Checkbox name="agreed" onChange={handleAgreed} />}
+                    // label="Pack for Gift"
+                    sx={{ marginRight: "0px" }}
+                  />
+                </FormControl>
+              </div>
+            ))}
+          <div
+            style={{
+              display: "flex",
+              padding: "15px",
+              paddingBottom: "5px",
+            }}
+          >
+            <Typography
+              variant="h6"
+              color="inherit"
+              sx={{
+                textAlign: "left",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+                marginRight: "auto",
+                color: "rgba(0,0,0,1)",
+              }}
+            >
+              By Brand
+            </Typography>
+            {byBrand ? (
+              <IconButton onClick={openByBrand}>
+                <AddRoundedIcon />
+              </IconButton>
+            ) : (
+              <IconButton onClick={openByBrand}>
+                <RemoveRoundedIcon />
+              </IconButton>
+            )}
+          </div>
+          <Divider sx={{ border: "1px solid black" }} />
+          {!byBrand &&
+            byBrandArr?.map((item, index) => (
+              <MenuItem
+                style={{ display: "flex", padding: "15px" }}
+                key={index}
+              >
+                <Typography
+                  variant="body2"
+                  color="inherit"
+                  sx={{
+                    textAlign: "left",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                    marginRight: "auto",
+                  }}
+                >
+                  {item}
+                </Typography>
+                <FormControl sx={{ marginLeft: "auto" }}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name={byBrand?.[item]}
+                        checked={values?.byBrand?.[item]}
+                        // {...getFieldProps(`bySize.${item}`)}
+                        onChange={(e) => handleCheckBox(e, item, "byBrand")}
+                      />
+                    }
+                    // control={<Checkbox name="agreed" onChange={handleAgreed} />}
+                    // label="Pack for Gift"
+                    sx={{ marginRight: "0px" }}
                   />
                 </FormControl>
               </MenuItem>
-              <div
-                style={{
-                  display: "flex",
-                  padding: "15px",
-                  paddingBottom: "5px",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  color="inherit"
-                  sx={{
-                    textAlign: "left",
-                    paddingTop: "10px",
-                    paddingBottom: "10px",
-                    marginRight: "auto",
-                    color: "rgba(0,0,0,1)",
-                  }}
-                >
-                  By Size
-                </Typography>
-                {bySize ? (
-                  <IconButton onClick={openBySize} sx={{ marginLeft: "auto" }}>
-                    <AddRoundedIcon />
-                  </IconButton>
-                ) : (
-                  <IconButton onClick={openBySize} sx={{ marginLeft: "auto" }}>
-                    <RemoveRoundedIcon />
-                  </IconButton>
-                )}
-              </div>
-              <Divider sx={{ border: "1px solid black" }} />
-              {!bySize &&
-                bySizeArr?.map((item, index) => (
-                  <div key={index} style={{ display: "flex", padding: "15px" }}>
-                    <Typography
-                      variant="body2"
-                      color="inherit"
-                      sx={{
-                        textAlign: "left",
-                        paddingTop: "10px",
-                        paddingBottom: "10px",
-                        marginRight: "auto",
-                      }}
-                    >
-                      {item}
-                    </Typography>
-                    <FormControl sx={{ marginLeft: "auto" }}>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            name={bySize?.[item]}
-                            checked={values?.bySize?.[item]}
-                            // {...getFieldProps(`bySize.${item}`)}
-                            onChange={(e) => handleCheckBox(e, item, "bySize")}
-                          />
-                        }
-                        // control={<Checkbox name="agreed" onChange={handleAgreed} />}
-                        // label="Pack for Gift"
-                        sx={{ marginRight: "0px" }}
-                      />
-                    </FormControl>
-                  </div>
-                ))}
-              <div
-                style={{
-                  display: "flex",
-                  padding: "15px",
-                  paddingBottom: "5px",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  color="inherit"
-                  sx={{
-                    textAlign: "left",
-                    paddingTop: "10px",
-                    paddingBottom: "10px",
-                    marginRight: "auto",
-                    color: "rgba(0,0,0,1)",
-                  }}
-                >
-                  By Gender
-                </Typography>
-                {byGender ? (
-                  <IconButton
-                    onClick={openByGender}
-                    sx={{ marginLeft: "auto" }}
-                  >
-                    <AddRoundedIcon />
-                  </IconButton>
-                ) : (
-                  <IconButton
-                    onClick={openByGender}
-                    sx={{ marginLeft: "auto" }}
-                  >
-                    <RemoveRoundedIcon />
-                  </IconButton>
-                )}
-              </div>
-              <Divider sx={{ border: "1px solid black" }} />
-              {!byGender && (
-                <div style={{ padding: "15px" }}>
-                  {byGenderChips.map((chip, index) => (
-                    <Chip
-                      key={index}
-                      label={chip.label}
-                      onClick={() => handleChipClick(index)}
-                      onDelete={
-                        chip.isDeletable
-                          ? () => handleDeleteClick(index)
-                          : undefined
-                      }
-                      style={{
-                        margin: "5px",
-                        padding: "15px",
-                        backgroundColor: chip.isDeletable ? "#FF5894" : "White",
-                        color: chip.isDeletable ? "white" : "Black",
-                        border: chip.isDeletable ? "none" : "2px solid black",
-                      }}
-                    />
-                  ))}
-                </div>
-              )}
-              <div
-                style={{
-                  display: "flex",
-                  padding: "15px",
-                  paddingBottom: "5px",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  color="inherit"
-                  sx={{
-                    textAlign: "left",
-                    paddingTop: "10px",
-                    paddingBottom: "10px",
-                    marginRight: "auto",
-                    color: "rgba(0,0,0,1)",
-                  }}
-                >
-                  By Type
-                </Typography>
-                {byType ? (
-                  <IconButton onClick={openByType} sx={{ marginLeft: "auto" }}>
-                    <AddRoundedIcon />
-                  </IconButton>
-                ) : (
-                  <IconButton onClick={openByType} sx={{ marginLeft: "auto" }}>
-                    <RemoveRoundedIcon />
-                  </IconButton>
-                )}
-              </div>
-              <Divider sx={{ border: "1px solid black" }} />
-              {!byType && (
-                <div style={{ padding: "15px" }}>
-                  {byTypeChips.map((chip, index) => (
-                    <Chip
-                      key={index}
-                      label={chip.label}
-                      onClick={() => handleChipClickByType(index)}
-                      onDelete={
-                        chip.isDeletable
-                          ? () => handleDeleteClickByType(index)
-                          : undefined
-                      }
-                      style={{
-                        margin: "5px",
-                        padding: "15px",
-                        backgroundColor: chip.isDeletable ? "#FF5894" : "White",
-                        color: chip.isDeletable ? "white" : "Black",
-                        border: chip.isDeletable ? "none" : "2px solid black",
-                      }}
-                    />
-                  ))}
-                </div>
-              )}
-
-              <div
-                style={{
-                  display: "flex",
-                  padding: "15px",
-                  paddingBottom: "5px",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  color="inherit"
-                  sx={{
-                    textAlign: "left",
-                    paddingTop: "10px",
-                    paddingBottom: "10px",
-                    marginRight: "auto",
-                    color: "rgba(0,0,0,1)",
-                  }}
-                >
-                  By Price Range
-                </Typography>
-                {byPriceRange ? (
-                  <IconButton onClick={openByPriceRange}>
-                    <AddRoundedIcon />
-                  </IconButton>
-                ) : (
-                  <IconButton onClick={openByPriceRange}>
-                    <RemoveRoundedIcon />
-                  </IconButton>
-                )}
-              </div>
-              <Divider sx={{ border: "1px solid black" }} />
-              {!byPriceRange && (
-                <div
-                  style={{ display: "flex", padding: "15px", width: "400px" }}
-                >
-                  <Slider
-                    aria-label="Price range"
-                    defaultValue={0}
-                    valueLabelFormat={valueLabelFormat}
-                    getAriaValueText={valuetext}
-                    step={null}
-                    valueLabelDisplay="auto"
-                    marks={marks}
-                    max={1000}
-                  />
-                </div>
-              )}
-              <div
-                style={{
-                  display: "flex",
-                  padding: "15px",
-                  paddingBottom: "5px",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  color="inherit"
-                  sx={{
-                    textAlign: "left",
-                    paddingTop: "10px",
-                    paddingBottom: "10px",
-                    marginRight: "auto",
-                    color: "rgba(0,0,0,1)",
-                  }}
-                >
-                  By Fragrance
-                </Typography>
-                {byFragrance ? (
-                  <IconButton onClick={openByFragrance}>
-                    <AddRoundedIcon />
-                  </IconButton>
-                ) : (
-                  <IconButton onClick={openByFragrance}>
-                    <RemoveRoundedIcon />
-                  </IconButton>
-                )}
-              </div>
-              <Divider sx={{ border: "1px solid black" }} />
-              {!byFragrance &&
-                byFragranceArr?.map((item, index) => (
-                  <div style={{ display: "flex", padding: "15px" }} key={index}>
-                    <Typography
-                      variant="body2"
-                      color="inherit"
-                      sx={{
-                        textAlign: "left",
-                        paddingTop: "10px",
-                        paddingBottom: "10px",
-                        marginRight: "auto",
-                      }}
-                    >
-                      {item}
-                    </Typography>
-                    <FormControl sx={{ marginLeft: "auto" }}>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            name={byFragrance?.[item]}
-                            checked={values?.byFragrance?.[item]}
-                            // {...getFieldProps(`bySize.${item}`)}
-                            onChange={(e) =>
-                              handleCheckBox(e, item, "byFragrance")
-                            }
-                          />
-                        }
-                        // control={<Checkbox name="agreed" onChange={handleAgreed} />}
-                        // label="Pack for Gift"
-                        sx={{ marginRight: "0px" }}
-                      />
-                    </FormControl>
-                  </div>
-                ))}
-              <div
-                style={{
-                  display: "flex",
-                  padding: "15px",
-                  paddingBottom: "5px",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  color="inherit"
-                  sx={{
-                    textAlign: "left",
-                    paddingTop: "10px",
-                    paddingBottom: "10px",
-                    marginRight: "auto",
-                    color: "rgba(0,0,0,1)",
-                  }}
-                >
-                  By Brand
-                </Typography>
-                {byBrand ? (
-                  <IconButton onClick={openByBrand}>
-                    <AddRoundedIcon />
-                  </IconButton>
-                ) : (
-                  <IconButton onClick={openByBrand}>
-                    <RemoveRoundedIcon />
-                  </IconButton>
-                )}
-              </div>
-              <Divider sx={{ border: "1px solid black" }} />
-              {!byBrand &&
-                byBrandArr?.map((item, index) => (
-                  <MenuItem
-                    style={{ display: "flex", padding: "15px" }}
-                    key={index}
-                  >
-                    <Typography
-                      variant="body2"
-                      color="inherit"
-                      sx={{
-                        textAlign: "left",
-                        paddingTop: "10px",
-                        paddingBottom: "10px",
-                        marginRight: "auto",
-                      }}
-                    >
-                      {item}
-                    </Typography>
-                    <FormControl sx={{ marginLeft: "auto" }}>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            name={byBrand?.[item]}
-                            checked={values?.byBrand?.[item]}
-                            // {...getFieldProps(`bySize.${item}`)}
-                            onChange={(e) => handleCheckBox(e, item, "byBrand")}
-                          />
-                        }
-                        // control={<Checkbox name="agreed" onChange={handleAgreed} />}
-                        // label="Pack for Gift"
-                        sx={{ marginRight: "0px" }}
-                      />
-                    </FormControl>
-                  </MenuItem>
-                ))}
-            </Menu>
-          </Grid>
-        </Card>
-      </Container>
+            ))}
+        </div>
+      ) : (
+        ""
+      )}
       {/* <BasicMenu /> */}
-      <div className="custom-container">
+      <div className="custom-container-productlist">
         {CardArr?.map((card, index) => (
-          <div className="custom-card" key={index}>
+          <div className={`custom-card-productlist}`} key={index}>
+            {console.log("card: ", card, index)}
             <CustomCard
               name={card?.name || ""}
               subname={card?.subname || ""}
@@ -952,6 +963,7 @@ function Productlist() {
           </div>
         ))}
       </div>
+  
       {/* </Container> */}
     </>
   );
