@@ -62,17 +62,10 @@ function BestSeller() {
       >
         Best Seller
       </Typography>
-      <Container maxWidth="xl">
-        <ScrollCarousel
-          autoplay
-          autoplaySpeed={8}
-          speed={1}
-        >
+      <Container maxWidth="lg">
+        <ScrollCarousel autoplay={true} autoplaySpeed={1} speed={1}>
           {CardArr.map((card, item) => (
-            <div
-              key={item}
-              style={{ width: "280px", marginRight: "20px" }}
-            >
+            <div key={item} style={{ width: "280px", marginRight: "20px" }}>
               <CustomCard
                 name={card?.name || ""}
                 subname={card?.subname || ""}

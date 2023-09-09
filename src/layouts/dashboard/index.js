@@ -84,12 +84,14 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function MiniDrawer(props) {
   const { children, window } = props;
   const [isHidden, setIsHidden] = useState(false);
-  console.log('isHidden: ', isHidden);
+  // console.log('isHidden: ', isHidden);
 
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
   });
-
+const handleOpenSocialMedia = () =>{
+  window.open("https://www.w3schools.com");
+}
   React.useEffect(() => {
     setIsHidden(trigger);
   }, [trigger]);
@@ -217,10 +219,12 @@ export default function MiniDrawer(props) {
       <CssBaseline />
       <Box sx={{ flexGrow: 1 }}>
         <AppBarRootStyle position="fixed" component="nav">
-          <Toolbar  sx={{
-    paddingTop: "5px",
-    display: isHidden ? "none" : "block",
-  }} >
+          <Toolbar
+            sx={{
+              paddingTop: "5px",
+              display: isHidden ? "none" : "block",
+            }}
+          >
             <Grid
               container
               spacing={{ xs: 2, md: 3 }}
@@ -478,7 +482,12 @@ export default function MiniDrawer(props) {
                       }}
                     >
                       <ShoppingCartRoundedIcon
-                        sx={{ width: "35px", hieght: "35px",cursor:"pointer" }} onClick={()=>navigate("/addtocart")}
+                        sx={{
+                          width: "35px",
+                          hieght: "35px",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => navigate("/addtocart")}
                       />
                     </Grid>
                   </Grid>
@@ -812,6 +821,52 @@ export default function MiniDrawer(props) {
                 magna pellentesque. Urna maecenas pretium in dolor faucibus dui
                 vivamus egestas orci
               </Link>
+              <div style={{ display: "flex" }}>
+                <Link href="https://www.instagram.com/" target="_blank">
+                  <IconButton
+                    sx={{
+                      borderRadius: "10px",
+                      //   backgroundColor: "rgba(0, 0, 0, 0.1)",
+                      //   marginBottom: "8px",
+                    }}
+                  >
+                    <img src="/assets/images/icons/Instagram.png" alt="" />
+                  </IconButton>
+                </Link>
+                <Link href="https://www.facebook.com/" target="_blank">
+                  <IconButton
+                    sx={{
+                      borderRadius: "10px",
+                      //   backgroundColor: "rgba(0, 0, 0, 0.1)",
+                      //   marginBottom: "8px",
+                    }}
+                  >
+                    <img src="/assets/images/icons/Facebook.png" alt="" />
+                  </IconButton>
+                </Link>
+                <Link href="https://www.snapchat.com/" target="_blank">
+                  <IconButton
+                    sx={{
+                      borderRadius: "10px",
+                      // backgroundColor: "rgba(255, 255, 255, 1)",
+                      //   marginBottom: "8px",
+                    }}
+                  >
+                    <img src="/assets/images/icons/Snapchat.png" alt="" />
+                  </IconButton>
+                </Link>
+                <Link href="https://twitter.com/login?lang=en" target="_blank">
+                  <IconButton
+                    sx={{
+                      borderRadius: "10px",
+                      //   backgroundColor: "rgba(0, 0, 0, 0.1)",
+                      //   marginBottom: "8px",
+                    }}
+                  >
+                    <img src="/assets/images/icons/Twitter.png" alt="" />
+                  </IconButton>
+                </Link>
+              </div>
               {/* <Link
                 href="#"
                 variant="body1"

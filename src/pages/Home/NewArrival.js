@@ -71,8 +71,8 @@ function NewArrival() {
       >
         New Arrivals
       </Typography>
-      <Container maxWidth="xl">
-        <ScrollCarousel autoplay autoplaySpeed={8} speed={1}>
+      <Container maxWidth="lg">
+        <ScrollCarousel autoplay={true} autoplaySpeed={1} speed={1}>
           {CardArr.map((card, item) => (
             <div key={item} style={{ width: "280px", marginRight: "20px" }}>
               <CustomCard
